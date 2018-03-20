@@ -6,9 +6,8 @@ This is a private git repository of the Payments NZ API specifications.  It is u
 
 ## APIs
 
-There are currently two APIs covered under in the specifications here.  These are:
+There is currently one API covered under the specifications.  These are:
 
-* Payment Initiation - initiate a one-off payment in a person-to-person or person-to-merchant fashion
 * Account Information - access information on a payment user's accounts
 
 ## Files
@@ -18,8 +17,8 @@ The files contained in this project cover:
 * Swagger 2.0 YAML formatted API specifications of
   * NZ Account and Payment APIs
   * Upstream APIs for reference
-* Changelogs of NZ APIs recording human-friendly notes of API changes
-* Response code defintions and descriptions
+* [Changelogs](account-info-nz-changelog.md) of NZ APIs recording human-friendly notes of API changes
+* [Response code defintions and descriptions](account-info-nz-response-codes.md)
 * Other files as required
 
 ## Upstream API Reference
