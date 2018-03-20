@@ -15,8 +15,7 @@ There is currently one API covered under the specifications.  These are:
 The files contained in this project cover:
 
 * Swagger 2.0 YAML formatted API specifications of
-  * NZ Account and Payment APIs
-  * Upstream APIs for reference
+  * NZ Account Information APIs
 * [Changelogs](account-info-nz-changelog.md) of NZ APIs recording human-friendly notes of API changes
 * [Response code defintions and descriptions](account-info-nz-response-codes.md)
 * Other files as required
