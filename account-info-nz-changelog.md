@@ -2,6 +2,11 @@
 
 ---
 
+## v0.1.0 - 23/03/2018
+
+* Changed base path to /open-banking/v0.1
+* Version bump specification to v0.1.0 to reflect MINOR change to stabilise for pilot
+
 ## V0.0.3 - 16/02/2018
 
 * Added AccountRequestResponseModel - this model wraps the AccountRequestModel (model of account access requests) and adds the required response fields.  Previously this was done through read-only attributes, however this causes semantic error when used with 'required'.  The AccountRequestsResponseModel is syntactically equivalent, allows for required fields and removes the error condition.
