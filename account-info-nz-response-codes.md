@@ -20,7 +20,9 @@ The following are the HTTP response codes for the different HTTP methods - acros
 |The request contained an accept header that requested a content-type other than application/json and a character set other than UTF-8|406 Not Acceptable||Yes|Yes|Yes|
 |The operation was refused as too many requests have been made within a certain timeframe. The ASPSP should include a Retry-After header in the response indicating how long the TPP must wait before retrying the operation.|429 Too Many Requests|Throttling is a NFR.|Yes|Yes|Yes|
 |Something went wrong on the API gateway or micro-service|500 Internal Server Error|The operation failed.|Yes|Yes|Yes|
+|The endpoint (resource) identified by the URL is currently not supported/implemented by the ASPSP|501 Not Implemented|ASPSP has not yet implemented|Yes|Yes|Yes|
 An ASPSP **MAY** return other standard HTTP status codes (e.g. from gateways and other edge devices) as described in [RFC 7231 - Section 6.](https://tools.ietf.org/html/rfc7231#section-6)
+
 
 #### 400 (Bad Request) v/s 404 (Not Found)
 
