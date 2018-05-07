@@ -1718,7 +1718,12 @@ definitions:
           Identification:
             description: >-
               Identification assigned by an institution to identify an account.
-              This identification is known by the account owner.
+              This identification is known by the account owner. For the NZ
+              market, this will use the hyphen-delimited format: 2-4-7-2
+              where this is made up of bank-branch-account-suffix and each
+              of the four components is a number, prepended with leading zeros
+              to match the component length requirement.  
+              For example 12-0123-0012345-00
             type: string
             minLength: 1
             maxLength: 34
@@ -2252,18 +2257,17 @@ definitions:
         type: object
         properties:
           SchemeName:
-            description: >-
-              Name of the identification scheme, in a coded
-              form as published in an external list.
-            type: string
-            enum:
-              - IBAN
-              - SortCodeAccountNumber
+            $ref: '#/definitions/AccountSchemeModel'
           Identification:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner.
+              known by the account owner. For the NZ
+              market, this will use the hyphen-delimited format: 2-4-7-2
+              where this is made up of bank-branch-account-suffix and each
+              of the four components is a number, prepended with leading zeros
+              to match the component length requirement.  
+              For example 12-0123-0012345-00
             type: string
             minLength: 1
             maxLength: 34
@@ -2526,18 +2530,17 @@ definitions:
         type: object
         properties:
           SchemeName:
-            description: >-
-              Name of the identification scheme, in a coded
-              form as published in an external list.
-            type: string
-            enum:
-              - IBAN
-              - SortCodeAccountNumber
+            $ref: '#/definitions/AccountSchemeModel'
           Identification:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner.
+              known by the account owner. For the NZ
+              market, this will use the hyphen-delimited format: 2-4-7-2
+              where this is made up of bank-branch-account-suffix and each
+              of the four components is a number, prepended with leading zeros
+              to match the component length requirement.  
+              For example 12-0123-0012345-00
             type: string
             minLength: 1
             maxLength: 34
