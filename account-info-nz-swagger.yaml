@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v0.1.0
+  version: v0.1.1
 basePath: /open-banking/v0.1
 schemes:
   - https
@@ -540,8 +540,8 @@ paths:
       responses:
         '200':
           description: Account Transactions successfully retrieved
-          schema: &ref_19
-            title: Account Transactions GET response
+          schema:
+            title: Transactions GET response
             type: object
             properties:
               Data:
@@ -554,273 +554,9 @@ paths:
                     description: Transaction
                     type: array
                     items:
-                      type: object
-                      properties:
-                        AccountId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the account resource. This identifier has no meaning
-                            to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        TransactionId:
-                          description: >-
-                            Unique identifier for the transaction within an
-                            servicing institution. This identifier is both
-                            unique and immutable.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        TransactionReference:
-                          description: >-
-                            Unique reference for the transaction. This reference
-                            is optionally populated, and may as an example be
-                            the FPID in the Faster Payments context.
-                          type: string
-                          minLength: 1
-                          maxLength: 35
-                        Amount:
-                          description: Amount of money in the cash entry.
-                          type: object
-                          properties:
-                            Amount:
-                              type: string
-                              pattern: '^\d{1,13}\.\d{1,5}$'
-                            Currency:
-                              description: >-
-                                A code allocated to a currency by a Maintenance
-                                Agency under an international identification
-                                scheme, as described in the latest edition of
-                                the international standard ISO 4217 'Codes for
-                                the representation of currencies and funds'
-                              type: string
-                              pattern: '^[A-Z]{3,3}$'
-                          required:
-                            - Amount
-                            - Currency
-                          additionalProperties: false
-                        CreditDebitIndicator:
-                          description: >-
-                            Indicates whether the transaction is a credit or a
-                            debit entry.
-                          type: string
-                          enum:
-                            - Credit
-                            - Debit
-                        Status:
-                          description: >-
-                            Status of a transaction entry on the books of the
-                            account servicer.
-                          type: string
-                          enum:
-                            - Booked
-                            - Pending
-                        BookingDateTime:
-                          description: >-
-                            Date and time when a transaction entry is posted to
-                            an account on the account servicer's books. Usage:
-                            Booking date is the expected booking date, unless
-                            the status is booked, in which case it is the actual
-                            booking date. 
-
-                            All dates in the JSON payloads are represented in
-                            ISO 8601 date-time format. 
-
-                            All date-time fields in responses must include the
-                            timezone. An example is below:
-
-                            2017-04-05T10:43:07+00:00
-                          type: string
-                          format: date-time
-                        ValueDateTime:
-                          description: >-
-                            Date and time at which assets become available to
-                            the account owner in case of a credit entry, or
-                            cease to be available to the account owner in case
-                            of a debit entry.  Usage: If entry status is pending
-                            and value date is present, then the value date
-                            refers to an expected/requested value date. For
-                            entries subject to availability/float and for which
-                            availability information is provided, the value date
-                            must not be used. In this case the availability
-                            component identifies the  number of availability
-                            days. 
-
-                            All dates in the JSON payloads are represented in
-                            ISO 8601 date-time format. 
-
-                            All date-time fields in responses must include the
-                            timezone. An example is below:
-
-                            2017-04-05T10:43:07+00:00
-                          type: string
-                          format: date-time
-                        TransactionInformation:
-                          description: >-
-                            Further details of the transaction. This is the
-                            transaction narrative, which is unstructured text.
-                          type: string
-                          minLength: 1
-                          maxLength: 500
-                        AddressLine:
-                          description: >-
-                            Information that locates and identifies a specific
-                            address, as defined by postal services, that is
-                            presented in free format text.
-                          type: string
-                          minLength: 1
-                          maxLength: 70
-                        BankTransactionCode:
-                          description: >-
-                            Set of elements used to fully identify the type of
-                            underlying transaction resulting in an entry.
-                          type: object
-                          properties:
-                            Code:
-                              description: Specifies the family within a domain.
-                              type: string
-                            SubCode:
-                              description: >-
-                                Specifies the sub-product family within a
-                                specific family.
-                              type: string
-                          required:
-                            - Code
-                            - SubCode
-                          additionalProperties: false
-                        ProprietaryBankTransactionCode:
-                          description: >-
-                            Set of elements to fully identify a proprietary bank
-                            transaction code.
-                          type: object
-                          properties:
-                            Code:
-                              description: >-
-                                Proprietary bank transaction code to identify
-                                the underlying transaction.
-                              type: string
-                              minLength: 1
-                              maxLength: 35
-                            Issuer:
-                              description: >-
-                                Identification of the issuer of the proprietary
-                                bank transaction code.
-                              type: string
-                              minLength: 1
-                              maxLength: 35
-                          required:
-                            - Code
-                          additionalProperties: false
-                        Balance:
-                          description: >-
-                            Set of elements used to define the balance as a
-                            numerical representation of the net increases and
-                            decreases in an account after a transaction entry is
-                            applied to the account.
-                          type: object
-                          properties:
-                            Amount:
-                              description: >-
-                                Amount of money of the cash balance after a
-                                transaction entry is applied to the account..
-                              type: object
-                              properties:
-                                Amount:
-                                  type: string
-                                  pattern: '^\d{1,13}\.\d{1,5}$'
-                                Currency:
-                                  description: >-
-                                    A code allocated to a currency by a
-                                    Maintenance Agency under an international
-                                    identification scheme, as described in the
-                                    latest edition of the international standard
-                                    ISO 4217 'Codes for the representation of
-                                    currencies and funds'
-                                  type: string
-                                  pattern: '^[A-Z]{3,3}$'
-                              required:
-                                - Amount
-                                - Currency
-                              additionalProperties: false
-                            CreditDebitIndicator:
-                              description: >-
-                                Indicates whether the balance is a credit or a
-                                debit balance. Usage: A zero balance is
-                                considered to be a credit balance.
-                              type: string
-                              enum:
-                                - Credit
-                                - Debit
-                            Type:
-                              description: 'Balance type, in a coded form.'
-                              type: string
-                              enum:
-                                - ClosingAvailable
-                                - ClosingBooked
-                                - Expected
-                                - ForwardAvailable
-                                - Information
-                                - InterimAvailable
-                                - InterimBooked
-                                - OpeningAvailable
-                                - OpeningBooked
-                                - PreviouslyClosedBooked
-                          additionalProperties: false
-                          required:
-                            - Amount
-                            - CreditDebitIndicator
-                            - Type
-                        MerchantDetails:
-                          description: Details of the merchant involved in the transaction.
-                          type: object
-                          properties:
-                            MerchantName:
-                              description: Name by which the merchant is known.
-                              type: string
-                              minLength: 1
-                              maxLength: 350
-                            MerchantCategoryCode:
-                              description: >-
-                                Category code conform to ISO 18245, related to
-                                the type of services or goods the merchant
-                                provides for the transaction.
-                              type: string
-                              minLength: 3
-                              maxLength: 4
-                          additionalProperties: false
-                      additionalProperties: false
-                      required:
-                        - AccountId
-                        - Amount
-                        - CreditDebitIndicator
-                        - Status
-                        - BookingDateTime
-                    minItems: 1
-                    additionalProperties: false
+                      $ref: '#/definitions/TransactionModel'
               Links:
-                title: Links
-                type: object
-                description: Links relevant to the payload
-                properties:
-                  Self:
-                    type: string
-                    format: uri
-                  First:
-                    type: string
-                    format: uri
-                  Prev:
-                    type: string
-                    format: uri
-                  Next:
-                    type: string
-                    format: uri
-                  Last:
-                    type: string
-                    format: uri
-                additionalProperties: false
-                required:
-                  - Self
+                $ref: '#/definitions/Links'
               Meta:
                 title: MetaData
                 type: object
@@ -831,7 +567,7 @@ paths:
                     format: int32
                   FirstAvailableDateTime:
                     description: >2-
-                       
+
                       All dates in the JSON payloads are represented in ISO 8601
                       date-time format. 
 
@@ -843,7 +579,7 @@ paths:
                     format: date-time
                   LastAvailableDateTime:
                     description: >2-
-                       
+
                       All dates in the JSON payloads are represented in ISO 8601
                       date-time format. 
 
@@ -875,6 +611,8 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': &ref_14
+          description: Not Implemented
       security:
         - PSUOAuth2Security:
             - accounts
@@ -895,161 +633,23 @@ paths:
       responses:
         '200':
           description: Account Beneficiaries  successfully retrieved
-          schema: &ref_16
+          schema:
             title: Beneficiaries GET response
             type: object
             properties:
               Data:
                 title: Data
-                type: object
                 description: Data
+                type: object
                 properties:
                   Beneficiary:
                     title: Beneficiary
                     description: Beneficiary
                     type: array
                     items:
-                      type: object
-                      title: Beneficiary
-                      description: Beneficiary
-                      properties:
-                        AccountId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the account resource. This identifier has no meaning
-                            to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        BeneficiaryId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the beneficiary resource. This identifier has no
-                            meaning to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        Reference:
-                          description: >-
-                            Unique reference, as assigned by the creditor, to
-                            unambiguously refer to the payment transaction.
-                            Usage: If available, the initiating party should
-                            provide this reference in the structured remittance
-                            information, to enable reconciliation by the
-                            creditor upon receipt of the amount of money. If the
-                            business context requires the use of a creditor
-                            reference or a payment remit identification, and
-                            only one identifier can be passed through the
-                            end-to-end chain, the creditor's reference or
-                            payment remittance identification should be quoted
-                            in the end-to-end transaction identification.
-                          type: string
-                          minLength: 1
-                          maxLength: 35
-                        Servicer:
-                          description: >-
-                            Party that manages the account on behalf of the
-                            account owner, that is manages the registration and
-                            booking of entries on the account, calculates
-                            balances on the account and provides information
-                            about the account. This is the servicer of the
-                            beneficiary account.
-                          type: object
-                          properties:
-                            SchemeName:
-                              description: >-
-                                Name of the identification scheme, in a coded
-                                form as published in an external list.
-                              type: string
-                              enum:
-                                - BICFI
-                            Identification:
-                              description: >-
-                                Unique and unambiguous identification of the
-                                servicing institution.
-                              type: string
-                              minLength: 1
-                              maxLength: 35
-                          required:
-                            - SchemeName
-                            - Identification
-                          additionalProperties: false
-                        CreditorAccount:
-                          description: >-
-                            Provides the details to identify the beneficiary
-                            account.
-                          type: object
-                          properties:
-                            SchemeName:
-                              description: >-
-                                Name of the identification scheme, in a coded
-                                form as published in an external list.
-                              type: string
-                              enum:
-                                - IBAN
-                                - SortCodeAccountNumber
-                            Identification:
-                              description: >-
-                                Identification assigned by an institution to
-                                identify an account. This identification is
-                                known by the account owner.
-                              type: string
-                              minLength: 1
-                              maxLength: 34
-                            Name:
-                              description: >-
-                                Name of the account, as assigned by the account
-                                servicing institution, in agreement with the
-                                account owner in order to provide an additional
-                                means of identification of the account. Usage:
-                                The account name is different from the account
-                                owner name. The account name is used in certain
-                                user communities to provide a means of
-                                identifying the account, in addition to the
-                                account owner's identity and the account number.
-                              type: string
-                              minLength: 1
-                              maxLength: 70
-                            SecondaryIdentification:
-                              description: >-
-                                This is secondary identification of the account,
-                                as assigned by the account servicing
-                                institution.  This can be used by building
-                                societies to additionally identify accounts with
-                                a roll number (in addition to a sort code and
-                                account number combination).
-                              type: string
-                              minLength: 1
-                              maxLength: 34
-                          required:
-                            - SchemeName
-                            - Identification
-                          additionalProperties: false
-                      additionalProperties: false
-                    additionalProperties: false
+                      $ref: '#/definitions/BeneficiaryModel'
               Links:
-                title: Links
-                type: object
-                description: Links relevant to the payload
-                properties:
-                  Self:
-                    type: string
-                    format: uri
-                  First:
-                    type: string
-                    format: uri
-                  Prev:
-                    type: string
-                    format: uri
-                  Next:
-                    type: string
-                    format: uri
-                  Last:
-                    type: string
-                    format: uri
-                additionalProperties: false
-                required:
-                  - Self
+                $ref: '#/definitions/Links'
               Meta:
                 title: MetaData
                 type: object
@@ -1104,6 +704,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1215,126 +816,23 @@ paths:
       responses:
         '200':
           description: Account Direct Debits successfully retrieved
-          schema: &ref_15
-            title: Account GET response
+          schema:
+            title: Direct Debit GET response
             type: object
             properties:
               Data:
                 title: Data
-                type: object
                 description: Data
+                type: object
                 properties:
                   DirectDebit:
                     title: DirectDebit
                     description: DirectDebit
                     type: array
                     items:
-                      type: object
-                      title: DirectDebit
-                      description: Direct Debit
-                      properties:
-                        AccountId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the account resource. This identifier has no meaning
-                            to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        DirectDebitId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the direct debit resource. This identifier has no
-                            meaning to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        MandateIdentification:
-                          description: >-
-                            Direct Debit reference. For AUDDIS service users
-                            provide Core Reference. For non AUDDIS service users
-                            provide Core reference if possible or last used
-                            reference.
-                          type: string
-                          minLength: 1
-                          maxLength: 35
-                        DirectDebitStatusCode:
-                          description: >-
-                            Specifies the status of the direct debit in code
-                            form.
-                          type: string
-                          enum:
-                            - Active
-                            - Inactive
-                        Name:
-                          description: Name of Service User
-                          type: string
-                          minLength: 1
-                          maxLength: 70
-                        PreviousPaymentDateTime:
-                          description: >-
-                            Date of most recent direct debit collection. 
-
-                            All dates in the JSON payloads are represented in
-                            ISO 8601 date-time format. 
-
-                            All date-time fields in responses must include the
-                            timezone. An example is below:
-
-                            2017-04-05T10:43:07+00:00
-                          type: string
-                          format: date-time
-                        PreviousPaymentAmount:
-                          description: >-
-                            The amount of the most recent direct debit
-                            collection.
-                          type: object
-                          properties:
-                            Amount:
-                              type: string
-                              pattern: '^\d{1,13}\.\d{1,5}$'
-                            Currency:
-                              description: >-
-                                A code allocated to a currency by a Maintenance
-                                Agency under an international identification
-                                scheme, as described in the latest edition of
-                                the international standard ISO 4217 'Codes for
-                                the representation of currencies and funds'
-                              type: string
-                              pattern: '^[A-Z]{3,3}$'
-                          required:
-                            - Amount
-                            - Currency
-                          additionalProperties: false
-                      required:
-                        - AccountId
-                        - MandateIdentification
-                        - Name
-                      additionalProperties: false
-                    additionalProperties: false
+                      $ref: '#/definitions/DirectDebitModel'
               Links:
-                title: Links
-                type: object
-                description: Links relevant to the payload
-                properties:
-                  Self:
-                    type: string
-                    format: uri
-                  First:
-                    type: string
-                    format: uri
-                  Prev:
-                    type: string
-                    format: uri
-                  Next:
-                    type: string
-                    format: uri
-                  Last:
-                    type: string
-                    format: uri
-                additionalProperties: false
-                required:
-                  - Self
+                $ref: '#/definitions/Links'
               Meta:
                 title: MetaData
                 type: object
@@ -1389,6 +887,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1409,7 +908,7 @@ paths:
       responses:
         '200':
           description: Account Standing Orders successfully retrieved
-          schema: &ref_14
+          schema:
             title: Standing Orders GET response
             type: object
             properties:
@@ -1423,311 +922,9 @@ paths:
                     description: StandingOrder
                     type: array
                     items:
-                      type: object
-                      title: StandingOrder
-                      description: Standing Order
-                      properties:
-                        AccountId:
-                          description: >-
-                            The date on which the first payment for a Standing
-                            Order schedule will be made.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        StandingOrderId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the standing order resource. This identifier has no
-                            meaning to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        Frequency:
-                          description: >
-                            EvryDay - Every day
-
-                            EvryWorkgDay - Every working day
-
-                            IntrvlWkDay - An interval specified in weeks (01 to
-                            09), and the day within the week (01 to 07)
-
-                            WkInMnthDay - A monthly interval, specifying the
-                            week of the month (01 to 05) and day within the week
-                            (01 to 07)
-
-                            IntrvlMnthDay - An interval specified in months
-                            (between 01 to 06, 12, 24), specifying the day
-                            within the month (-5 to -1, 1 to 31)
-
-                            QtrDay - Quarterly (either ENGLISH, SCOTTISH, or
-                            RECEIVED)
-
-                            Patterns: 
-
-                            EvryDay (ScheduleCode)
-
-                            EvryWorkgDay (ScheduleCode)
-
-                            IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode
-                            + IntervalInWeeks + DayInWeek)
-
-                            WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode +
-                            WeekInMonth + DayInWeek)
-
-                            IntrvlMnthDay:IntervalInMonths:DayInMonth
-                            (ScheduleCode + IntervalInMonths + DayInMonth)
-
-                            QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED)
-                            ScheduleCode + QuarterDay
-
-
-                            The regular expression for this element combines
-                            five smaller versions for each permitted pattern. To
-                            aid legibility - the components are presented
-                            individually here:
-
-                            EvryDay
-
-                            EvryWorkgDay
-
-                            IntrvlWkDay:0[1-9]:0[1-7]
-
-                            WkInMnthDay:0[1-5]:0[1-7]
-
-                            IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
-
-                            QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
-                          type: string
-                          pattern: >-
-                            ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
-                        Reference:
-                          description: >-
-                            Unique reference, as assigned by the creditor, to
-                            unambiguously refer to the payment transaction.
-                            Usage: If available, the initiating party should
-                            provide this reference in the structured remittance
-                            information, to enable reconciliation by the
-                            creditor upon receipt of the amount of money. If the
-                            business context requires the use of a creditor
-                            reference or a payment remit identification, and
-                            only one identifier can be passed through the
-                            end-to-end chain, the creditor's reference or
-                            payment remittance identification should be quoted
-                            in the end-to-end transaction identification.
-                          type: string
-                          minLength: 1
-                          maxLength: 35
-                        FirstPaymentDateTime:
-                          description: >-
-                            The date on which the first payment for a Standing
-                            Order schedule will be made. 
-
-                            All dates in the JSON payloads are represented in
-                            ISO 8601 date-time format. 
-
-                            All date-time fields in responses must include the
-                            timezone. An example is below:
-
-                            2017-04-05T10:43:07+00:00
-                          type: string
-                          format: date-time
-                        FirstPaymentAmount:
-                          description: The amount of the first Standing Order
-                          type: object
-                          properties:
-                            Amount:
-                              type: string
-                              pattern: '^\d{1,13}\.\d{1,5}$'
-                            Currency:
-                              description: >-
-                                A code allocated to a currency by a Maintenance
-                                Agency under an international identification
-                                scheme, as described in the latest edition of
-                                the international standard ISO 4217 'Codes for
-                                the representation of currencies and funds'
-                              type: string
-                              pattern: '^[A-Z]{3,3}$'
-                          required:
-                            - Amount
-                            - Currency
-                          additionalProperties: false
-                        NextPaymentDateTime:
-                          description: >-
-                            The date on which the next payment for a Standing
-                            Order schedule will be made. 
-
-                            All dates in the JSON payloads are represented in
-                            ISO 8601 date-time format. 
-
-                            All date-time fields in responses must include the
-                            timezone. An example is below:
-
-                            2017-04-05T10:43:07+00:00
-                          type: string
-                          format: date-time
-                        NextPaymentAmount:
-                          description: The amount of the next Standing Order
-                          type: object
-                          properties:
-                            Amount:
-                              type: string
-                              pattern: '^\d{1,13}\.\d{1,5}$'
-                            Currency:
-                              description: >-
-                                A code allocated to a currency by a Maintenance
-                                Agency under an international identification
-                                scheme, as described in the latest edition of
-                                the international standard ISO 4217 'Codes for
-                                the representation of currencies and funds'
-                              type: string
-                              pattern: '^[A-Z]{3,3}$'
-                          required:
-                            - Amount
-                            - Currency
-                          additionalProperties: false
-                        FinalPaymentDateTime:
-                          description: >-
-                            The date on which the final payment for a Standing
-                            Order schedule will be made. 
-
-                            All dates in the JSON payloads are represented in
-                            ISO 8601 date-time format. 
-
-                            All date-time fields in responses must include the
-                            timezone. An example is below:
-
-                            2017-04-05T10:43:07+00:00
-                          type: string
-                          format: date-time
-                        FinalPaymentAmount:
-                          description: The amount of the final Standing Order
-                          type: object
-                          properties:
-                            Amount:
-                              type: string
-                              pattern: '^\d{1,13}\.\d{1,5}$'
-                            Currency:
-                              description: >-
-                                A code allocated to a currency by a Maintenance
-                                Agency under an international identification
-                                scheme, as described in the latest edition of
-                                the international standard ISO 4217 'Codes for
-                                the representation of currencies and funds'
-                              type: string
-                              pattern: '^[A-Z]{3,3}$'
-                          required:
-                            - Amount
-                            - Currency
-                          additionalProperties: false
-                        Servicer:
-                          description: >-
-                            Party that manages the account on behalf of the
-                            account owner, that is manages the registration and
-                            booking of entries on the account, calculates
-                            balances on the account and provides information
-                            about the account. This is the servicer of the
-                            beneficiary account
-                          type: object
-                          properties:
-                            SchemeName:
-                              description: >-
-                                Name of the identification scheme, in a coded
-                                form as published in an external list.
-                              type: string
-                              enum:
-                                - BICFI
-                            Identification:
-                              description: >-
-                                Unique and unambiguous identification of the
-                                servicing institution.
-                              type: string
-                              minLength: 1
-                              maxLength: 35
-                          required:
-                            - SchemeName
-                            - Identification
-                          additionalProperties: false
-                        CreditorAccount:
-                          description: >-
-                            Provides the details to identify the beneficiary
-                            account.
-                          type: object
-                          properties:
-                            SchemeName:
-                              description: >-
-                                Name of the identification scheme, in a coded
-                                form as published in an external list.
-                              type: string
-                              enum:
-                                - IBAN
-                                - SortCodeAccountNumber
-                            Identification:
-                              description: >-
-                                Identification assigned by an institution to
-                                identify an account. This identification is
-                                known by the account owner.
-                              type: string
-                              minLength: 1
-                              maxLength: 34
-                            Name:
-                              description: >-
-                                Name of the account, as assigned by the account
-                                servicing institution, in agreement with the
-                                account owner in order to provide an additional
-                                means of identification of the account. Usage:
-                                The account name is different from the account
-                                owner name. The account name is used in certain
-                                user communities to provide a means of
-                                identifying the account, in addition to the
-                                account owner's identity and the account number.
-                              type: string
-                              minLength: 1
-                              maxLength: 70
-                            SecondaryIdentification:
-                              description: >-
-                                This is secondary identification of the account,
-                                as assigned by the account servicing
-                                institution.  This can be used by building
-                                societies to additionally identify accounts with
-                                a roll number (in addition to a sort code and
-                                account number combination).
-                              type: string
-                              minLength: 1
-                              maxLength: 34
-                          required:
-                            - SchemeName
-                            - Identification
-                          additionalProperties: false
-                      required:
-                        - AccountId
-                        - Frequency
-                        - NextPaymentDateTime
-                        - NextPaymentAmount
-                      additionalProperties: false
-                    additionalProperties: false
+                      $ref: '#/definitions/StandingOrderModel'
               Links:
-                title: Links
-                type: object
-                description: Links relevant to the payload
-                properties:
-                  Self:
-                    type: string
-                    format: uri
-                  First:
-                    type: string
-                    format: uri
-                  Prev:
-                    type: string
-                    format: uri
-                  Next:
-                    type: string
-                    format: uri
-                  Last:
-                    type: string
-                    format: uri
-                additionalProperties: false
-                required:
-                  - Self
+                $ref: '#/definitions/Links'
               Meta:
                 title: MetaData
                 type: object
@@ -1782,6 +979,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1808,77 +1006,17 @@ paths:
             properties:
               Data:
                 title: Data
-                type: object
                 description: Data
+                type: object
                 properties:
                   Product:
                     title: Product
                     description: Product
                     type: array
                     items:
-                      type: object
-                      title: Product
-                      description: Product
-                      properties:
-                        AccountId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the account resource. This identifier has no meaning
-                            to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        ProductIdentifier:
-                          description: >-
-                            Identifier within the parent organisation for the
-                            product. Must be unique in the organisation.
-                          type: string
-                        ProductType:
-                          description: Descriptive code for the product category.
-                          type: string
-                          enum:
-                            - BCA
-                            - PCA
-                        ProductName:
-                          description: >-
-                            The name of the product used for marketing purposes
-                            from a customer perspective. I.e. what the customer
-                            would recognise.
-                          type: string
-                        SecondaryProductIdentifier:
-                          description: >-
-                            Identifier within the parent organisation for the
-                            product. Must be unique in the organisation.
-                          type: string
-                      additionalProperties: false
-                      required:
-                        - AccountId
-                        - ProductIdentifier
-                        - ProductType
-                    additionalProperties: false
+                      $ref: '#/definitions/ProductModel'
               Links:
-                title: Links
-                type: object
-                description: Links relevant to the payload
-                properties:
-                  Self:
-                    type: string
-                    format: uri
-                  First:
-                    type: string
-                    format: uri
-                  Prev:
-                    type: string
-                    format: uri
-                  Next:
-                    type: string
-                    format: uri
-                  Last:
-                    type: string
-                    format: uri
-                additionalProperties: false
-                required:
-                  - Self
+                $ref: '#/definitions/Links'
               Meta:
                 title: MetaData
                 type: object
@@ -1933,6 +1071,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1952,7 +1091,62 @@ paths:
       responses:
         '200':
           description: Standing Orders successfully retrieved
-          schema: *ref_14
+          schema:
+            title: Standing Orders GET response
+            type: object
+            properties:
+              Data:
+                title: Data
+                description: Data
+                type: object
+                properties:
+                  StandingOrder:
+                    title: StandingOrder
+                    description: StandingOrder
+                    type: array
+                    items:
+                      $ref: '#/definitions/StandingOrderModel'
+              Links:
+                $ref: '#/definitions/Links'
+              Meta:
+                title: MetaData
+                type: object
+                description: Meta Data relevant to the payload
+                properties:
+                  TotalPages:
+                    type: integer
+                    format: int32
+                  FirstAvailableDateTime:
+                    description: >2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                  LastAvailableDateTime:
+                    description: >2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                additionalProperties: false
+            additionalProperties: false
+            required:
+              - Data
+              - Links
+              - Meta
+
           headers:
             x-jws-signature:
               type: string
@@ -1969,6 +1163,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -1988,7 +1183,61 @@ paths:
       responses:
         '200':
           description: Direct Debits successfully retrieved
-          schema: *ref_15
+          schema:
+            title: Direct Debit GET response
+            type: object
+            properties:
+              Data:
+                title: Data
+                description: Data
+                type: object
+                properties:
+                  DirectDebit:
+                    title: DirectDebit
+                    description: DirectDebit
+                    type: array
+                    items:
+                      $ref: '#/definitions/DirectDebitModel'
+              Links:
+                $ref: '#/definitions/Links'
+              Meta:
+                title: MetaData
+                type: object
+                description: Meta Data relevant to the payload
+                properties:
+                  TotalPages:
+                    type: integer
+                    format: int32
+                  FirstAvailableDateTime:
+                    description: >2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                  LastAvailableDateTime:
+                    description: >2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                additionalProperties: false
+            additionalProperties: false
+            required:
+              - Data
+              - Links
+              - Meta
           headers:
             x-jws-signature:
               type: string
@@ -2005,6 +1254,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -2024,7 +1274,61 @@ paths:
       responses:
         '200':
           description: Beneficiaries successfully retrieved
-          schema: *ref_16
+          schema:
+            title: Beneficiaries GET response
+            type: object
+            properties:
+              Data:
+                title: Data
+                description: Data
+                type: object
+                properties:
+                  Beneficiary:
+                    title: Beneficiary
+                    description: Beneficiary
+                    type: array
+                    items:
+                      $ref: '#/definitions/BeneficiaryModel'
+              Links:
+                $ref: '#/definitions/Links'
+              Meta:
+                title: MetaData
+                type: object
+                description: Meta Data relevant to the payload
+                properties:
+                  TotalPages:
+                    type: integer
+                    format: int32
+                  FirstAvailableDateTime:
+                    description: >2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                  LastAvailableDateTime:
+                    description: >2-
+                       
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                additionalProperties: false
+            additionalProperties: false
+            required:
+              - Data
+              - Links
+              - Meta
           headers:
             x-jws-signature:
               type: string
@@ -2041,6 +1345,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -2062,7 +1367,61 @@ paths:
       responses:
         '200':
           description: Transactions successfully retrieved
-          schema: *ref_19
+          schema:
+            title: Transactions GET response
+            type: object
+            properties:
+              Data:
+                title: Data
+                description: Data
+                type: object
+                properties:
+                  Transaction:
+                    title: Transaction
+                    description: Transaction
+                    type: array
+                    items:
+                      $ref: '#/definitions/TransactionModel'
+              Links:
+                $ref: '#/definitions/Links'
+              Meta:
+                title: MetaData
+                type: object
+                description: Meta Data relevant to the payload
+                properties:
+                  TotalPages:
+                    type: integer
+                    format: int32
+                  FirstAvailableDateTime:
+                    description: >2-
+
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                  LastAvailableDateTime:
+                    description: >2-
+
+                      All dates in the JSON payloads are represented in ISO 8601
+                      date-time format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2017-04-05T10:43:07+00:00
+                    type: string
+                    format: date-time
+                additionalProperties: false
+            additionalProperties: false
+            required:
+              - Data
+              - Links
+              - Meta
           headers:
             x-jws-signature:
               type: string
@@ -2079,6 +1438,7 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
@@ -2140,77 +1500,17 @@ paths:
             properties:
               Data:
                 title: Data
-                type: object
                 description: Data
+                type: object
                 properties:
                   Product:
                     title: Product
                     description: Product
                     type: array
                     items:
-                      type: object
-                      title: Product
-                      description: Product
-                      properties:
-                        AccountId:
-                          description: >-
-                            A unique and immutable identifier used to identify
-                            the account resource. This identifier has no meaning
-                            to the account owner.
-                          type: string
-                          minLength: 1
-                          maxLength: 40
-                        ProductIdentifier:
-                          description: >-
-                            Identifier within the parent organisation for the
-                            product. Must be unique in the organisation.
-                          type: string
-                        ProductType:
-                          description: Descriptive code for the product category.
-                          type: string
-                          enum:
-                            - BCA
-                            - PCA
-                        ProductName:
-                          description: >-
-                            The name of the product used for marketing purposes
-                            from a customer perspective. I.e. what the customer
-                            would recognise.
-                          type: string
-                        SecondaryProductIdentifier:
-                          description: >-
-                            Identifier within the parent organisation for the
-                            product. Must be unique in the organisation.
-                          type: string
-                      additionalProperties: false
-                      required:
-                        - AccountId
-                        - ProductIdentifier
-                        - ProductType
-                    additionalProperties: false
+                      $ref: '#/definitions/ProductModel'
               Links:
-                title: Links
-                type: object
-                description: Links relevant to the payload
-                properties:
-                  Self:
-                    type: string
-                    format: uri
-                  First:
-                    type: string
-                    format: uri
-                  Prev:
-                    type: string
-                    format: uri
-                  Next:
-                    type: string
-                    format: uri
-                  Last:
-                    type: string
-                    format: uri
-                additionalProperties: false
-                required:
-                  - Self
+                $ref: '#/definitions/Links'
               Meta:
                 title: MetaData
                 type: object
@@ -2265,11 +1565,13 @@ paths:
         '406': *ref_9
         '429': *ref_10
         '500': *ref_11
+        '501': *ref_14
       security:
         - PSUOAuth2Security:
             - accounts
 definitions:
   BalanceModel:
+    type: object
     description: Balance object schema
     properties:
       AccountId:
@@ -2416,7 +1718,12 @@ definitions:
           Identification:
             description: >-
               Identification assigned by an institution to identify an account.
-              This identification is known by the account owner.
+              This identification is known by the account owner. For the NZ
+              market, this will use the hyphen-delimited format: 2-4-7-2
+              where this is made up of bank-branch-account-suffix and each
+              of the four components is a number, prepended with leading zeros
+              to match the component length requirement.  
+              For example 12-0123-0012345-00
             type: string
             minLength: 1
             maxLength: 34
@@ -2636,6 +1943,761 @@ definitions:
           - Status
           - CreationDateTime
       - $ref: '#/definitions/AccountRequestModel'
+  TransactionModel:
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the account resource. This identifier has no meaning
+          to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      TransactionId:
+        description: >-
+          Unique identifier for the transaction within an
+          servicing institution. This identifier is both
+          unique and immutable.
+        type: string
+        minLength: 1
+        maxLength: 40
+      TransactionReference:
+        description: >-
+          Unique reference for the transaction. This reference
+          is optionally populated, and may as an example be
+          the FPID in the Faster Payments context.
+        type: string
+        minLength: 1
+        maxLength: 35
+      Amount:
+        description: Amount of money in the cash entry.
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance
+              Agency under an international identification
+              scheme, as described in the latest edition of
+              the international standard ISO 4217 'Codes for
+              the representation of currencies and funds'
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      CreditDebitIndicator:
+        description: >-
+          Indicates whether the transaction is a credit or a
+          debit entry.
+        type: string
+        enum:
+          - Credit
+          - Debit
+      Status:
+        description: >-
+          Status of a transaction entry on the books of the
+          account servicer.
+        type: string
+        enum:
+          - Booked
+          - Pending
+      BookingDateTime:
+        description: >-
+          Date and time when a transaction entry is posted to
+          an account on the account servicer's books. Usage:
+          Booking date is the expected booking date, unless
+          the status is booked, in which case it is the actual
+          booking date. 
+
+          All dates in the JSON payloads are represented in
+          ISO 8601 date-time format. 
+
+          All date-time fields in responses must include the
+          timezone. An example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      ValueDateTime:
+        description: >-
+          Date and time at which assets become available to
+          the account owner in case of a credit entry, or
+          cease to be available to the account owner in case
+          of a debit entry.  Usage: If entry status is pending
+          and value date is present, then the value date
+          refers to an expected/requested value date. For
+          entries subject to availability/float and for which
+          availability information is provided, the value date
+          must not be used. In this case the availability
+          component identifies the  number of availability
+          days. 
+
+          All dates in the JSON payloads are represented in
+          ISO 8601 date-time format. 
+
+          All date-time fields in responses must include the
+          timezone. An example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      TransactionInformation:
+        description: >-
+          Further details of the transaction. This is the
+          transaction narrative, which is unstructured text.
+        type: string
+        minLength: 1
+        maxLength: 500
+      AddressLine:
+        description: >-
+          Information that locates and identifies a specific
+          address, as defined by postal services, that is
+          presented in free format text.
+        type: string
+        minLength: 1
+        maxLength: 70
+      BankTransactionCode:
+        description: >-
+          Set of elements used to fully identify the type of
+          underlying transaction resulting in an entry.
+        type: object
+        properties:
+          Code:
+            description: Specifies the family within a domain.
+            type: string
+          SubCode:
+            description: >-
+              Specifies the sub-product family within a
+              specific family.
+            type: string
+        required:
+          - Code
+          - SubCode
+        additionalProperties: false
+      ProprietaryBankTransactionCode:
+        description: >-
+          Set of elements to fully identify a proprietary bank
+          transaction code.
+        type: object
+        properties:
+          Code:
+            description: >-
+              Proprietary bank transaction code to identify
+              the underlying transaction.
+            type: string
+            minLength: 1
+            maxLength: 35
+          Issuer:
+            description: >-
+              Identification of the issuer of the proprietary
+              bank transaction code.
+            type: string
+            minLength: 1
+            maxLength: 35
+        required:
+          - Code
+        additionalProperties: false
+      Balance:
+        description: >-
+          Set of elements used to define the balance as a
+          numerical representation of the net increases and
+          decreases in an account after a transaction entry is
+          applied to the account.
+        type: object
+        properties:
+          Amount:
+            description: >-
+              Amount of money of the cash balance after a
+              transaction entry is applied to the account..
+            type: object
+            properties:
+              Amount:
+                type: string
+                pattern: '^\d{1,13}\.\d{1,5}$'
+              Currency:
+                description: >-
+                  A code allocated to a currency by a
+                  Maintenance Agency under an international
+                  identification scheme, as described in the
+                  latest edition of the international standard
+                  ISO 4217 'Codes for the representation of
+                  currencies and funds'
+                type: string
+                pattern: '^[A-Z]{3,3}$'
+            required:
+              - Amount
+              - Currency
+            additionalProperties: false
+          CreditDebitIndicator:
+            description: >-
+              Indicates whether the balance is a credit or a
+              debit balance. Usage: A zero balance is
+              considered to be a credit balance.
+            type: string
+            enum:
+              - Credit
+              - Debit
+          Type:
+            description: 'Balance type, in a coded form.'
+            type: string
+            enum:
+              - ClosingAvailable
+              - ClosingBooked
+              - Expected
+              - ForwardAvailable
+              - Information
+              - InterimAvailable
+              - InterimBooked
+              - OpeningAvailable
+              - OpeningBooked
+              - PreviouslyClosedBooked
+        additionalProperties: false
+        required:
+          - Amount
+          - CreditDebitIndicator
+          - Type
+      MerchantDetails:
+        description: Details of the merchant involved in the transaction.
+        type: object
+        properties:
+          MerchantName:
+            description: Name by which the merchant is known.
+            type: string
+            minLength: 1
+            maxLength: 350
+          MerchantCategoryCode:
+            description: >-
+              Category code conform to ISO 18245, related to
+              the type of services or goods the merchant
+              provides for the transaction.
+            type: string
+            minLength: 3
+            maxLength: 4
+        additionalProperties: false
+    additionalProperties: false
+    required:
+      - AccountId
+      - Amount
+      - CreditDebitIndicator
+      - Status
+      - BookingDateTime
+  BeneficiaryModel:
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the account resource. This identifier has no meaning
+          to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      BeneficiaryId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the beneficiary resource. This identifier has no
+          meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      Reference:
+        description: >-
+          Unique reference, as assigned by the creditor, to
+          unambiguously refer to the payment transaction.
+          Usage: If available, the initiating party should
+          provide this reference in the structured remittance
+          information, to enable reconciliation by the
+          creditor upon receipt of the amount of money. If the
+          business context requires the use of a creditor
+          reference or a payment remit identification, and
+          only one identifier can be passed through the
+          end-to-end chain, the creditor's reference or
+          payment remittance identification should be quoted
+          in the end-to-end transaction identification.
+        type: string
+        minLength: 1
+        maxLength: 35
+      Servicer:
+        description: >-
+          Party that manages the account on behalf of the
+          account owner, that is manages the registration and
+          booking of entries on the account, calculates
+          balances on the account and provides information
+          about the account. This is the servicer of the
+          beneficiary account.
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded
+              form as published in an external list.
+            type: string
+            enum:
+              - BICFI
+          Identification:
+            description: >-
+              Unique and unambiguous identification of the
+              servicing institution.
+            type: string
+            minLength: 1
+            maxLength: 35
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+      CreditorAccount:
+        description: >-
+          Provides the details to identify the beneficiary
+          account.
+        type: object
+        properties:
+          SchemeName:
+            $ref: '#/definitions/AccountSchemeModel'
+          Identification:
+            description: >-
+              Identification assigned by an institution to
+              identify an account. This identification is
+              known by the account owner. For the NZ
+              market, this will use the hyphen-delimited format: 2-4-7-2
+              where this is made up of bank-branch-account-suffix and each
+              of the four components is a number, prepended with leading zeros
+              to match the component length requirement.  
+              For example 12-0123-0012345-00
+            type: string
+            minLength: 1
+            maxLength: 34
+          Name:
+            description: >-
+              Name of the account, as assigned by the account
+              servicing institution, in agreement with the
+              account owner in order to provide an additional
+              means of identification of the account. Usage:
+              The account name is different from the account
+              owner name. The account name is used in certain
+              user communities to provide a means of
+              identifying the account, in addition to the
+              account owner's identity and the account number.
+            type: string
+            minLength: 1
+            maxLength: 70
+          SecondaryIdentification:
+            description: >-
+              This is secondary identification of the account,
+              as assigned by the account servicing
+              institution.  This can be used by building
+              societies to additionally identify accounts with
+              a roll number (in addition to a sort code and
+              account number combination).
+            type: string
+            minLength: 1
+            maxLength: 34
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+  StandingOrderModel:
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          The date on which the first payment for a Standing
+          Order schedule will be made.
+        type: string
+        minLength: 1
+        maxLength: 40
+      StandingOrderId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the standing order resource. This identifier has no
+          meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      Frequency:
+        description: >
+          EvryDay - Every day
+
+          EvryWorkgDay - Every working day
+
+          IntrvlWkDay - An interval specified in weeks (01 to
+          09), and the day within the week (01 to 07)
+
+          WkInMnthDay - A monthly interval, specifying the
+          week of the month (01 to 05) and day within the week
+          (01 to 07)
+
+          IntrvlMnthDay - An interval specified in months
+          (between 01 to 06, 12, 24), specifying the day
+          within the month (-5 to -1, 1 to 31)
+
+          QtrDay - Quarterly (either ENGLISH, SCOTTISH, or
+          RECEIVED)
+
+          Patterns: 
+
+          EvryDay (ScheduleCode)
+
+          EvryWorkgDay (ScheduleCode)
+
+          IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode
+          + IntervalInWeeks + DayInWeek)
+
+          WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode +
+          WeekInMonth + DayInWeek)
+
+          IntrvlMnthDay:IntervalInMonths:DayInMonth
+          (ScheduleCode + IntervalInMonths + DayInMonth)
+
+          QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED)
+          ScheduleCode + QuarterDay
+
+
+          The regular expression for this element combines
+          five smaller versions for each permitted pattern. To
+          aid legibility - the components are presented
+          individually here:
+
+          EvryDay
+
+          EvryWorkgDay
+
+          IntrvlWkDay:0[1-9]:0[1-7]
+
+          WkInMnthDay:0[1-5]:0[1-7]
+
+          IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+
+          QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
+        type: string
+        pattern: >-
+          ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+      Reference:
+        description: >-
+          Unique reference, as assigned by the creditor, to
+          unambiguously refer to the payment transaction.
+          Usage: If available, the initiating party should
+          provide this reference in the structured remittance
+          information, to enable reconciliation by the
+          creditor upon receipt of the amount of money. If the
+          business context requires the use of a creditor
+          reference or a payment remit identification, and
+          only one identifier can be passed through the
+          end-to-end chain, the creditor's reference or
+          payment remittance identification should be quoted
+          in the end-to-end transaction identification.
+        type: string
+        minLength: 1
+        maxLength: 35
+      FirstPaymentDateTime:
+        description: >-
+          The date on which the first payment for a Standing
+          Order schedule will be made. 
+
+          All dates in the JSON payloads are represented in
+          ISO 8601 date-time format. 
+
+          All date-time fields in responses must include the
+          timezone. An example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      FirstPaymentAmount:
+        description: The amount of the first Standing Order
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance
+              Agency under an international identification
+              scheme, as described in the latest edition of
+              the international standard ISO 4217 'Codes for
+              the representation of currencies and funds'
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      NextPaymentDateTime:
+        description: >-
+          The date on which the next payment for a Standing
+          Order schedule will be made. 
+
+          All dates in the JSON payloads are represented in
+          ISO 8601 date-time format. 
+
+          All date-time fields in responses must include the
+          timezone. An example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      NextPaymentAmount:
+        description: The amount of the next Standing Order
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance
+              Agency under an international identification
+              scheme, as described in the latest edition of
+              the international standard ISO 4217 'Codes for
+              the representation of currencies and funds'
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      FinalPaymentDateTime:
+        description: >-
+          The date on which the final payment for a Standing
+          Order schedule will be made. 
+
+          All dates in the JSON payloads are represented in
+          ISO 8601 date-time format. 
+
+          All date-time fields in responses must include the
+          timezone. An example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      FinalPaymentAmount:
+        description: The amount of the final Standing Order
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance
+              Agency under an international identification
+              scheme, as described in the latest edition of
+              the international standard ISO 4217 'Codes for
+              the representation of currencies and funds'
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+      Servicer:
+        description: >-
+          Party that manages the account on behalf of the
+          account owner, that is manages the registration and
+          booking of entries on the account, calculates
+          balances on the account and provides information
+          about the account. This is the servicer of the
+          beneficiary account
+        type: object
+        properties:
+          SchemeName:
+            description: >-
+              Name of the identification scheme, in a coded
+              form as published in an external list.
+            type: string
+            enum:
+              - BICFI
+          Identification:
+            description: >-
+              Unique and unambiguous identification of the
+              servicing institution.
+            type: string
+            minLength: 1
+            maxLength: 35
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+      CreditorAccount:
+        description: >-
+          Provides the details to identify the beneficiary
+          account.
+        type: object
+        properties:
+          SchemeName:
+            $ref: '#/definitions/AccountSchemeModel'
+          Identification:
+            description: >-
+              Identification assigned by an institution to
+              identify an account. This identification is
+              known by the account owner. For the NZ
+              market, this will use the hyphen-delimited format: 2-4-7-2
+              where this is made up of bank-branch-account-suffix and each
+              of the four components is a number, prepended with leading zeros
+              to match the component length requirement.  
+              For example 12-0123-0012345-00
+            type: string
+            minLength: 1
+            maxLength: 34
+          Name:
+            description: >-
+              Name of the account, as assigned by the account
+              servicing institution, in agreement with the
+              account owner in order to provide an additional
+              means of identification of the account. Usage:
+              The account name is different from the account
+              owner name. The account name is used in certain
+              user communities to provide a means of
+              identifying the account, in addition to the
+              account owner's identity and the account number.
+            type: string
+            minLength: 1
+            maxLength: 70
+          SecondaryIdentification:
+            description: >-
+              This is secondary identification of the account,
+              as assigned by the account servicing
+              institution.  This can be used by building
+              societies to additionally identify accounts with
+              a roll number (in addition to a sort code and
+              account number combination).
+            type: string
+            minLength: 1
+            maxLength: 34
+        required:
+          - SchemeName
+          - Identification
+        additionalProperties: false
+    required:
+      - AccountId
+      - Frequency
+      - NextPaymentDateTime
+      - NextPaymentAmount
+    additionalProperties: false
+  ProductModel:
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the account resource. This identifier has no meaning
+          to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      ProductIdentifier:
+        description: >-
+          Identifier within the parent organisation for the
+          product. Must be unique in the organisation.
+        type: string
+      ProductType:
+        description: Descriptive code for the product category.
+        type: string
+        enum:
+          - BCA
+          - PCA
+      ProductName:
+        description: >-
+          The name of the product used for marketing purposes
+          from a customer perspective. I.e. what the customer
+          would recognise.
+        type: string
+      SecondaryProductIdentifier:
+        description: >-
+          Identifier within the parent organisation for the
+          product. Must be unique in the organisation.
+        type: string
+    additionalProperties: false
+    required:
+      - AccountId
+      - ProductIdentifier
+      - ProductType
+  DirectDebitModel:
+    type: object
+    properties:
+      AccountId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the account resource. This identifier has no meaning
+          to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      DirectDebitId:
+        description: >-
+          A unique and immutable identifier used to identify
+          the direct debit resource. This identifier has no
+          meaning to the account owner.
+        type: string
+        minLength: 1
+        maxLength: 40
+      MandateIdentification:
+        description: >-
+          Direct Debit reference. For AUDDIS service users
+          provide Core Reference. For non AUDDIS service users
+          provide Core reference if possible or last used
+          reference.
+        type: string
+        minLength: 1
+        maxLength: 35
+      DirectDebitStatusCode:
+        description: >-
+          Specifies the status of the direct debit in code
+          form.
+        type: string
+        enum:
+          - Active
+          - Inactive
+      Name:
+        description: Name of Service User
+        type: string
+        minLength: 1
+        maxLength: 70
+      PreviousPaymentDateTime:
+        description: >-
+          Date of most recent direct debit collection. 
+
+          All dates in the JSON payloads are represented in
+          ISO 8601 date-time format. 
+
+          All date-time fields in responses must include the
+          timezone. An example is below:
+
+          2017-04-05T10:43:07+00:00
+        type: string
+        format: date-time
+      PreviousPaymentAmount:
+        description: >-
+          The amount of the most recent direct debit
+          collection.
+        type: object
+        properties:
+          Amount:
+            type: string
+            pattern: '^\d{1,13}\.\d{1,5}$'
+          Currency:
+            description: >-
+              A code allocated to a currency by a Maintenance
+              Agency under an international identification
+              scheme, as described in the latest edition of
+              the international standard ISO 4217 'Codes for
+              the representation of currencies and funds'
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+        required:
+          - Amount
+          - Currency
+        additionalProperties: false
+    required:
+      - AccountId
+      - MandateIdentification
+      - Name
+    additionalProperties: false
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
@@ -2662,3 +2724,4 @@ responses:
   406ErrorResponse: *ref_9
   429ErrorResponse: *ref_10
   500ErrorResponse: *ref_11
+  501ErrorResponse: *ref_14

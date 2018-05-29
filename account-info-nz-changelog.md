@@ -2,6 +2,19 @@
 
 ---
 
+## V0.1.1 - 7/05/2018
+
+* Refactored the following to models and referenced from API paths:
+  * Transaction (TransactionModel)
+  * Beneficiary (BeneficiaryModel)
+  * Standing Orders (StandingOrderModel)
+  * Products (ProductModel)
+  * Direct Debits (DirectDebitModel)
+* Added 501 response code to specification for endpoints not in MVP scope
+* Added account number format description of 2-4-7-2 hyphen-delimited as recommended by Payments NZ working group and accepted by standards sub-group on 4/05/2018.  This has been added to both Debtor and Creditor account identifiers in OpenAPI specification
+* Creditor Account updated to reflect BECS format accepted (StandingOrderModel, BeneficiaryModel)
+* **Open Issue** reference fields in Standing Orders and Beneficiaries are single field, 35 max length.  Should these be updated to match BECSRemittance of Payment API?
+
 ## v0.1.0 - 23/03/2018
 
 * Changed base path to /open-banking/v0.1
