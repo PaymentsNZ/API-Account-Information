@@ -1,6 +1,8 @@
 # Account Info API changelog
 
 ---
+## V0.1.2 - 6/06/2018
+Changing URL to open-banking-nz
 
 ## V0.1.1 - 7/05/2018
 

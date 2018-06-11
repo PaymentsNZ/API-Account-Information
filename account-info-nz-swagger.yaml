@@ -12,8 +12,8 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v0.1.1
-basePath: /open-banking/v0.1
+  version: v0.1.2
+basePath: /open-banking-nz/v0.1
 schemes:
   - https
 produces:
@@ -1804,7 +1804,7 @@ definitions:
               valid for payments at this time.  Note that this link does not
               indicate sufficient funds, only that payment activity is not
               expressly  forbidden
-            example: 'https://api.bank.co.nz/open-banking/v1/payments'
+            example: 'https://api.bank.co.nz/open-banking-nz/v1/payments'
   Links:
     title: Links
     type: object
