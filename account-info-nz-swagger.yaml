@@ -12,8 +12,8 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v0.1.2
-basePath: /open-banking-nz/v0.1
+  version: v0.2.0
+basePath: /open-banking-nz/v0.2
 schemes:
   - https
 produces:
@@ -1787,8 +1787,8 @@ definitions:
     enum:
       - IBAN
       - SortCodeAccountNumber
-      - BECS Electronic Credit
-    default: BECS Electronic Credit
+      - BECSElectronicCredit
+    default: BECSElectronicCredit
   PaymentLinks:
     title: PaymentLinks
     allOf:

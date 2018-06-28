@@ -1,7 +1,15 @@
 # Account Info API changelog
 
 ---
+
+## v0.2.0 - 15/06/2018
+
+* Version bump to v0.2.0 indicating re-inclusion of OpenID Connect into authorisation flow
+* Basepath changed to /open-banking-nz/v0.2
+* Minor correction to enums where 'BECSElectronicCredit' was erroneously 'BECS Electronic Credit' (enum values should not have spaces)
+
 ## V0.1.2 - 6/06/2018
+
 Changing URL to open-banking-nz
 
 ## V0.1.1 - 7/05/2018
