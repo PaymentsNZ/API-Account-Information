@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v0.2.0
+  version: v0.2.1
 basePath: /open-banking-nz/v0.2
 schemes:
   - https
@@ -1967,9 +1967,7 @@ definitions:
           Unique reference for the transaction. This reference
           is optionally populated, and may as an example be
           the FPID in the Faster Payments context.
-        type: string
-        minLength: 1
-        maxLength: 35
+        $ref: '#/definitions/BECSRemittance'
       Amount:
         description: Amount of money in the cash entry.
         type: object
@@ -2219,9 +2217,7 @@ definitions:
           end-to-end chain, the creditor's reference or
           payment remittance identification should be quoted
           in the end-to-end transaction identification.
-        type: string
-        minLength: 1
-        maxLength: 35
+        $ref: '#/definitions/BECSRemittance'
       Servicer:
         description: >-
           Party that manages the account on behalf of the
@@ -2390,9 +2386,7 @@ definitions:
           end-to-end chain, the creditor's reference or
           payment remittance identification should be quoted
           in the end-to-end transaction identification.
-        type: string
-        minLength: 1
-        maxLength: 35
+        $ref: '#/definitions/BECSRemittance'
       FirstPaymentDateTime:
         description: >-
           The date on which the first payment for a Standing
@@ -2697,6 +2691,49 @@ definitions:
       - AccountId
       - MandateIdentification
       - Name
+    additionalProperties: false
+  BECSRemittance:
+    description: >-
+      Remittance information for use with BECS Electronic Credit payment scheme.
+      The Particulars, Code and Reference fields are currently constrained to
+      [insert].  The design choice has been made not to constrain through schema
+      restrictions, to allow for future changes that remove the constraint. 
+      Note that not all banks will accept all valid characters, in which case a
+      descriptive 400 Bad Request will be returned. Constraining to a-z, A-Z, - 
+      (dash) and 0-9 is advised. One example is abc-XYZ-123
+    properties:
+      CreditorName:
+        type: string
+        maxLength: 20
+      CreditorReference:
+        type: object
+        properties:
+          Particulars:
+            type: string
+            maxLength: 12
+          Code:
+            type: string
+            maxLength: 12
+          Reference:
+            type: string
+            maxLength: 12
+      DebtorName:
+        type: string
+        maxLength: 20
+      DebtorReference:
+        type: object
+        properties:
+          Particulars:
+            type: string
+            maxLength: 12
+          Code:
+            type: string
+            maxLength: 12
+          Reference:
+            type: string
+            maxLength: 12
+    required:
+      - CreditorName
     additionalProperties: false
 securityDefinitions:
   PSUOAuth2Security:

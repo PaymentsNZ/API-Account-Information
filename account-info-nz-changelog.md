@@ -2,6 +2,11 @@
 
 ---
 
+## V0.2.1 - 20/07/2018
+
+* Altered `Reference` and `TransactionReference` fields to use BECSRemittance (alignment with Payment API)
+  * This affects Transactions, Beneficiaries and StandOrders
+
 ## v0.2.0 - 15/06/2018
 
 * Version bump to v0.2.0 indicating re-inclusion of OpenID Connect into authorisation flow
