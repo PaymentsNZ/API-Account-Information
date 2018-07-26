@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v0.2.1
+  version: v0.2.2
 basePath: /open-banking-nz/v0.2
 schemes:
   - https
@@ -1743,8 +1743,7 @@ definitions:
             description: >-
               This is secondary identification of the account, as assigned by
               the account servicing institution.  This can be used by building
-              societies to additionally identify accounts with a roll number (in
-              addition to a sort code and account number combination).
+              societies to additionally identify accounts with a roll number.
             type: string
             minLength: 1
             maxLength: 34
@@ -1785,8 +1784,6 @@ definitions:
   AccountSchemeModel:
     type: string
     enum:
-      - IBAN
-      - SortCodeAccountNumber
       - BECSElectronicCredit
     default: BECSElectronicCredit
   PaymentLinks:
@@ -2287,8 +2284,7 @@ definitions:
               as assigned by the account servicing
               institution.  This can be used by building
               societies to additionally identify accounts with
-              a roll number (in addition to a sort code and
-              account number combination).
+              a roll number.
             type: string
             minLength: 1
             maxLength: 34
@@ -2558,8 +2554,7 @@ definitions:
               as assigned by the account servicing
               institution.  This can be used by building
               societies to additionally identify accounts with
-              a roll number (in addition to a sort code and
-              account number combination).
+              a roll number..
             type: string
             minLength: 1
             maxLength: 34
