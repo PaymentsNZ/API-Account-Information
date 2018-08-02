@@ -2,6 +2,10 @@
 
 ---
 
+## V0.2.2 - 26/07/2018
+
+Removed IBAN and Sort Code from AccountSchemeModel - not relevant to NZ market.
+
 ## V0.2.1 - 20/07/2018
 
 * Altered `Reference` and `TransactionReference` fields to use BECSRemittance (alignment with Payment API)
