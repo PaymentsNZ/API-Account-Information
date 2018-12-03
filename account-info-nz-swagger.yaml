@@ -2252,6 +2252,7 @@ definitions:
       - BECSElectronicCredit
     default: BECSElectronicCredit
   PaymentLinks:
+    type: object
     title: PaymentLinks
     allOf:
       - $ref: '#/definitions/Links'
@@ -2376,6 +2377,7 @@ definitions:
     required:
       - Permissions
   AccountRequestResponseModel:
+    type: object
     allOf:
       - properties:
           AccountRequestId:
@@ -8741,6 +8743,7 @@ definitions:
       - CreationDateTime
     additionalProperties: false
   BECSRemittance:
+    type: object
     description: >-
       Unique reference, as assigned by the creditor, to
       unambiguously refer to the payment transaction.
