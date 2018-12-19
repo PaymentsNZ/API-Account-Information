@@ -207,6 +207,8 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
