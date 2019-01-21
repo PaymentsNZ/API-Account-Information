@@ -2,6 +2,26 @@
 
 ---
 
+## V0.3.0 - 02/11/2018
+
+Incorporate upstream V2.0 changes.
+
+* Basepath changed to /open-banking-nz/v0.3
+* Added tags to group endpoints
+* Refactored Meta to definitions and referenced
+* Fixed balances reference and description
+* Refactored parameters and objects similar to upstream
+* Added Offers, Party, Statements, Scheduled Payments endpoints
+  * Scheduled Payments has minor changes to use BECSRemittance, BECSElectronicCredit
+* Updated TransactionModel to reflect **undocumented** changes to Transactions structure
+  * Not listed in [Key changes](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/127009221/Read+Write+Data+API+Specification+-+v2.0.0)
+* Updated AccountModel to reflect **undocumented** changes
+* Updated Account Requests to reflect **undocumented** changes
+* Updated Beneficiaries to reflect **undocumented** changes
+* Incorporated **extensive** ProductModel changes
+* Updated StandingOrders to reflect **undocumented** changes
+* Added 501 response to new endpoints (reflecting not mandatory)
+
 ## V0.2.2 - 26/07/2018
 
 Removed IBAN and Sort Code from AccountSchemeModel - not relevant to NZ market.
