@@ -2177,7 +2177,6 @@ definitions:
             - ReadPAN
             - ReadParty
             - ReadPartyPSU
-            - ReadProducts
             - ReadScheduledPaymentsBasic
             - ReadScheduledPaymentsDetail
             - ReadStandingOrdersBasic
