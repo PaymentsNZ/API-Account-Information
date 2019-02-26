@@ -2,6 +2,21 @@
 
 ---
 
+## v1.0.0 - 26/02/2019
+
+Incorporate changes in preparation for v1.0.0 release, including:
+
+* Version bump to v1.0.0 and URL to v1.0
+* Removed `501 Not Implemented` from `/account-requests/{AccountRequestId}` and `/accounts/{AccountId}/transactions`
+* Update `PaymentLinks` example to use `v1.0` in path
+* Added new risk HTTP headers `x-merchant-ip-address` and `x-customer-user-agent`
+* Added new fields `Risk` object as per the Risk Fields page in confluence documentation
+* Remove 'QtrDay' in Standing Order Frequency
+* Update `ReadPartyPSU` to `ReadPartyAuthUser`
+* Removed `OB: reference`
+* Replaced UK actor names (ASPSP, TPP, PSU) with NZ names (API Provider, Third Party, Customer)
+* Replaced `EquivalentAmount` with `CurrencyExchange`
+
 ## V0.3.0 - 02/11/2018
 
 Incorporate upstream V2.0 changes.

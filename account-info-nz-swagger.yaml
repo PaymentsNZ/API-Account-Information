@@ -12,8 +12,8 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v0.3.1
-basePath: /open-banking-nz/v0.3
+  version: v1.0.0
+basePath: /open-banking-nz/v1.0
 tags:
   - name: Account Requests
     description: Account Requests
@@ -58,6 +58,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
         - $ref: '#/parameters/x-jws-signature-Param'
         - name: body
@@ -72,14 +74,7 @@ paths:
               Data:
                 $ref: '#/definitions/AccountRequestModel'
               Risk:
-                title: Risk
-                type: object
-                description: >-
-                  The Risk payload is sent by the initiating party to the ASPSP.
-                  It is used to specify additional details for risk scoring for
-                  Account Info.
-                properties: {}
-                additionalProperties: false
+                $ref: '#/definitions/Risk'
             additionalProperties: false
             required:
               - Data
@@ -94,14 +89,7 @@ paths:
               Data:
                 $ref: '#/definitions/AccountRequestResponseModel'
               Risk:
-                title: Risk
-                type: object
-                description: >-
-                  The Risk payload is sent by the initiating party to the ASPSP.
-                  It is used to specify additional details for risk scoring for
-                  Account Info.
-                properties: {}
-                additionalProperties: false
+                $ref: '#/definitions/Risk'
               Links:
                 $ref: '#/definitions/Links'
               Meta:
@@ -153,6 +141,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -164,14 +154,7 @@ paths:
               Data:
                 $ref: '#/definitions/AccountRequestResponseModel'
               Risk:
-                title: Risk
-                type: object
-                description: >-
-                  The Risk payload is sent by the initiating party to the ASPSP.
-                  It is used to specify additional details for risk scoring for
-                  Account Info.
-                properties: {}
-                additionalProperties: false
+                $ref: '#/definitions/Risk'
               Links:
                 $ref: '#/definitions/Links'
               Meta:
@@ -205,8 +188,6 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
       security:
         - TPPOAuth2Security:
             - tpp_client_credential
@@ -260,6 +241,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -329,6 +312,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -396,6 +381,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -447,8 +434,6 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
       security:
         - PSUOAuth2Security:
             - accounts
@@ -467,6 +452,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -538,6 +525,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -607,6 +596,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -678,6 +669,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -747,6 +740,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -803,6 +798,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -866,6 +863,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -931,6 +930,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -998,6 +999,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1067,6 +1070,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1117,6 +1122,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1184,6 +1191,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1254,6 +1263,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1324,6 +1335,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1396,6 +1409,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1466,6 +1481,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1534,6 +1551,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1598,6 +1617,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1660,6 +1681,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1724,6 +1747,8 @@ paths:
         - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
+        - $ref: '#/parameters/x-merchant-ip-address-Param'
+        - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
       responses:
         '200':
@@ -1788,7 +1813,7 @@ parameters:
     name: AccountRequestId
     in: path
     description: >-
-      Unique identification as assigned by the ASPSP to uniquely identify the
+      Unique identification as assigned by the API Provider to uniquely identify the
       account request resource.
     required: true
     type: string
@@ -1802,7 +1827,7 @@ parameters:
 
       NB Time component is optional - set to 00:00:00 for just Date.
 
-      If the Date Time contains a timezone, the ASPSP must ignore the timezone
+      If the Date Time contains a timezone, the API Provider must ignore the timezone
       component.
   StatementIdParam:
     name: StatementId
@@ -1820,7 +1845,7 @@ parameters:
 
       NB Time component is optional - set to 00:00:00 for just Date.
 
-      If the Date Time contains a timezone, the ASPSP must ignore the timezone
+      If the Date Time contains a timezone, the API Provider must ignore the timezone
       component.
   x-fapi-financial-id-Param:
     in: header
@@ -1828,14 +1853,14 @@ parameters:
     type: string
     required: true
     description: >-
-      The unique id of the ASPSP to which the request is issued. The unique id
+      The unique id of the API Provider to which the request is issued. The unique id
       will be issued by OB.
   x-fapi-customer-ip-address-Param:
     in: header
     name: x-fapi-customer-ip-address
     type: string
     required: false
-    description: The PSU's IP address if the PSU is currently logged in with the TPP.
+    description: The Customer's IP address if the Customer is currently logged in with the Third Party.
   x-fapi-interaction-id-Param:
     in: header
     name: x-fapi-interaction-id
@@ -1848,7 +1873,7 @@ parameters:
     type: string
     required: false
     description: >-
-      The time when the PSU last logged in with the TPP. 
+      The time when the Customer last logged in with the Third Party. 
 
       All dates in the HTTP headers are represented as RFC 7231 Full Dates. An
       example is below: 
@@ -1858,6 +1883,22 @@ parameters:
       ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2}
       (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2}
       (GMT|UTC)$
+  x-merchant-ip-address-Param:
+    in: header
+    name: x-merchant-ip-address
+    type: string
+    required: false
+    description: >-
+      The IP address of the merchant when making payment requests through a
+      Third Party.
+  x-customer-user-agent-Param:
+    in: header
+    name: x-customer-user-agent
+    type: string
+    required: false
+    description: >-
+      The User-Agent of the application on the customer device that is used to
+      request the payment
   AuthorizationParam:
     in: header
     name: Authorization
@@ -2128,7 +2169,7 @@ definitions:
               valid for payments at this time.  Note that this link does not
               indicate sufficient funds, only that payment activity is not
               expressly  forbidden
-            example: 'https://api.bank.co.nz/open-banking-nz/v1/payments'
+            example: 'https://api.bank.co.nz/open-banking-nz/v1.0/payments'
   Links:
     title: Links
     type: object
@@ -2151,20 +2192,145 @@ definitions:
         format: uri
     required:
       - Self
+  Risk:
+    type: object
+    description: Data used to assess the risk of the API request
+    properties:
+      GeoLocation:
+        description: >-
+          Location of the end-user on the earth specified by two numbers
+          representing vertical and horizontal position
+        type: object
+        properties:
+          Latitude:
+            description: Latitude measured in decimal degress
+            type: string
+            maxLength: 12
+            pattern: '^-?\\d{1,3}\\.\\d{1,8}$'
+          Longitude:
+            description: Longitude measured in decimal degress
+            type: string
+            maxLength: 12
+            pattern: '^-?\\d{1,3}\\.\\d{1,8}$'
+      PaymentContextCode:
+        description: Specifies the payment context
+        title: PaymentContextCode
+        type: string
+        enum:
+          - BillPayment
+          - EcommerceGoods
+          - EcommerceServices
+          - Other
+          - PersonToPerson
+      MerchantCategoryCode:
+        description: >-
+          Category code conforms to ISO 18245, related to the type of services
+          or goods the merchant provides for the transaction
+        type: string
+        minLength: 3
+        maxLength: 4
+      MerchantCustomerIdentification:
+        description: The unique customer identifier of the Customer with the merchant.
+        type: string
+        minLength: 1
+        maxLength: 70
+      DeliveryAddress:
+        description: >-
+          Information that locates and identifies a specific address, as defined
+          by postal services or in free format text.
+        type: object
+        properties:
+          AddressLine:
+            description: >-
+              Information that locates and identifies a specific address, as
+              defined by postal services, that is presented in free format text.
+            type: array
+            items:
+              description: maxLength 70 text
+              type: string
+              minLength: 1
+              maxLength: 70
+            minItems: 0
+            maxItems: 2
+          StreetName:
+            description: Name of a street or thoroughfare
+            type: string
+            minLength: 1
+            maxLength: 70
+          BuildingNumber:
+            description: Number that identifies the position of a building on a street.
+            type: string
+            minLength: 1
+            maxLength: 16
+          PostCode:
+            description: >-
+              Identifier consisting of a group of letters and/or numbers that is
+              added to a postal address to assist the sorting of mail
+            type: string
+            minLength: 1
+            maxLength: 16
+          TownName:
+            description: >-
+              Name of a built-up area, with defined boundaries, and a local
+              government.
+            type: string
+            minLength: 1
+            maxLength: 35
+          CountrySubDivision:
+            description: >-
+              Identifies a subdivision of a country, for instance state, region,
+              county.
+            type: array
+            items:
+              description: maxLength 35 text
+              type: string
+              minLength: 1
+              maxLength: 35
+            minItems: 0
+            maxItems: 2
+          Country:
+            description: 'Nation with its own government, occupying a particular territory.'
+            type: string
+            pattern: '^[A-Z]{2,2}$'
+        required:
+          - TownName
+          - Country
+        additionalProperties: false
+      EndUserAppName:
+        description: Name of the end user facing application
+        type: string
+        minLength: 1
+        maxLength: 70
+      EndUserAppVersion:
+        description: Version of the end user facing application
+        type: string
+        minLength: 1
+        maxLength: 15
+      MerchantName:
+        description: Name of the merchant
+        type: string
+        minLength: 1
+        maxLength: 70
+      MerchantNZBN:
+        description: NZ business number for the merchant
+        type: string
+        minLength: 1
+        maxLength: 70
+    additionalProperties: false
   AccountRequestModel:
     type: object
     properties:
       Permissions:
         description: >-
           Specifies the Open Banking account request types. This is a list of
-          the data clusters being consented by the PSU, and requested for
-          authorisation with the ASPSP.
+          the data clusters being consented by the Customer, and requested for
+          authorisation with the API Provider.
         type: array
         items:
           description: >-
             Specifies the Open Banking account request types. This is a list of
-            the data clusters being consented by the PSU, and requested for
-            authorisation with the ASPSP.
+            the data clusters being consented by the Customer, and requested for
+            authorisation with the API Provider.
           type: string
           enum:
             - ReadAccountsBasic
@@ -2176,7 +2342,7 @@ definitions:
             - ReadOffers
             - ReadPAN
             - ReadParty
-            - ReadPartyPSU
+            - ReadPartyAuthUser
             - ReadScheduledPaymentsBasic
             - ReadScheduledPaymentsDetail
             - ReadStandingOrdersBasic
@@ -2445,58 +2611,84 @@ definitions:
         required:
           - Code
         additionalProperties: false
-      EquivalentAmount:
-        description: >-
-          Amount of money to be transferred between the debtor and creditor,
-          before deduction of charges, expressed in the currency of the debtor's
-          account, and to be transferred into a different currency. 
-
-          Usage : Currency of the amount is expressed in the currency of the
-          debtor's account, but the amount to be transferred is in another
-          currency. The debtor agent will convert the amount and currency to the
-          to be transferred amount and currency, eg, 'pay equivalent of 100000
-          EUR in JPY'(and account is in EUR).
+      CurrencyExchange:
+        description: Set of elements used to provide details on the currency exchange.
         type: object
         properties:
-          Amount:
+          SourceCurrency:
             description: >-
-              Amount of money to be transferred between debtor and creditor,
-              before deduction of charges, expressed in the currency of the
-              debtor's account, and to be transferred in a different currency. 
+              Currency from which an amount is to be converted in a currency
+              conversion.
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+          TargetCurrency:
+            description: >-
+              Currency from which an amount is to be converted in a currency
+              conversion.
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+          UnitCurrency:
+            description: >-
+              Currency from which an amount is to be converted in a currency
+              conversion.
+            type: string
+            pattern: '^[A-Z]{3,3}$'
+          ExchangeRate:
+            description: >-
+              Factor used to convert an amount from one currency into another. This
+              reflects the price at which one currency was bought with another
+              currency.
 
-              Usage : Currency of the amount is expressed in the currency of the
-              debtor's account, but the amount to be transferred is in another
-              currency. The first agent will convert the amount and currency to
-              the to be transferred amount and currency, eg, 'pay equivalent of
-              100000 EUR in JPY'(and account is in EUR).
+              Usage: ExchangeRate expresses the ratio between UnitCurrency and
+              QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).
+            type: number
+          ContractIdentification:
+            description: >-
+              Unique identification to unambiguously identify the foreign exchange
+              contract.
+            type: string
+            minLength: 1
+            maxLength: 35
+          QuotationDate:
+            description: >-
+              Date and time at which an exchange rate is quoted.
+
+              All dates in the JSON payloads are represented in ISO 8601 date-time
+              format. 
+
+              All date-time fields in responses must include the timezone. An
+              example is below:
+
+              2017-04-05T10:43:07+00:00
+            type: string
+            format: date-time
+          InstructedAmount:
+            description: >-
+              Amount of money of the cash balance after a transaction entry is applied
+              to the account..
             type: object
             properties:
               Amount:
+                description: >-
+                  A number of monetary units specified in an active currency where the unit
+                  of currency is explicit and compliant with ISO 4217.
                 type: string
                 pattern: '^\d{1,13}\.\d{1,5}$'
               Currency:
                 description: >-
-                  Code allocated to a currency, by a maintenance agency, under
-                  an international identification scheme as described in the
-                  latest edition of the international standard ISO 4217 "Codes
-                  for the representation of currencies and funds". Valid
-                  currency codes are registered with the ISO 4217 Maintenance
-                  Agency, and consist of three contiguous letters.
+                  A code allocated to a currency by a Maintenance Agency under an
+                  international identification scheme, as described in the latest
+                  edition of the international standard ISO 4217 "Codes for the
+                  representation of currencies and funds".
                 type: string
                 pattern: '^[A-Z]{3,3}$'
             required:
               - Amount
               - Currency
             additionalProperties: false
-          CurrencyOfTransfer:
-            description: >-
-              Specifies the currency of the to be transferred amount, which is
-              different from the currency of the debtor's account.
-            type: string
-            pattern: '^[A-Z]{3,3}$'
         required:
-          - Amount
-          - CurrencyOfTransfer
+          - SourceCurrency
+          - ExchangeRate
         additionalProperties: false
       CreditorAgent:
         type: object
@@ -2695,8 +2887,6 @@ definitions:
               The account name is used in certain user communities to provide a
               means of identifying the account, in addition to the account
               owner's identity and the account number.
-
-              OB: No name validation is expected for confirmation of payee.
           SecondaryIdentification:
             type: string
             minLength: 1
@@ -2984,8 +3174,6 @@ definitions:
           (between 01 to 06, 12, 24), specifying the day
           within the month (-5 to -1, 1 to 31)
 
-          QtrDay - Quarterly (either ENGLISH, SCOTTISH, or
-          RECEIVED)
 
           Patterns: 
 
@@ -3001,9 +3189,6 @@ definitions:
 
           IntrvlMnthDay:IntervalInMonths:DayInMonth
           (ScheduleCode + IntervalInMonths + DayInMonth)
-
-          QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED)
-          ScheduleCode + QuarterDay
 
 
           The regular expression for this element combines
@@ -3021,10 +3206,9 @@ definitions:
 
           IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
 
-          QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
         type: string
         pattern: >-
-          ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+          ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$
       Reference:
         $ref: '#/definitions/BECSRemittance'
       FirstPaymentDateTime:
@@ -4185,15 +4369,15 @@ securityDefinitions:
     scopes:
       accounts: Ability to read Accounts information
     description: >-
-      OAuth flow, it is required when the PSU needs to perform SCA with the
-      ASPSP when a TPP wants to access an ASPSP resource owned by the PSU
+      OAuth flow, it is required when the Customer needs to perform SCA with the
+      API Provider when a Third Party wants to access an API Provider resource owned by the Customer
   TPPOAuth2Security:
     type: oauth2
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
-      tpp_client_credential: TPP Client Credential Scope
-    description: TPP client credential authorisation flow with the ASPSP
+      tpp_client_credential: Third Party Client Credential Scope
+    description: Third Party client credential authorisation flow with the API Provider
 responses:
   400ErrorResponse:
     description: Bad Request
