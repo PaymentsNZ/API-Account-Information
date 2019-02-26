@@ -124,8 +124,8 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - ThirdPartyOAuth2Security:
+            - accounts
   '/account-requests/{AccountRequestId}':
     get:
       tags:
@@ -189,8 +189,8 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - ThirdPartyOAuth2Security:
+            - accounts
     delete:
       tags:
         - Account Requests
@@ -225,8 +225,8 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - ThirdPartyOAuth2Security:
+            - accounts
   /accounts:
     get:
       tags:
@@ -295,7 +295,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}':
     get:
@@ -362,7 +362,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/transactions':
     get:
@@ -435,7 +435,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/beneficiaries':
     get:
@@ -508,7 +508,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/balances':
     get:
@@ -579,7 +579,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/direct-debits':
     get:
@@ -652,7 +652,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/standing-orders':
     get:
@@ -725,7 +725,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/offers':
     get:
@@ -783,7 +783,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/party':
     get:
@@ -848,7 +848,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/scheduled-payments':
     get:
@@ -915,7 +915,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements':
     get:
@@ -983,7 +983,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements/{StatementId}':
     get:
@@ -1052,7 +1052,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements/{StatementId}/file':
     get:
@@ -1105,7 +1105,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements/{StatementId}/transactions':
     get:
@@ -1175,7 +1175,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /standing-orders:
     get:
@@ -1247,7 +1247,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /direct-debits:
     get:
@@ -1319,7 +1319,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /beneficiaries:
     get:
@@ -1391,7 +1391,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /transactions:
     get:
@@ -1465,7 +1465,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /balances:
     get:
@@ -1537,7 +1537,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /offers:
     get:
@@ -1603,7 +1603,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /party:
     get:
@@ -1667,7 +1667,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /scheduled-payments:
     get:
@@ -1733,7 +1733,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /statements:
     get:
@@ -1800,7 +1800,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
 parameters:
   AccountIdParam:
@@ -4363,22 +4363,22 @@ definitions:
         format: date-time
     additionalProperties: false
 securityDefinitions:
-  PSUOAuth2Security:
+  CustomerOAuth2Security:
     type: oauth2
     flow: accessCode
     tokenUrl: 'https://authserver.example/token'
     authorizationUrl: 'https://authserver.example/authorization'
     scopes:
-      accounts: Ability to read Accounts information
+      accounts: Ability to read accounts information
     description: >-
       OAuth flow, it is required when the Customer needs to perform SCA with the
       API Provider when a Third Party wants to access an API Provider resource owned by the Customer
-  TPPOAuth2Security:
+  ThirdPartyOAuth2Security:
     type: oauth2
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
-      tpp_client_credential: Third Party Client Credential Scope
+      accounts: Ability to read accounts information
     description: Third Party client credential authorisation flow with the API Provider
 responses:
   400ErrorResponse:
