@@ -2194,7 +2194,9 @@ definitions:
       - Self
   Risk:
     type: object
-    description: Data used to assess the risk of the API request
+    description: >-
+          The Risk section is sent by the initiating party to the API Provider. 
+          It is used to specify additional details for risk scoring.
     properties:
       GeoLocation:
         description: >-
@@ -2205,13 +2207,13 @@ definitions:
           Latitude:
             description: Latitude measured in decimal degress
             type: string
-            maxLength: 12
-            pattern: '^-?\\d{1,3}\\.\\d{1,8}$'
+            maxLength: 14
+            pattern: '^-?\d{1,3}\.\d{1,8}$'
           Longitude:
             description: Longitude measured in decimal degress
             type: string
-            maxLength: 12
-            pattern: '^-?\\d{1,3}\\.\\d{1,8}$'
+            maxLength: 14
+            pattern: '^-?\d{1,3}\.\d{1,8}$'
       PaymentContextCode:
         description: Specifies the payment context
         title: PaymentContextCode
