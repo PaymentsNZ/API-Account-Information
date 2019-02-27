@@ -125,7 +125,7 @@ paths:
           $ref: '#/responses/500ErrorResponse'
       security:
         - ThirdPartyOAuth2Security:
-            - accounts
+            - third_party_client_credential
   '/account-requests/{AccountRequestId}':
     get:
       tags:
@@ -190,7 +190,7 @@ paths:
           $ref: '#/responses/500ErrorResponse'
       security:
         - ThirdPartyOAuth2Security:
-            - accounts
+            - third_party_client_credential
     delete:
       tags:
         - Account Requests
@@ -226,7 +226,7 @@ paths:
           $ref: '#/responses/500ErrorResponse'
       security:
         - ThirdPartyOAuth2Security:
-            - accounts
+            - third_party_client_credential
   /accounts:
     get:
       tags:
@@ -4378,7 +4378,7 @@ securityDefinitions:
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
-      accounts: Ability to read accounts information
+      third_party_client_credential: Third Party client credential scope
     description: Third Party client credential authorisation flow with the API Provider
 responses:
   400ErrorResponse:
