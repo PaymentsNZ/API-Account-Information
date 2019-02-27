@@ -124,8 +124,8 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - ThirdPartyOAuth2Security:
+            - third_party_client_credential
   '/account-requests/{AccountRequestId}':
     get:
       tags:
@@ -189,8 +189,8 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - ThirdPartyOAuth2Security:
+            - third_party_client_credential
     delete:
       tags:
         - Account Requests
@@ -225,8 +225,8 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - TPPOAuth2Security:
-            - tpp_client_credential
+        - ThirdPartyOAuth2Security:
+            - third_party_client_credential
   /accounts:
     get:
       tags:
@@ -295,7 +295,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}':
     get:
@@ -362,7 +362,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/transactions':
     get:
@@ -435,7 +435,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/beneficiaries':
     get:
@@ -508,7 +508,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/balances':
     get:
@@ -579,7 +579,7 @@ paths:
         '500':
           $ref: '#/responses/500ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/direct-debits':
     get:
@@ -652,7 +652,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/standing-orders':
     get:
@@ -725,7 +725,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/offers':
     get:
@@ -783,7 +783,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/party':
     get:
@@ -848,7 +848,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/scheduled-payments':
     get:
@@ -915,7 +915,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements':
     get:
@@ -983,7 +983,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements/{StatementId}':
     get:
@@ -1052,7 +1052,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements/{StatementId}/file':
     get:
@@ -1105,7 +1105,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   '/accounts/{AccountId}/statements/{StatementId}/transactions':
     get:
@@ -1175,7 +1175,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /standing-orders:
     get:
@@ -1247,7 +1247,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /direct-debits:
     get:
@@ -1319,7 +1319,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /beneficiaries:
     get:
@@ -1391,7 +1391,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /transactions:
     get:
@@ -1465,7 +1465,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /balances:
     get:
@@ -1537,7 +1537,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /offers:
     get:
@@ -1603,7 +1603,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /party:
     get:
@@ -1667,7 +1667,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /scheduled-payments:
     get:
@@ -1733,7 +1733,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
   /statements:
     get:
@@ -1800,7 +1800,7 @@ paths:
         '501':
           $ref: '#/responses/501ErrorResponse'
       security:
-        - PSUOAuth2Security:
+        - CustomerOAuth2Security:
             - accounts
 parameters:
   AccountIdParam:
@@ -1851,7 +1851,7 @@ parameters:
     in: header
     name: x-fapi-financial-id
     type: string
-    required: true
+    required: false
     description: >-
       The unique id of the API Provider to which the request is issued. The unique id
       will be issued by OB.
@@ -2109,8 +2109,7 @@ definitions:
           SecondaryIdentification:
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution.  This can be used by building
-              societies to additionally identify accounts with a roll number.
+              the account servicing institution.
             type: string
             minLength: 1
             maxLength: 34
@@ -2895,11 +2894,7 @@ definitions:
             maxLength: 34
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution. 
-
-              This can be used by building societies to additionally identify
-              accounts with a roll number (in addition to a sort code and
-              account number combination).
+              the account servicing institution.
         required:
           - SchemeName
           - Identification
@@ -2944,11 +2939,7 @@ definitions:
             maxLength: 34
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution. 
-
-              This can be used by building societies to additionally identify
-              accounts with a roll number (in addition to a sort code and
-              account number combination).
+              the account servicing institution.
         required:
           - SchemeName
           - Identification
@@ -3129,11 +3120,8 @@ definitions:
             maxLength: 70
           SecondaryIdentification:
             description: >-
-              This is secondary identification of the account,
-              as assigned by the account servicing
-              institution.  This can be used by building
-              societies to additionally identify accounts with
-              a roll number.
+              This is secondary identification of the account, as assigned by the 
+              account servicing institution.
             type: string
             minLength: 1
             maxLength: 34
@@ -3387,10 +3375,7 @@ definitions:
           SecondaryIdentification:
             description: >-
               This is secondary identification of the account,
-              as assigned by the account servicing
-              institution.  This can be used by building
-              societies to additionally identify accounts with
-              a roll number..
+              as assigned by the account servicing institution.
             type: string
             minLength: 1
             maxLength: 34
@@ -3425,10 +3410,7 @@ definitions:
         maxLength: 40
       MandateIdentification:
         description: >-
-          Direct Debit reference. For AUDDIS service users
-          provide Core Reference. For non AUDDIS service users
-          provide Core reference if possible or last used
-          reference.
+          Direct Debit reference.
         type: string
         minLength: 1
         maxLength: 35
@@ -3838,10 +3820,6 @@ definitions:
             description: >-
               This is secondary identification of the account, as assigned by
               the account servicing institution. 
-
-              This can be used by building societies to additionally identify
-              accounts with a roll number (in addition to a sort code and
-              account number combination).
         required:
           - SchemeName
           - Identification
@@ -4007,7 +3985,7 @@ definitions:
               enum:
                 - Credit
                 - Debit
-              description: |-
+              description: >-
                 Indicates whether the amount is a credit or a debit. 
                 Usage: A zero amount is considered to be a credit amount.
             Type:
@@ -4070,7 +4048,7 @@ definitions:
               enum:
                 - Credit
                 - Debit
-              description: |-
+              description: >-
                 Indicates whether the amount is a credit or a debit. 
                 Usage: A zero amount is considered to be a credit amount.
             Type:
@@ -4228,7 +4206,7 @@ definitions:
               enum:
                 - Credit
                 - Debit
-              description: |-
+              description: >-
                 Indicates whether the amount is a credit or a debit. 
                 Usage: A zero amount is considered to be a credit amount.
             Type:
@@ -4246,7 +4224,6 @@ definitions:
                 - CreditLimit
                 - CurrentPayment
                 - DirectDebitPaymentDue
-                - FSCSInsurance
                 - MinimumPaymentDue
                 - PreviousClosingBalance
                 - PreviousPayment
@@ -4363,22 +4340,22 @@ definitions:
         format: date-time
     additionalProperties: false
 securityDefinitions:
-  PSUOAuth2Security:
+  CustomerOAuth2Security:
     type: oauth2
     flow: accessCode
     tokenUrl: 'https://authserver.example/token'
     authorizationUrl: 'https://authserver.example/authorization'
     scopes:
-      accounts: Ability to read Accounts information
+      accounts: Ability to read accounts information
     description: >-
       OAuth flow, it is required when the Customer needs to perform SCA with the
       API Provider when a Third Party wants to access an API Provider resource owned by the Customer
-  TPPOAuth2Security:
+  ThirdPartyOAuth2Security:
     type: oauth2
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
-      tpp_client_credential: Third Party Client Credential Scope
+      third_party_client_credential: Third Party client credential scope
     description: Third Party client credential authorisation flow with the API Provider
 responses:
   400ErrorResponse:
@@ -4401,4 +4378,3 @@ responses:
     description: Internal Server Error
   501ErrorResponse:
     description: Not Implemented
-    
