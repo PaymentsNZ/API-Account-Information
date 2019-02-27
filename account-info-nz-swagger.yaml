@@ -2109,8 +2109,7 @@ definitions:
           SecondaryIdentification:
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution.  This can be used by building
-              societies to additionally identify accounts with a roll number.
+              the account servicing institution.
             type: string
             minLength: 1
             maxLength: 34
@@ -2895,11 +2894,7 @@ definitions:
             maxLength: 34
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution. 
-
-              This can be used by building societies to additionally identify
-              accounts with a roll number (in addition to a sort code and
-              account number combination).
+              the account servicing institution.
         required:
           - SchemeName
           - Identification
@@ -2944,11 +2939,7 @@ definitions:
             maxLength: 34
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution. 
-
-              This can be used by building societies to additionally identify
-              accounts with a roll number (in addition to a sort code and
-              account number combination).
+              the account servicing institution.
         required:
           - SchemeName
           - Identification
@@ -3129,11 +3120,8 @@ definitions:
             maxLength: 70
           SecondaryIdentification:
             description: >-
-              This is secondary identification of the account,
-              as assigned by the account servicing
-              institution.  This can be used by building
-              societies to additionally identify accounts with
-              a roll number.
+              This is secondary identification of the account, as assigned by the 
+              account servicing institution.
             type: string
             minLength: 1
             maxLength: 34
@@ -3387,10 +3375,7 @@ definitions:
           SecondaryIdentification:
             description: >-
               This is secondary identification of the account,
-              as assigned by the account servicing
-              institution.  This can be used by building
-              societies to additionally identify accounts with
-              a roll number..
+              as assigned by the account servicing institution.
             type: string
             minLength: 1
             maxLength: 34
@@ -3425,10 +3410,7 @@ definitions:
         maxLength: 40
       MandateIdentification:
         description: >-
-          Direct Debit reference. For AUDDIS service users
-          provide Core Reference. For non AUDDIS service users
-          provide Core reference if possible or last used
-          reference.
+          Direct Debit reference.
         type: string
         minLength: 1
         maxLength: 35
@@ -3838,10 +3820,6 @@ definitions:
             description: >-
               This is secondary identification of the account, as assigned by
               the account servicing institution. 
-
-              This can be used by building societies to additionally identify
-              accounts with a roll number (in addition to a sort code and
-              account number combination).
         required:
           - SchemeName
           - Identification
@@ -4007,7 +3985,7 @@ definitions:
               enum:
                 - Credit
                 - Debit
-              description: |-
+              description: >-
                 Indicates whether the amount is a credit or a debit. 
                 Usage: A zero amount is considered to be a credit amount.
             Type:
@@ -4070,7 +4048,7 @@ definitions:
               enum:
                 - Credit
                 - Debit
-              description: |-
+              description: >-
                 Indicates whether the amount is a credit or a debit. 
                 Usage: A zero amount is considered to be a credit amount.
             Type:
@@ -4228,7 +4206,7 @@ definitions:
               enum:
                 - Credit
                 - Debit
-              description: |-
+              description: >-
                 Indicates whether the amount is a credit or a debit. 
                 Usage: A zero amount is considered to be a credit amount.
             Type:
@@ -4246,7 +4224,6 @@ definitions:
                 - CreditLimit
                 - CurrentPayment
                 - DirectDebitPaymentDue
-                - FSCSInsurance
                 - MinimumPaymentDue
                 - PreviousClosingBalance
                 - PreviousPayment
@@ -4401,4 +4378,3 @@ responses:
     description: Internal Server Error
   501ErrorResponse:
     description: Not Implemented
-    
