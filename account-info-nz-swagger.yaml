@@ -1851,7 +1851,7 @@ parameters:
     in: header
     name: x-fapi-financial-id
     type: string
-    required: true
+    required: false
     description: >-
       The unique id of the API Provider to which the request is issued. The unique id
       will be issued by OB.
