@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v1.0.0
+  version: v1.0.1
 basePath: /open-banking-nz/v1.0
 tags:
   - name: Account Requests
