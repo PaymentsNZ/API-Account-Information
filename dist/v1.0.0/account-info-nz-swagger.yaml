@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: 'https://www.paymentsnz.co.nz/contact-us'
-  version: v1.0.1
+  version: v1.0.0
 basePath: /open-banking-nz/v1.0
 tags:
   - name: Account Requests
@@ -203,11 +203,6 @@ paths:
         - $ref: '#/parameters/AccountRequestIdParam'
         - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
       responses:
         '204':
           description: Account Request resource successfully deleted
@@ -1866,7 +1861,6 @@ parameters:
     type: string
     required: false
     description: The Customer's IP address if the Customer is currently logged in with the Third Party.
-    pattern: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
   x-fapi-interaction-id-Param:
     in: header
     name: x-fapi-interaction-id
@@ -1897,7 +1891,6 @@ parameters:
     description: >-
       The IP address of the merchant when making payment requests through a
       Third Party.
-    pattern: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
   x-customer-user-agent-Param:
     in: header
     name: x-customer-user-agent
@@ -2456,7 +2449,7 @@ definitions:
             type: string
             format: date-time
         required:
-          - AccountRequestId
+          - AccountRequestID
           - Status
           - CreationDateTime
           - StatusUpdateDateTime
