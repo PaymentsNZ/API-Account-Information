@@ -8,7 +8,7 @@ This is a private git repository of the Payments NZ API specifications.  It is u
 
 There is currently one API covered under the specifications.  This is:
 
-* [Account Information](account-info-nz-swagger.yaml) - access information on a payment user's accounts
+* [Account Information](./dist/v1.0.1/account-info-nz-swagger.yaml) - access information on a payment user's accounts
 
 ## Files
 
