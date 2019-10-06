@@ -5,13 +5,13 @@ info:
     Swagger for Account and Transaction API Specification. This is heavily
     derived from the Open Banking UK API - see www.openbanking.org.uk for
     details.
-  termsOfService: 'https://www.paymentsnz.co.nz/contact-us'
+  termsOfService: 'https://www.apicentre.paymentsnz.co.nz/contact-us/'
   contact:
-    name: Service Desk
-    email: connect@paymentsnz.co.nz
+    name: Payments NZ API Centre
+    email: apicentre@paymentsnz.co.nz
   license:
     name: Licence
-    url: 'https://www.paymentsnz.co.nz/contact-us'
+    url: 'https://www.apicentre.paymentsnz.co.nz/join/'
   version: v2.0.0-draft3
 basePath: /open-banking-nz/v2.0
 tags:
@@ -119,10 +119,16 @@ paths:
           $ref: '#/responses/405ErrorResponse'
         '406':
           $ref: '#/responses/406ErrorResponse'
+        '415':
+          $ref: '#/responses/415ErrorResponse'
         '429':
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - ThirdPartyOAuth2Security:
             - third_party_client_credential
@@ -188,6 +194,10 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - ThirdPartyOAuth2Security:
             - third_party_client_credential
@@ -229,6 +239,10 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - ThirdPartyOAuth2Security:
             - third_party_client_credential
@@ -299,6 +313,10 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -366,6 +384,10 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -439,6 +461,10 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -512,6 +538,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -583,6 +611,10 @@ paths:
           $ref: '#/responses/429ErrorResponse'
         '500':
           $ref: '#/responses/500ErrorResponse'
+        '501':
+          $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -656,6 +688,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -729,6 +763,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -787,6 +823,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -852,6 +890,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -919,6 +959,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -987,6 +1029,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1056,6 +1100,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1109,6 +1155,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1179,6 +1227,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1251,6 +1301,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1323,6 +1375,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1395,6 +1449,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1469,6 +1525,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1541,6 +1599,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1607,6 +1667,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1671,6 +1733,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1737,6 +1801,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1804,6 +1870,8 @@ paths:
           $ref: '#/responses/500ErrorResponse'
         '501':
           $ref: '#/responses/501ErrorResponse'
+        '503':
+          $ref: '#/responses/503ErrorResponse'
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -4352,6 +4420,8 @@ responses:
     description: Method Not Allowed
   406ErrorResponse:
     description: Not Acceptable
+  415ErrorResponse:
+    description: Unsupported Media Type
   429ErrorResponse:
     description: Too Many Requests
     headers:
@@ -4362,3 +4432,5 @@ responses:
     description: Internal Server Error
   501ErrorResponse:
     description: Not Implemented
+  503ErrorResponse:
+    description: Service Unavailable
