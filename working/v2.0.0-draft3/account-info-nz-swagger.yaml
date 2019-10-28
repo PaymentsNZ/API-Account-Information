@@ -54,14 +54,12 @@ paths:
       produces:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
         - $ref: '#/parameters/x-customer-user-agent-Param'
         - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-jws-signature-Param'
         - name: body
           in: body
           description: Create an Account Access Consent
@@ -101,11 +99,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -143,8 +136,7 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/ConsentIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -172,11 +164,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -211,9 +198,8 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/ConsentIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
         - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -256,8 +242,7 @@ paths:
       produces:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -291,11 +276,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -331,8 +311,7 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -362,11 +341,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -404,8 +378,7 @@ paths:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/FromBookingDateTimeParam'
         - $ref: '#/parameters/ToBookingDateTimeParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -439,11 +412,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -479,8 +447,7 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -514,11 +481,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -554,8 +516,7 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -589,11 +550,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -629,8 +585,7 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -664,11 +619,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -704,8 +654,7 @@ paths:
         - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -739,11 +688,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -777,8 +721,7 @@ paths:
       operationId: GetAccountOffers
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -837,8 +780,7 @@ paths:
       operationId: GetAccountParty
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -866,11 +808,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -904,8 +841,7 @@ paths:
       operationId: GetAccountScheduledPayments
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -935,11 +871,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -973,8 +904,7 @@ paths:
       operationId: GetAccountStatements
       parameters:
         - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1005,11 +935,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1044,8 +969,7 @@ paths:
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1076,11 +1000,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1117,8 +1036,7 @@ paths:
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1131,11 +1049,6 @@ paths:
             type: file
             description: Statement File
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1171,8 +1084,7 @@ paths:
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1203,11 +1115,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1242,8 +1149,7 @@ paths:
       produces:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1277,11 +1183,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1316,8 +1217,7 @@ paths:
       produces:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1351,11 +1251,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1390,8 +1285,7 @@ paths:
       produces:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1425,11 +1319,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1466,8 +1355,7 @@ paths:
       parameters:
         - $ref: '#/parameters/FromBookingDateTimeParam'
         - $ref: '#/parameters/ToBookingDateTimeParam'
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1501,11 +1389,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1540,8 +1423,7 @@ paths:
       produces:
         - application/json; charset=utf-8
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1575,11 +1457,6 @@ paths:
               - Links
               - Meta
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of the
-                payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1612,8 +1489,7 @@ paths:
       description: Get Offers
       operationId: GetOffers
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1643,11 +1519,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1680,8 +1551,7 @@ paths:
       description: Get Party
       operationId: GetParty
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1709,11 +1579,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1746,8 +1611,7 @@ paths:
       description: Get Scheduled Payments
       operationId: GetScheduledPayments
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1777,11 +1641,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1814,8 +1673,7 @@ paths:
       description: Get Statements
       operationId: GetStatements
       parameters:
-        - $ref: '#/parameters/x-fapi-financial-id-Param'
-        - $ref: '#/parameters/x-fapi-customer-last-logged-time-Param'
+        - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
         - $ref: '#/parameters/x-merchant-ip-address-Param'
@@ -1846,11 +1704,6 @@ paths:
               - Meta
             additionalProperties: false
           headers:
-            x-jws-signature:
-              type: string
-              description: >-
-                DO NOT USE. Header containing a detached JWS signature of the body of
-                the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1920,14 +1773,6 @@ parameters:
 
       If the Date Time contains a timezone, the API Provider must ignore the timezone
       component.
-  x-fapi-financial-id-Param:
-    in: header
-    name: x-fapi-financial-id
-    type: string
-    required: false
-    description: >-
-      The unique id of the API Provider to which the request is issued. The unique id
-      will be issued by OB.
   x-fapi-customer-ip-address-Param:
     in: header
     name: x-fapi-customer-ip-address
@@ -1941,9 +1786,9 @@ parameters:
     type: string
     required: false
     description: An RFC4122 UID used as a correlation id.
-  x-fapi-customer-last-logged-time-Param:
+  x-fapi-auth-date-Param:
     in: header
-    name: x-fapi-customer-last-logged-time
+    name: x-fapi-auth-date
     type: string
     required: false
     description: >-
@@ -1980,14 +1825,6 @@ parameters:
     type: string
     required: true
     description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
-  x-jws-signature-Param:
-    in: header
-    name: x-jws-signature
-    type: string
-    required: false
-    description: >-
-      DO NOT USE. Header containing a detached JWS signature of the body of the
-      payload.
 definitions:
   Error:
     type: object
