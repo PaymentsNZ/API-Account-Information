@@ -2301,7 +2301,7 @@ definitions:
         description: Version of the end user facing application
         type: string
         minLength: 1
-        maxLength: 15
+        maxLength: 14
       MerchantName:
         description: Name of the merchant
         type: string
