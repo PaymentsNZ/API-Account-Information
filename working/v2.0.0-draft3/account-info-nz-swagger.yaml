@@ -3123,6 +3123,9 @@ definitions:
     properties:
       AccountId:
         description: >-
+          A unique and immutable identifier used to identify
+          the account resource. This identifier has no meaning
+          to the account owner.
           The date on which the first payment for a Standing
           Order schedule will be made.
         type: string
