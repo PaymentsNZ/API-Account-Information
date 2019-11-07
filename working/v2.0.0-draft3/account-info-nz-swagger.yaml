@@ -14,45 +14,65 @@ info:
     url: 'https://www.apicentre.paymentsnz.co.nz/join/'
   version: v2.0.0-draft3
 basePath: /open-banking-nz/v2.0
-tags:
-  - name: Account Access Consents
-    description: Account Access Consents
-  - name: Accounts
-    description: Accounts
-  - name: Balances
-    description: Balances
-  - name: Beneficiaries
-    description: Beneficiaries
-  - name: Direct Debits
-    description: Direct Debits
-  - name: Offers
-    description: Offers
-  - name: Party
-    description: Party
-  - name: Scheduled Payments
-    description: Scheduled Payments
-  - name: Standing Orders
-    description: Standing Orders
-  - name: Statements
-    description: Statements
-  - name: Transactions
-    description: Transactions
 schemes:
   - https
+consumes:
+  - application/json; charset=utf-8
 produces:
   - application/json; charset=utf-8
+tags:
+  - name: Account Access Consents
+    description: >- 
+      A consent to access account information resources
+  - name: Accounts
+    description: >- 
+      A resource that represents the account to which credit and debit entries are 
+      made
+  - name: Balances
+    description: >- 
+      A resource that represents the net increases and decreases in an account at a 
+      specific point in time
+  - name: Beneficiaries
+    description: >- 
+      A set of elements that describe the list of trusted beneficiaries linked to a 
+      specific account
+  - name: Direct Debits
+    description: >- 
+      A set of elements that describe the list of direct-debits that have been set up 
+      on a specific account
+  - name: Offers
+    description: >- 
+      A set of elements that descirbe the list of offers avaialble to a specific 
+      account
+  - name: Party
+    description: >- 
+      A set of elements that describe the party linked to a specific account
+  - name: Scheduled Payments
+    description: >- 
+      A set of elements that describe the list of scheduled-payments that have been 
+      set up on a specific account
+  - name: Standing Orders
+    description: >-
+      A set of elements that describe the list of standing-orders that have been set 
+      up on a specific account
+  - name: Statements
+    description: >- 
+      A resource that describes summary details for an account statement period
+  - name: Transactions
+    description: >- 
+      A resource that describes a posting to an account that results in an increase 
+      or decrease to a balance
 paths:
-  /account-access-consents:
+  '/account-access-consents':
     post:
       tags:
         - Account Access Consents
-      summary: Create an account access consent 
-      description: Create an account access consent
       operationId: CreateAccountAccessConsent
-      consumes:
-        - application/json; charset=utf-8
-      produces:
-        - application/json; charset=utf-8
+      summary: Create an account access consent resource
+      description: >-
+        The account-access-consent resource represents a consent that has been 
+        agreed between the Customer and the Third Party for the Third Party to 
+        access a Customer's account information with an API Provider.
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -62,21 +82,20 @@ paths:
         - $ref: '#/parameters/AuthorizationParam'
         - name: body
           in: body
-          description: Create an Account Access Consent
+          description: Account Access Consent Body
           required: true
           schema:
-            title: Account Access Consent POST request
-            description: Allows setup of an account access consent
+            title: Account Access Consent
             type: object
             properties:
               Data:
                 $ref: '#/definitions/AccountAccessConsentModel'
               Risk:
                 $ref: '#/definitions/Risk'
-            additionalProperties: false
             required:
               - Data
               - Risk
+            additionalProperties: false
       responses:
         '201':
           description: Account Access Consent resource successfully created
@@ -92,12 +111,12 @@ paths:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Risk
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -129,11 +148,9 @@ paths:
     get:
       tags:
         - Account Access Consents
-      summary: Get an account access consent
-      description: Get an account access consent
       operationId: GetAccountAccessConsent
-      produces:
-        - application/json; charset=utf-8
+      summary: Get an account access consent
+      description: Retrieve an account access consent resource and check its status.
       parameters:
         - $ref: '#/parameters/ConsentIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -157,12 +174,12 @@ paths:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Risk
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -191,11 +208,9 @@ paths:
     delete:
       tags:
         - Account Access Consents
-      summary: Delete an account access consent
-      description: Delete an account access consent
       operationId: DeleteAccountAccessConsent
-      produces:
-        - application/json; charset=utf-8
+      summary: Delete an account access consent
+      description: Delete an account access consent resource
       parameters:
         - $ref: '#/parameters/ConsentIdParam'
         - $ref: '#/parameters/AuthorizationParam'
@@ -232,15 +247,13 @@ paths:
       security:
         - ThirdPartyOAuth2Security:
             - third_party_client_credential
-  /accounts:
+  '/accounts':
     get:
       tags:
         - Accounts
+      operationId: GetAccounts
       summary: Get Accounts
       description: Get a list of accounts
-      operationId: GetAccounts
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -266,15 +279,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/AccountModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -304,11 +318,9 @@ paths:
     get:
       tags:
         - Accounts
+      operationId: GetAccount
       summary: Get Account
       description: Get an account
-      operationId: GetAccount
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -331,15 +343,16 @@ paths:
                 properties:
                   Account:
                     $ref: '#/definitions/AccountModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -369,11 +382,9 @@ paths:
     get:
       tags:
         - Transactions
+      operationId: GetAccountTransactions
       summary: Get Account Transactions
       description: Get transactions related to an account
-      operationId: GetAccountTransactions
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/FromBookingDateTimeParam'
@@ -402,15 +413,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/TransactionModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -440,11 +452,9 @@ paths:
     get:
       tags:
         - Beneficiaries
+      operationId: GetAccountBeneficiaries
       summary: Get Account Beneficiaries
       description: Get Beneficiaries related to an account
-      operationId: GetAccountBeneficiaries
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -471,15 +481,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/BeneficiaryModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -509,11 +520,9 @@ paths:
     get:
       tags:
         - Balances
+      operationId: GetAccountBalances
       summary: Get Account Balances
       description: Get Balances related to an account
-      operationId: GetAccountBalances
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -540,15 +549,18 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/BalanceModel'
+                required:
+                  - Balance
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -578,11 +590,9 @@ paths:
     get:
       tags:
         - Direct Debits
+      operationId: GetAccountDirectDebits
       summary: Get Account Direct Debits
       description: Get Direct Debits related to an account
-      operationId: GetAccountDirectDebits
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -609,15 +619,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/DirectDebitModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -647,11 +658,9 @@ paths:
     get:
       tags:
         - Standing Orders
+      operationId: GetAccountStandingOrders
       summary: Get Account Standing Orders
       description: Get Standing Orders related to an account
-      operationId: GetAccountStandingOrders
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -678,15 +687,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/StandingOrderModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -716,9 +726,9 @@ paths:
     get:
       tags:
         - Offers
+      operationId: GetAccountOffers
       summary: Get Account Offers
       description: Get Offers related to an account
-      operationId: GetAccountOffers
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -775,9 +785,9 @@ paths:
     get:
       tags:
         - Party
+      operationId: GetAccountParty
       summary: Get Account Party
       description: Get Party related to an account
-      operationId: GetAccountParty
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -836,9 +846,9 @@ paths:
     get:
       tags:
         - Scheduled Payments
+      operationId: GetAccountScheduledPayments
       summary: Get Account Scheduled Payments
       description: Get Scheduled Payments related to an account
-      operationId: GetAccountScheduledPayments
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -899,9 +909,9 @@ paths:
     get:
       tags:
         - Statements
+      operationId: GetAccountStatements
       summary: Get Account Statements
       description: Get Statements related to an account
-      operationId: GetAccountStatements
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -963,9 +973,9 @@ paths:
     get:
       tags:
         - Statements
+      operationId: GetAccountStatement
       summary: Get Statement
       description: Get Statement related to an account
-      operationId: GetAccountStatement
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
@@ -1028,11 +1038,11 @@ paths:
     get:
       tags:
         - Statements
+      operationId: GetAccountStatementFile
       summary: Get Statement File
       description: Get Statement related to an account
       produces:
         - '*/*'
-      operationId: GetAccountStatementFile
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
@@ -1078,9 +1088,9 @@ paths:
       tags:
         - Statements
         - Transactions
+      operationId: GetAccountStatementTransactions
       summary: Get Statement Transactions
       description: Get Statement Transactions related to an account
-      operationId: GetAccountStatementTransactions
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
@@ -1139,15 +1149,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /standing-orders:
+  '/standing-orders':
     get:
       tags:
         - Standing Orders
+      operationId: GetStandingOrders
       summary: Get Standing Orders
       description: Get Standing Orders
-      operationId: GetStandingOrders
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1173,6 +1181,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/StandingOrderModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
@@ -1207,15 +1216,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /direct-debits:
+  '/direct-debits':
     get:
       tags:
         - Direct Debits
+      operationId: GetDirectDebits
       summary: Get Direct Debits
       description: Get Direct Debits
-      operationId: GetDirectDebits
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1241,15 +1248,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/DirectDebitModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -1275,15 +1283,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /beneficiaries:
+  '/beneficiaries':
     get:
       tags:
         - Beneficiaries
+      operationId: GetBeneficiaries
       summary: Get Beneficiaries
       description: Get Beneficiaries
-      operationId: GetBeneficiaries
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1309,15 +1315,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/BeneficiaryModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -1343,15 +1350,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /transactions:
+  '/transactions':
     get:
       tags:
         - Transactions
+      operationId: GetTransactions
       summary: Get Transactions
       description: Get Transactions
-      operationId: GetTransactions
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/FromBookingDateTimeParam'
         - $ref: '#/parameters/ToBookingDateTimeParam'
@@ -1379,15 +1384,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/TransactionModel'
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
                 $ref: '#/definitions/Meta'
-            additionalProperties: false
             required:
               - Data
               - Links
               - Meta
+            additionalProperties: false
           headers:
             x-fapi-interaction-id:
               type: string
@@ -1413,15 +1419,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /balances:
+  '/balances':
     get:
       tags:
         - Balances
+      operationId: GetBalances
       summary: Get Balances
       description: Get Balances
-      operationId: GetBalances
-      produces:
-        - application/json; charset=utf-8
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1447,6 +1451,9 @@ paths:
                     type: array
                     items:
                       $ref: '#/definitions/BalanceModel'
+                required:
+                  - Balance
+                additionalProperties: false
               Links:
                 $ref: '#/definitions/Links'
               Meta:
@@ -1481,13 +1488,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /offers:
+  '/offers':
     get:
       tags:
         - Offers
+      operationId: GetOffers
       summary: Get Offers
       description: Get Offers
-      operationId: GetOffers
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1543,13 +1550,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /party:
+  '/party':
     get:
       tags:
         - Party
-      summary: Get Party
-      description: Get Party
       operationId: GetParty
+      summary: Get Party
+      description: Get Party of logged in Customer
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1603,13 +1610,13 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /scheduled-payments:
+  '/scheduled-payments':
     get:
       tags:
         - Scheduled Payments
+      operationId: GetScheduledPayments
       summary: Get Scheduled Payments
       description: Get Scheduled Payments
-      operationId: GetScheduledPayments
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
@@ -1665,7 +1672,7 @@ paths:
       security:
         - CustomerOAuth2Security:
             - accounts
-  /statements:
+  '/statements':
     get:
       tags:
         - Statements
@@ -2323,15 +2330,15 @@ definitions:
         properties:
           Permissions:
             description: >-
-              Specifies the Open Banking account access consent types. This is a list of
-              the data clusters being consented by the Customer, and requested for
-              authorisation with the API Provider.
+              Specifies the Open Banking account access consent types. This is a 
+              list of the data clusters being consented by the Customer, and requested
+              for authorisation with the API Provider.
             type: array
             items:
               description: >-
-                Specifies the Open Banking account access consent types. This is a list of
-                the data clusters being consented by the Customer, and requested for
-                authorisation with the API Provider.
+                Specifies the Open Banking account access consent types. This is a
+                list of the data clusters being consented by the Customer, and 
+                requested for authorisation with the API Provider.
               type: string
               enum:
                 - ReadAccountsBasic
@@ -2456,6 +2463,7 @@ definitions:
           - Status
           - CreationDateTime
           - StatusUpdateDateTime
+        additionalProperties: false
       - $ref: '#/definitions/AccountAccessConsentModel'
   TransactionModel:
     type: object
@@ -2479,6 +2487,7 @@ definitions:
       TransactionReference:
         $ref: '#/definitions/BECSRemittance'
       StatementReference:
+        type: array
         items:
           description: >-
             Unique reference for the statement. This reference may be optionally
@@ -2486,7 +2495,6 @@ definitions:
           type: string
           minLength: 1
           maxLength: 35
-        type: array
         description: >-
           Unique reference for the statement. This reference may be optionally
           populated if available.
@@ -2837,11 +2845,11 @@ definitions:
               - OpeningAvailable
               - OpeningBooked
               - PreviouslyClosedBooked
-        additionalProperties: false
         required:
           - Amount
           - CreditDebitIndicator
           - Type
+        additionalProperties: false
       MerchantDetails:
         description: Details of the merchant involved in the transaction.
         type: object
@@ -2950,13 +2958,13 @@ definitions:
         description: >-
           Unambiguous identification of the account of the debtor, in the case
           of a crebit transaction.
-    additionalProperties: false
     required:
       - AccountId
       - Amount
       - CreditDebitIndicator
       - Status
       - BookingDateTime
+    additionalProperties: false
   BeneficiaryModel:
     type: object
     properties:
@@ -3029,18 +3037,24 @@ definitions:
                   - Statement
               AddressLine:
                 description: >-
-                  Information that locates and identifies a specific address, as
-                  defined by postal services, presented in free format text.
-                type: string
-                minLength: 1
-                maxLength: 70
+                  Information that locates and identifies a specific
+                  address, as defined by postal services, that is
+                  presented in free format text.
+                type: array
+                items:
+                  type: string
+                  minLength: 1
+                  maxLength: 70
+                minItems: 0
+                maxItems: 5
               StreetName:
                 description: Name of a street or thoroughfare.
                 type: string
                 minLength: 1
                 maxLength: 70
               BuildingNumber:
-                description: Number that identifies the position of a building on a street.
+                description: >- 
+                  Number that identifies the position of a building on a street.
                 type: string
                 minLength: 1
                 maxLength: 16
@@ -3070,6 +3084,8 @@ definitions:
                 description: Nation with its own government.
                 type: string
                 pattern: '^[A-Z]{2,2}$'
+            required:
+              - Country
             additionalProperties: false
         additionalProperties: false
       CreditorAccount:
@@ -3118,6 +3134,9 @@ definitions:
           - SchemeName
           - Identification
         additionalProperties: false
+    required:
+      - AccountId
+    additionalProperties: false
   StandingOrderModel:
     type: object
     properties:
@@ -3623,6 +3642,8 @@ definitions:
         type: string
         pattern: '\+[0-9]{1,3}-[0-9()+\-]{1,30}'
       Address:
+        type: array
+        description: Postal address of a party.
         items:
           description: Postal address of a party.
           type: object
@@ -3641,18 +3662,25 @@ definitions:
                 - Statement
             AddressLine:
               description: >-
-                Information that locates and identifies a specific address, as defined
-                by postal services, that is presented in free format text.
-              type: string
-              minLength: 1
-              maxLength: 70
+                Information that locates and identifies a specific
+                address, as defined by postal services, that is
+                presented in free format text.
+              type: array
+              items:
+                type: string
+                minLength: 1
+                maxLength: 70
+              minItems: 0
+              maxItems: 5
             StreetName:
-              description: Name of a street or thoroughfare.
+              description: >-
+                Name of a street or thoroughfare.
               type: string
               minLength: 1
               maxLength: 70
             BuildingNumber:
-              description: Number that identifies the position of a building on a street.
+              description: >-
+                Number that identifies the position of a building on a street.
               type: string
               minLength: 1
               maxLength: 16
@@ -3671,19 +3699,19 @@ definitions:
               minLength: 1
               maxLength: 35
             CountrySubDivision:
-              description: 'Identifies a subdivision of a country eg, state, region, county.'
+              description: >-
+                Identifies a subdivision of a country eg, state, region, county.
               type: string
               minLength: 1
               maxLength: 35
             Country:
-              description: 'Nation with its own government, occupying a particular territory.'
+              description: >-
+                Nation with its own government, occupying a particular territory.
               type: string
               pattern: '^[A-Z]{2,2}$'
           required:
             - Country
           additionalProperties: false
-        type: array
-        description: Postal address of a party.
     required:
       - PartyId
     additionalProperties: false
@@ -3896,13 +3924,19 @@ definitions:
         format: date-time
       StatementDescription:
         items:
-          description: Other descriptions that may be available for the statement resource.
+          description: >-
+            Other descriptions that may be available for the statement resource.
           type: string
           minLength: 1
           maxLength: 500
         type: array
-        description: Other descriptions that may be available for the statement resource.
+        description: >-
+          Other descriptions that may be available for the statement resource.
       StatementBenefit:
+        type: array
+        description: >-
+          Set of elements used to provide details of a benefit or reward amount
+          for the statement resource.
         items:
           description: >-
             Set of elements used to provide details of a benefit or reward
@@ -3940,11 +3974,11 @@ definitions:
             - Amount
             - Type
           additionalProperties: false
+      StatementFee:
         type: array
         description: >-
-          Set of elements used to provide details of a benefit or reward amount
-          for the statement resource.
-      StatementFee:
+          Set of elements used to provide details of a fee for the statement
+          resource.
         items:
           description: >-
             Set of elements used to provide details of a fee for the statement
@@ -4001,11 +4035,11 @@ definitions:
             - CreditDebitIndicator
             - Type
           additionalProperties: false
+      StatementInterest:
         type: array
         description: >-
-          Set of elements used to provide details of a fee for the statement
-          resource.
-      StatementInterest:
+          Set of elements used to provide details of a generic interest amount
+          related to the statement resource.
         items:
           description: >-
             Set of elements used to provide details of a generic interest amount
@@ -4055,11 +4089,11 @@ definitions:
             - CreditDebitIndicator
             - Type
           additionalProperties: false
+      StatementDateTime:
         type: array
         description: >-
-          Set of elements used to provide details of a generic interest amount
-          related to the statement resource.
-      StatementDateTime:
+          Set of elements used to provide details of a generic date time for the
+          statement resource.
         items:
           description: >-
             Set of elements used to provide details of a generic date time for
@@ -4095,11 +4129,11 @@ definitions:
             - DateTime
             - Type
           additionalProperties: false
+      StatementRate:
         type: array
         description: >-
-          Set of elements used to provide details of a generic date time for the
-          statement resource.
-      StatementRate:
+          Set of elements used to provide details of a generic rate related to
+          the statement resource.
         items:
           description: >-
             Set of elements used to provide details of a generic rate related to
@@ -4130,11 +4164,11 @@ definitions:
             - Rate
             - Type
           additionalProperties: false
+      StatementValue:
         type: array
         description: >-
-          Set of elements used to provide details of a generic rate related to
-          the statement resource.
-      StatementValue:
+          Set of elements used to provide details of a generic number value
+          related to the statement resource.
         items:
           description: >-
             Set of elements used to provide details of a generic number value
@@ -4161,11 +4195,11 @@ definitions:
             - Value
             - Type
           additionalProperties: false
+      StatementAmount:
         type: array
         description: >-
-          Set of elements used to provide details of a generic number value
-          related to the statement resource.
-      StatementAmount:
+          Set of elements used to provide details of a generic amount for the
+          statement resource.
         items:
           description: >-
             Set of elements used to provide details of a generic amount for the
@@ -4230,10 +4264,6 @@ definitions:
             - CreditDebitIndicator
             - Type
           additionalProperties: false
-        type: array
-        description: >-
-          Set of elements used to provide details of a generic amount for the
-          statement resource.
     required:
       - AccountId
       - Type
@@ -4339,14 +4369,16 @@ securityDefinitions:
       accounts: Ability to read accounts information
     description: >-
       OAuth flow, it is required when the Customer needs to perform SCA with the
-      API Provider when a Third Party wants to access an API Provider resource owned by the Customer
+      API Provider when a Third Party wants to access an API Provider resource owned 
+      by the Customer
   ThirdPartyOAuth2Security:
     type: oauth2
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
       third_party_client_credential: Third Party client credential scope
-    description: Third Party client credential authorisation flow with the API Provider
+    description: >-
+      Third Party client credential authorisation flow with the API Provider
 responses:
   400ErrorResponse:
     description: Bad Request
