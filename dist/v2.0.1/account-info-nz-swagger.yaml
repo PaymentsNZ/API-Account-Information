@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: 'https://www.apicentre.paymentsnz.co.nz/join/'
-  version: v2.0.0
+  version: v2.0.1
 basePath: /open-banking-nz/v2.0
 schemes:
   - https
@@ -22,45 +22,45 @@ produces:
   - application/json; charset=utf-8
 tags:
   - name: Account Access Consents
-    description: >- 
+    description: >-
       A consent to access account information resources
   - name: Accounts
-    description: >- 
-      A resource that represents the account to which credit and debit entries are 
+    description: >-
+      A resource that represents the account to which credit and debit entries are
       made
   - name: Balances
-    description: >- 
-      A resource that represents the net increases and decreases in an account at a 
+    description: >-
+      A resource that represents the net increases and decreases in an account at a
       specific point in time
   - name: Beneficiaries
-    description: >- 
-      A set of elements that describe the list of trusted beneficiaries linked to a 
+    description: >-
+      A set of elements that describe the list of trusted beneficiaries linked to a
       specific account
   - name: Direct Debits
-    description: >- 
-      A set of elements that describe the list of direct-debits that have been set up 
+    description: >-
+      A set of elements that describe the list of direct-debits that have been set up
       on a specific account
   - name: Offers
-    description: >- 
-      A set of elements that descirbe the list of offers avaialble to a specific 
+    description: >-
+      A set of elements that descirbe the list of offers avaialble to a specific
       account
   - name: Party
-    description: >- 
+    description: >-
       A set of elements that describe the party linked to a specific account
   - name: Scheduled Payments
-    description: >- 
-      A set of elements that describe the list of scheduled-payments that have been 
+    description: >-
+      A set of elements that describe the list of scheduled-payments that have been
       set up on a specific account
   - name: Standing Orders
     description: >-
-      A set of elements that describe the list of standing-orders that have been set 
+      A set of elements that describe the list of standing-orders that have been set
       up on a specific account
   - name: Statements
-    description: >- 
+    description: >-
       A resource that describes summary details for an account statement period
   - name: Transactions
-    description: >- 
-      A resource that describes a posting to an account that results in an increase 
+    description: >-
+      A resource that describes a posting to an account that results in an increase
       or decrease to a balance
 paths:
   '/account-access-consents':
@@ -70,8 +70,8 @@ paths:
       operationId: CreateAccountAccessConsent
       summary: Create an account access consent
       description: >-
-        The account-access-consents resource represents a consent that has been 
-        agreed between the Customer and the Third Party for the Third Party to 
+        The account-access-consents resource represents a consent that has been
+        agreed between the Customer and the Third Party for the Third Party to
         access a Customer's account information with an API Provider.
       parameters:
         - $ref: '#/parameters/x-fapi-auth-date-Param'
@@ -914,6 +914,8 @@ paths:
       description: Get Statements related to an account
       parameters:
         - $ref: '#/parameters/AccountIdParam'
+        - $ref: '#/parameters/FromStatementDateTimeParam'
+        - $ref: '#/parameters/ToStatementDateTimeParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
@@ -979,6 +981,8 @@ paths:
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
+        - $ref: '#/parameters/FromStatementDateTimeParam'
+        - $ref: '#/parameters/ToStatementDateTimeParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
@@ -1092,6 +1096,8 @@ paths:
       parameters:
         - $ref: '#/parameters/AccountIdParam'
         - $ref: '#/parameters/StatementIdParam'
+        - $ref: '#/parameters/FromBookingDateTimeParam'
+        - $ref: '#/parameters/ToBookingDateTimeParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
@@ -1678,6 +1684,8 @@ paths:
       description: Get Statements
       operationId: GetStatements
       parameters:
+        - $ref: '#/parameters/FromStatementDateTimeParam'
+        - $ref: '#/parameters/ToStatementDateTimeParam'
         - $ref: '#/parameters/x-fapi-auth-date-Param'
         - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
         - $ref: '#/parameters/x-fapi-interaction-id-Param'
@@ -1755,9 +1763,7 @@ parameters:
     format: date-time
     description: >-
       The UTC ISO 8601 Date Time to filter transactions FROM
-
       NB Time component is optional - set to 00:00:00 for just Date.
-
       If the Date Time contains a timezone, the API Provider must ignore the timezone
       component.
   StatementIdParam:
@@ -1773,9 +1779,27 @@ parameters:
     format: date-time
     description: >-
       The UTC ISO 8601 Date Time to filter transactions TO
-
       NB Time component is optional - set to 00:00:00 for just Date.
-
+      If the Date Time contains a timezone, the API Provider must ignore the timezone
+      component.
+  FromStatementDateTimeParam:
+    in: query
+    name: fromStatementDateTime
+    type: string
+    format: date-time
+    description: >-
+      The UTC ISO 8601 Date Time to filter statements FROM
+      NB Time component is optional - set to 00:00:00 for just Date.
+      If the Date Time contains a timezone, the API Provider must ignore the timezone
+      component.
+  ToStatementDateTimeParam:
+    in: query
+    name: toStatementDateTime
+    type: string
+    format: date-time
+    description: >-
+      The UTC ISO 8601 Date Time to filter statements TO
+      NB Time component is optional - set to 00:00:00 for just Date.
       If the Date Time contains a timezone, the API Provider must ignore the timezone
       component.
   x-fapi-customer-ip-address-Param:
@@ -1797,10 +1821,10 @@ parameters:
     type: string
     required: false
     description: >-
-      The time when the Customer last logged in with the Third Party. 
+      The time when the Customer last logged in with the Third Party.
 
       All dates in the HTTP headers are represented as RFC 7231 Full Dates. An
-      example is below: 
+      example is below:
 
       Sun, 10 Sep 2017 19:43:31 UTC
     pattern: >-
@@ -1813,7 +1837,7 @@ parameters:
     type: string
     required: false
     description: >-
-      The IP address of the merchant when making payment requests through a
+      The IP address of the merchant when making account information requests through a
       Third Party.
     pattern: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
   x-customer-user-agent-Param:
@@ -1866,21 +1890,21 @@ definitions:
           - Unsupported.Scheme
       Message:
         description: >-
-          A free text description of the error that occurred. E.g., 
+          A free text description of the error that occurred. E.g.,
           'A mandatory field isn't supplied'.
         type: string
         minLength: 1
         maxLength: 500
       Path:
         description: >-
-          A recommended but optional reference to the JSON Path of the field 
+          A recommended but optional reference to the JSON Path of the field
           with error, e.g., Data.Consent.InstructedAmount.Currency
         type: string
         minLength: 1
         maxLength: 500
       Url:
         description: >-
-          URL to help remediate the problem, provide more information or to 
+          URL to help remediate the problem, provide more information or to
           API Reference.
         type: string
     required:
@@ -1890,8 +1914,8 @@ definitions:
     minProperties: 1
   ErrorResponse:
     description: >-
-      An array of detail error codes, and messages, and URLs to documentation to 
-      help remediation.  
+      An array of detail error codes, and messages, and URLs to documentation to
+      help remediation.
     type: object
     properties:
       Code:
@@ -1902,14 +1926,14 @@ definitions:
         maxLength: 128
       Id:
         description: >-
-          A unique reference for the error instance, for audit purposes, in 
+          A unique reference for the error instance, for audit purposes, in
           case of unknown/unclassified errors.
         type: string
         minLength: 1
         maxLength: 128
       Message:
         description: >-
-          Brief Error message. E.g., 'There is something wrong with the request 
+          Brief Error message. E.g., 'There is something wrong with the request
           parameters provided'
         type: string
         minLength: 1
@@ -1978,10 +2002,10 @@ definitions:
           - PreviouslyClosedBooked
       DateTime:
         description: >-
-          Indicates the date (and time) of the balance. 
+          Indicates the date (and time) of the balance.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -2099,7 +2123,7 @@ definitions:
               market, this will use the hyphen-delimited format: 2-4-7-2
               where this is made up of bank-branch-account-suffix and each
               of the four components is a number, prepended with leading zeros
-              to match the component length requirement.  
+              to match the component length requirement.
               For example 12-0123-0012345-00
             type: string
             minLength: 1
@@ -2188,7 +2212,7 @@ definitions:
   Risk:
     type: object
     description: >-
-          The Risk section is sent by the initiating party to the API Provider. 
+          The Risk section is sent by the initiating party to the API Provider.
           It is used to specify additional details for risk scoring.
     properties:
       GeoLocation:
@@ -2329,14 +2353,14 @@ definitions:
         properties:
           Permissions:
             description: >-
-              Specifies the Open Banking account access consent types. This is a 
+              Specifies the Open Banking account access consent types. This is a
               list of the data clusters being consented by the Customer, and requested
               for authorisation with the API Provider.
             type: array
             items:
               description: >-
                 Specifies the Open Banking account access consent types. This is a
-                list of the data clusters being consented by the Customer, and 
+                list of the data clusters being consented by the Customer, and
                 requested for authorisation with the API Provider.
               type: string
               enum:
@@ -2365,10 +2389,10 @@ definitions:
           ExpirationDateTime:
             description: >-
               Specified date and time the permissions will expire. If this is not
-              populated, the permissions will be open ended. 
+              populated, the permissions will be open ended.
 
               All dates in the JSON payloads are represented in ISO 8601 date-time
-              format. 
+              format.
 
               All date-time fields in responses must include the timezone. An
               example is below:
@@ -2380,10 +2404,10 @@ definitions:
             description: >-
               Specified start date and time for the transaction query period. If
               this is not populated, the start date will be open ended, and data
-              will be returned from the earliest available transaction. 
+              will be returned from the earliest available transaction.
 
               All dates in the JSON payloads are represented in ISO 8601 date-time
-              format. 
+              format.
 
               All date-time fields in responses must include the timezone. An
               example is below:
@@ -2395,10 +2419,10 @@ definitions:
             description: >-
               Specified end date and time for the transaction query period. If this
               is not populated, the end date will be open ended, and data will be
-              returned to the latest available transaction. 
+              returned to the latest available transaction.
 
               All dates in the JSON payloads are represented in ISO 8601 date-time
-              format. 
+              format.
 
               All date-time fields in responses must include the timezone. An
               example is below:
@@ -2432,10 +2456,10 @@ definitions:
               - Revoked
           CreationDateTime:
             description: >-
-              Date and time at which the consent was created. 
+              Date and time at which the consent was created.
 
               All dates in the JSON payloads are represented in ISO 8601
-              date-time format. 
+              date-time format.
 
               All date-time fields in responses must include the timezone. An
               example is below:
@@ -2448,7 +2472,7 @@ definitions:
               Date and time at which the consent status was updated.
 
               All dates in the JSON payloads are represented in ISO 8601 date-time
-              format. 
+              format.
 
               All date-time fields in responses must include the timezone. An
               example is below:
@@ -2538,10 +2562,10 @@ definitions:
           an account on the account servicer's books. Usage:
           Booking date is the expected booking date, unless
           the status is booked, in which case it is the actual
-          booking date. 
+          booking date.
 
           All dates in the JSON payloads are represented in
-          ISO 8601 date-time format. 
+          ISO 8601 date-time format.
 
           All date-time fields in responses must include the
           timezone. An example is below:
@@ -2561,10 +2585,10 @@ definitions:
           availability information is provided, the value date
           must not be used. In this case the availability
           component identifies the  number of availability
-          days. 
+          days.
 
           All dates in the JSON payloads are represented in
-          ISO 8601 date-time format. 
+          ISO 8601 date-time format.
 
           All date-time fields in responses must include the
           timezone. An example is below:
@@ -2664,7 +2688,7 @@ definitions:
               Date and time at which an exchange rate is quoted.
 
               All dates in the JSON payloads are represented in ISO 8601 date-time
-              format. 
+              format.
 
               All date-time fields in responses must include the timezone. An
               example is below:
@@ -2879,7 +2903,7 @@ definitions:
               market, this will use the hyphen-delimited format: 2-4-7-2
               where this is made up of bank-branch-account-suffix and each
               of the four components is a number, prepended with leading zeros
-              to match the component length requirement.  
+              to match the component length requirement.
               For example 12-0123-0012345-00
             type: string
             minLength: 1
@@ -2924,7 +2948,7 @@ definitions:
               market, this will use the hyphen-delimited format: 2-4-7-2
               where this is made up of bank-branch-account-suffix and each
               of the four components is a number, prepended with leading zeros
-              to match the component length requirement.  
+              to match the component length requirement.
               For example 12-0123-0012345-00
             type: string
             minLength: 1
@@ -3051,7 +3075,7 @@ definitions:
                 minLength: 1
                 maxLength: 70
               BuildingNumber:
-                description: >- 
+                description: >-
                   Number that identifies the position of a building on a street.
                 type: string
                 minLength: 1
@@ -3102,7 +3126,7 @@ definitions:
               market, this will use the hyphen-delimited format: 2-4-7-2
               where this is made up of bank-branch-account-suffix and each
               of the four components is a number, prepended with leading zeros
-              to match the component length requirement.  
+              to match the component length requirement.
               For example 12-0123-0012345-00
             type: string
             minLength: 1
@@ -3123,7 +3147,7 @@ definitions:
             maxLength: 70
           SecondaryIdentification:
             description: >-
-              This is secondary identification of the account, as assigned by the 
+              This is secondary identification of the account, as assigned by the
               account servicing institution.
             type: string
             minLength: 1
@@ -3172,7 +3196,7 @@ definitions:
           within the month (-5 to -1, 1 to 31)
 
 
-          Patterns: 
+          Patterns:
 
           EvryDay (ScheduleCode)
 
@@ -3211,10 +3235,10 @@ definitions:
       FirstPaymentDateTime:
         description: >-
           The date on which the first payment for a Standing
-          Order schedule will be made. 
+          Order schedule will be made.
 
           All dates in the JSON payloads are represented in
-          ISO 8601 date-time format. 
+          ISO 8601 date-time format.
 
           All date-time fields in responses must include the
           timezone. An example is below:
@@ -3245,10 +3269,10 @@ definitions:
       NextPaymentDateTime:
         description: >-
           The date on which the next payment for a Standing
-          Order schedule will be made. 
+          Order schedule will be made.
 
           All dates in the JSON payloads are represented in
-          ISO 8601 date-time format. 
+          ISO 8601 date-time format.
 
           All date-time fields in responses must include the
           timezone. An example is below:
@@ -3279,10 +3303,10 @@ definitions:
       FinalPaymentDateTime:
         description: >-
           The date on which the final payment for a Standing
-          Order schedule will be made. 
+          Order schedule will be made.
 
           All dates in the JSON payloads are represented in
-          ISO 8601 date-time format. 
+          ISO 8601 date-time format.
 
           All date-time fields in responses must include the
           timezone. An example is below:
@@ -3360,7 +3384,7 @@ definitions:
               market, this will use the hyphen-delimited format: 2-4-7-2
               where this is made up of bank-branch-account-suffix and each
               of the four components is a number, prepended with leading zeros
-              to match the component length requirement.  
+              to match the component length requirement.
               For example 12-0123-0012345-00
             type: string
             minLength: 1
@@ -3436,10 +3460,10 @@ definitions:
         maxLength: 70
       PreviousPaymentDateTime:
         description: >-
-          Date of most recent direct debit collection. 
+          Date of most recent direct debit collection.
 
           All dates in the JSON payloads are represented in
-          ISO 8601 date-time format. 
+          ISO 8601 date-time format.
 
           All date-time fields in responses must include the
           timezone. An example is below:
@@ -3511,7 +3535,7 @@ definitions:
           Date and time at which the offer starts.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -3524,7 +3548,7 @@ definitions:
           Date and time at which the offer ends.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -3735,7 +3759,7 @@ definitions:
           The date on which the scheduled payment will be made.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -3811,7 +3835,7 @@ definitions:
               market, this will use the hyphen-delimited format: 2-4-7-2
               where this is made up of bank-branch-account-suffix and each
               of the four components is a number, prepended with leading zeros
-              to match the component length requirement.  
+              to match the component length requirement.
               For example 12-0123-0012345-00
             type: string
             minLength: 1
@@ -3835,7 +3859,7 @@ definitions:
             maxLength: 34
             description: >-
               This is secondary identification of the account, as assigned by
-              the account servicing institution. 
+              the account servicing institution.
         required:
           - SchemeName
           - Identification
@@ -3886,7 +3910,7 @@ definitions:
           Date and time at which the statement period starts.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -3899,7 +3923,7 @@ definitions:
           Date and time at which the statement period ends.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -3912,7 +3936,7 @@ definitions:
           Date and time at which the resource was created.
 
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An
           example is below:
@@ -4008,7 +4032,7 @@ definitions:
                 - Credit
                 - Debit
               description: >-
-                Indicates whether the amount is a credit or a debit. 
+                Indicates whether the amount is a credit or a debit.
                 Usage: A zero amount is considered to be a credit amount.
             Type:
               description: 'Fee type, in a coded form.'
@@ -4071,7 +4095,7 @@ definitions:
                 - Credit
                 - Debit
               description: >-
-                Indicates whether the amount is a credit or a debit. 
+                Indicates whether the amount is a credit or a debit.
                 Usage: A zero amount is considered to be a credit amount.
             Type:
               description: 'Interest amount type, in a coded form.'
@@ -4103,7 +4127,7 @@ definitions:
                 Date and time associated with the date time type.
 
                 All dates in the JSON payloads are represented in ISO 8601
-                date-time format. 
+                date-time format.
 
                 All date-time fields in responses must include the timezone. An
                 example is below:
@@ -4229,7 +4253,7 @@ definitions:
                 - Credit
                 - Debit
               description: >-
-                Indicates whether the amount is a credit or a debit. 
+                Indicates whether the amount is a credit or a debit.
                 Usage: A zero amount is considered to be a credit amount.
             Type:
               description: 'Amount type, in a coded form.'
@@ -4288,9 +4312,9 @@ definitions:
       NZ - Remittance information for use with BECS Electronic Credit payment scheme.
       The Particulars, Code and Reference fields are currently constrained by
       providers.  The design choice has been made not to constrain through schema
-      restrictions, to allow for future changes that remove the constraint. 
+      restrictions, to allow for future changes that remove the constraint.
       Note that not all banks will accept all valid characters, in which case a
-      descriptive 400 Bad Request will be returned. Constraining to a-z, A-Z, - 
+      descriptive 400 Bad Request will be returned. Constraining to a-z, A-Z, -
       (dash) and 0-9 is advised. One example is abc-XYZ-123
     properties:
       CreditorName:
@@ -4337,7 +4361,7 @@ definitions:
       FirstAvailableDateTime:
         description: >-
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An example is
           below:
@@ -4348,7 +4372,7 @@ definitions:
       LastAvailableDateTime:
         description: >-
           All dates in the JSON payloads are represented in ISO 8601 date-time
-          format. 
+          format.
 
           All date-time fields in responses must include the timezone. An example is
           below:
@@ -4367,7 +4391,7 @@ securityDefinitions:
       accounts: Ability to read accounts information
     description: >-
       OAuth flow, it is required when the Customer needs to perform SCA with the
-      API Provider when a Third Party wants to access an API Provider resource owned 
+      API Provider when a Third Party wants to access an API Provider resource owned
       by the Customer
   ThirdPartyOAuth2Security:
     type: oauth2
