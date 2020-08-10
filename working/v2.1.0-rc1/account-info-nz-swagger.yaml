@@ -1,19 +1,19 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Account and Transaction API Specification
   description: >-
     Swagger for Account and Transaction API Specification. This is heavily
     derived from the Open Banking UK API - see www.openbanking.org.uk for
     details.
-  termsOfService: 'https://www.apicentre.paymentsnz.co.nz/contact-us/'
+  termsOfService: "https://www.apicentre.paymentsnz.co.nz/contact-us/"
   contact:
     name: Payments NZ API Centre
     email: apicentre@paymentsnz.co.nz
   license:
     name: Licence
-    url: 'https://www.apicentre.paymentsnz.co.nz/join/'
-  version: v2.0.1
-basePath: /open-banking-nz/v2.0
+    url: "https://www.apicentre.paymentsnz.co.nz/join/"
+  version: v2.1.0-rc1
+basePath: /open-banking-nz/v2.1
 schemes:
   - https
 consumes:
@@ -63,7 +63,7 @@ tags:
       A resource that describes a posting to an account that results in an increase
       or decrease to a balance
 paths:
-  '/account-access-consents':
+  "/account-access-consents":
     post:
       tags:
         - Account Access Consents
@@ -74,12 +74,12 @@ paths:
         agreed between the Customer and the Third Party for the Third Party to
         access a Customer's account information with an API Provider.
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
         - name: body
           in: body
           description: Account Access Consent Body
@@ -89,28 +89,28 @@ paths:
             type: object
             properties:
               Data:
-                $ref: '#/definitions/AccountAccessConsentModel'
+                $ref: "#/definitions/AccountAccessConsentModel"
               Risk:
-                $ref: '#/definitions/Risk'
+                $ref: "#/definitions/Risk"
             required:
               - Data
               - Risk
             additionalProperties: false
       responses:
-        '201':
+        "201":
           description: Account Access Consent successfully created
           schema:
             title: Account Access Consent POST response
             type: object
             properties:
               Data:
-                $ref: '#/definitions/AccountAccessConsentResponseModel'
+                $ref: "#/definitions/AccountAccessConsentResponseModel"
               Risk:
-                $ref: '#/definitions/Risk'
+                $ref: "#/definitions/Risk"
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Risk
@@ -121,30 +121,30 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '415':
-          $ref: '#/responses/415ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "415":
+          $ref: "#/responses/415ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - ThirdPartyOAuth2Security:
             - accounts
-  '/account-access-consents/{ConsentId}':
+  "/account-access-consents/{ConsentId}":
     get:
       tags:
         - Account Access Consents
@@ -152,28 +152,28 @@ paths:
       summary: Get an account access consent
       description: Retrieve an account access consent and check its status.
       parameters:
-        - $ref: '#/parameters/ConsentIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/ConsentIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Access Consent successfully retrieved
           schema:
             title: Account Access Consent GET response
             type: object
             properties:
               Data:
-                $ref: '#/definitions/AccountAccessConsentResponseModel'
+                $ref: "#/definitions/AccountAccessConsentResponseModel"
               Risk:
-                $ref: '#/definitions/Risk'
+                $ref: "#/definitions/Risk"
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Risk
@@ -184,24 +184,24 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - ThirdPartyOAuth2Security:
             - accounts
@@ -212,42 +212,42 @@ paths:
       summary: Delete an account access consent
       description: Delete an account access consent
       parameters:
-        - $ref: '#/parameters/ConsentIdParam'
-        - $ref: '#/parameters/AuthorizationParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
+        - $ref: "#/parameters/ConsentIdParam"
+        - $ref: "#/parameters/AuthorizationParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
       responses:
-        '204':
+        "204":
           description: Account Access Consent successfully deleted
           headers:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - ThirdPartyOAuth2Security:
             - accounts
-  '/accounts':
+  "/accounts":
     get:
       tags:
         - Accounts
@@ -255,14 +255,14 @@ paths:
       summary: Get Accounts
       description: Get a list of accounts
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Accounts successfully retrieved
           schema:
             title: Account GET response
@@ -278,12 +278,12 @@ paths:
                     description: Account
                     type: array
                     items:
-                      $ref: '#/definitions/AccountModel'
+                      $ref: "#/definitions/AccountModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -293,28 +293,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}':
+  "/accounts/{AccountId}":
     get:
       tags:
         - Accounts
@@ -322,15 +322,15 @@ paths:
       summary: Get Account
       description: Get an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account resource successfully retrieved
           schema:
             title: Account GET response
@@ -342,12 +342,12 @@ paths:
                 type: object
                 properties:
                   Account:
-                    $ref: '#/definitions/AccountModel'
+                    $ref: "#/definitions/AccountModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -357,28 +357,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/transactions':
+  "/accounts/{AccountId}/transactions":
     get:
       tags:
         - Transactions
@@ -386,17 +386,17 @@ paths:
       summary: Get Account Transactions
       description: Get transactions related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/FromBookingDateTimeParam'
-        - $ref: '#/parameters/ToBookingDateTimeParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/FromBookingDateTimeParam"
+        - $ref: "#/parameters/ToBookingDateTimeParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Transactions successfully retrieved
           schema:
             title: Transactions GET response
@@ -412,12 +412,12 @@ paths:
                     description: Transaction
                     type: array
                     items:
-                      $ref: '#/definitions/TransactionModel'
+                      $ref: "#/definitions/TransactionModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -427,28 +427,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/beneficiaries':
+  "/accounts/{AccountId}/beneficiaries":
     get:
       tags:
         - Beneficiaries
@@ -456,15 +456,15 @@ paths:
       summary: Get Account Beneficiaries
       description: Get Beneficiaries related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Beneficiaries  successfully retrieved
           schema:
             title: Beneficiaries GET response
@@ -480,12 +480,12 @@ paths:
                     description: Beneficiary
                     type: array
                     items:
-                      $ref: '#/definitions/BeneficiaryModel'
+                      $ref: "#/definitions/BeneficiaryModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -495,28 +495,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/balances':
+  "/accounts/{AccountId}/balances":
     get:
       tags:
         - Balances
@@ -524,15 +524,15 @@ paths:
       summary: Get Account Balances
       description: Get Balances related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Balances successfully retrieved
           schema:
             title: Balances GET response
@@ -548,14 +548,14 @@ paths:
                     description: Balance
                     type: array
                     items:
-                      $ref: '#/definitions/BalanceModel'
+                      $ref: "#/definitions/BalanceModel"
                 required:
                   - Balance
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -565,28 +565,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/direct-debits':
+  "/accounts/{AccountId}/direct-debits":
     get:
       tags:
         - Direct Debits
@@ -594,15 +594,15 @@ paths:
       summary: Get Account Direct Debits
       description: Get Direct Debits related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Direct Debits successfully retrieved
           schema:
             title: Direct Debit GET response
@@ -618,12 +618,12 @@ paths:
                     description: DirectDebit
                     type: array
                     items:
-                      $ref: '#/definitions/DirectDebitModel'
+                      $ref: "#/definitions/DirectDebitModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -633,28 +633,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/standing-orders':
+  "/accounts/{AccountId}/standing-orders":
     get:
       tags:
         - Standing Orders
@@ -662,15 +662,15 @@ paths:
       summary: Get Account Standing Orders
       description: Get Standing Orders related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Standing Orders successfully retrieved
           schema:
             title: Standing Orders GET response
@@ -686,12 +686,12 @@ paths:
                     description: StandingOrder
                     type: array
                     items:
-                      $ref: '#/definitions/StandingOrderModel'
+                      $ref: "#/definitions/StandingOrderModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -701,28 +701,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/offers':
+  "/accounts/{AccountId}/offers":
     get:
       tags:
         - Offers
@@ -730,15 +730,15 @@ paths:
       summary: Get Account Offers
       description: Get Offers related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Offers successfully retrieved
           schema:
             type: object
@@ -748,40 +748,40 @@ paths:
                 properties:
                   Offer:
                     items:
-                      $ref: '#/definitions/OfferModel'
+                      $ref: "#/definitions/OfferModel"
                     type: array
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
               - Meta
             additionalProperties: false
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/party':
+  "/accounts/{AccountId}/party":
     get:
       tags:
         - Party
@@ -789,15 +789,15 @@ paths:
       summary: Get Account Party
       description: Get Party related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Party successfully retrieved
           schema:
             type: object
@@ -806,12 +806,12 @@ paths:
                 type: object
                 properties:
                   Party:
-                    $ref: '#/definitions/PartyModel'
+                    $ref: "#/definitions/PartyModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -821,28 +821,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/scheduled-payments':
+  "/accounts/{AccountId}/scheduled-payments":
     get:
       tags:
         - Scheduled Payments
@@ -850,15 +850,15 @@ paths:
       summary: Get Account Scheduled Payments
       description: Get Scheduled Payments related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Scheduled Payment successfully retrieved
           schema:
             type: object
@@ -868,13 +868,13 @@ paths:
                 properties:
                   ScheduledPayment:
                     items:
-                      $ref: '#/definitions/ScheduledPaymentModel'
+                      $ref: "#/definitions/ScheduledPaymentModel"
                     type: array
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -884,28 +884,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/statements':
+  "/accounts/{AccountId}/statements":
     get:
       tags:
         - Statements
@@ -913,17 +913,17 @@ paths:
       summary: Get Account Statements
       description: Get Statements related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/FromStatementDateTimeParam'
-        - $ref: '#/parameters/ToStatementDateTimeParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/FromStatementDateTimeParam"
+        - $ref: "#/parameters/ToStatementDateTimeParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Statement successfully retrieved
           schema:
             type: object
@@ -933,14 +933,14 @@ paths:
                 properties:
                   Statement:
                     items:
-                      $ref: '#/definitions/StatementModel'
+                      $ref: "#/definitions/StatementModel"
                     type: array
                     description: Provides further details on a statement resource.
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -950,28 +950,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/statements/{StatementId}':
+  "/accounts/{AccountId}/statements/{StatementId}":
     get:
       tags:
         - Statements
@@ -979,18 +979,18 @@ paths:
       summary: Get Statement
       description: Get Statement related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/StatementIdParam'
-        - $ref: '#/parameters/FromStatementDateTimeParam'
-        - $ref: '#/parameters/ToStatementDateTimeParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/StatementIdParam"
+        - $ref: "#/parameters/FromStatementDateTimeParam"
+        - $ref: "#/parameters/ToStatementDateTimeParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Statement successfully retrieved
           schema:
             type: object
@@ -999,13 +999,13 @@ paths:
                 type: object
                 properties:
                   Statement:
-                    $ref: '#/definitions/StatementModel'
+                    $ref: "#/definitions/StatementModel"
                     description: Provides further details on a statement resource.
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1015,28 +1015,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/statements/{StatementId}/file':
+  "/accounts/{AccountId}/statements/{StatementId}/file":
     get:
       tags:
         - Statements
@@ -1044,18 +1044,18 @@ paths:
       summary: Get Statement File
       description: Get Statement related to an account
       produces:
-        - '*/*'
+        - "*/*"
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/StatementIdParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/StatementIdParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Statement File successfully retrieved
           schema:
             type: file
@@ -1064,28 +1064,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/accounts/{AccountId}/statements/{StatementId}/transactions':
+  "/accounts/{AccountId}/statements/{StatementId}/transactions":
     get:
       tags:
         - Statements
@@ -1094,18 +1094,18 @@ paths:
       summary: Get Statement Transactions
       description: Get Statement Transactions related to an account
       parameters:
-        - $ref: '#/parameters/AccountIdParam'
-        - $ref: '#/parameters/StatementIdParam'
-        - $ref: '#/parameters/FromBookingDateTimeParam'
-        - $ref: '#/parameters/ToBookingDateTimeParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/AccountIdParam"
+        - $ref: "#/parameters/StatementIdParam"
+        - $ref: "#/parameters/FromBookingDateTimeParam"
+        - $ref: "#/parameters/ToBookingDateTimeParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Transactions successfully retrieved
           schema:
             type: object
@@ -1115,14 +1115,14 @@ paths:
                 properties:
                   Transaction:
                     items:
-                      $ref: '#/definitions/TransactionModel'
+                      $ref: "#/definitions/TransactionModel"
                     type: array
                     description: Provides further details on an entry in the report.
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1132,28 +1132,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/standing-orders':
+  "/standing-orders":
     get:
       tags:
         - Standing Orders
@@ -1161,14 +1161,14 @@ paths:
       summary: Get Standing Orders
       description: Get Standing Orders
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Standing Orders successfully retrieved
           schema:
             title: Standing Orders GET response
@@ -1184,12 +1184,12 @@ paths:
                     description: StandingOrder
                     type: array
                     items:
-                      $ref: '#/definitions/StandingOrderModel'
+                      $ref: "#/definitions/StandingOrderModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             additionalProperties: false
             required:
               - Data
@@ -1199,28 +1199,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/direct-debits':
+  "/direct-debits":
     get:
       tags:
         - Direct Debits
@@ -1228,14 +1228,14 @@ paths:
       summary: Get Direct Debits
       description: Get Direct Debits
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Direct Debits successfully retrieved
           schema:
             title: Direct Debit GET response
@@ -1251,12 +1251,12 @@ paths:
                     description: DirectDebit
                     type: array
                     items:
-                      $ref: '#/definitions/DirectDebitModel'
+                      $ref: "#/definitions/DirectDebitModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1266,28 +1266,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/beneficiaries':
+  "/beneficiaries":
     get:
       tags:
         - Beneficiaries
@@ -1295,14 +1295,14 @@ paths:
       summary: Get Beneficiaries
       description: Get Beneficiaries
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Beneficiaries successfully retrieved
           schema:
             title: Beneficiaries GET response
@@ -1318,12 +1318,12 @@ paths:
                     description: Beneficiary
                     type: array
                     items:
-                      $ref: '#/definitions/BeneficiaryModel'
+                      $ref: "#/definitions/BeneficiaryModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1333,28 +1333,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/transactions':
+  "/transactions":
     get:
       tags:
         - Transactions
@@ -1362,16 +1362,16 @@ paths:
       summary: Get Transactions
       description: Get Transactions
       parameters:
-        - $ref: '#/parameters/FromBookingDateTimeParam'
-        - $ref: '#/parameters/ToBookingDateTimeParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/FromBookingDateTimeParam"
+        - $ref: "#/parameters/ToBookingDateTimeParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Transactions successfully retrieved
           schema:
             title: Transactions GET response
@@ -1387,12 +1387,12 @@ paths:
                     description: Transaction
                     type: array
                     items:
-                      $ref: '#/definitions/TransactionModel'
+                      $ref: "#/definitions/TransactionModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1402,28 +1402,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/balances':
+  "/balances":
     get:
       tags:
         - Balances
@@ -1431,14 +1431,14 @@ paths:
       summary: Get Balances
       description: Get Balances
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Balances successfully retrieved
           schema:
             title: Balances GET response
@@ -1454,14 +1454,14 @@ paths:
                     description: Balance
                     type: array
                     items:
-                      $ref: '#/definitions/BalanceModel'
+                      $ref: "#/definitions/BalanceModel"
                 required:
                   - Balance
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             additionalProperties: false
             required:
               - Data
@@ -1471,28 +1471,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/offers':
+  "/offers":
     get:
       tags:
         - Offers
@@ -1500,14 +1500,14 @@ paths:
       summary: Get Offers
       description: Get Offers
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Offers successfully retrieved
           schema:
             type: object
@@ -1517,13 +1517,13 @@ paths:
                 properties:
                   Offer:
                     items:
-                      $ref: '#/definitions/OfferModel'
+                      $ref: "#/definitions/OfferModel"
                     type: array
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1533,28 +1533,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/party':
+  "/party":
     get:
       tags:
         - Party
@@ -1562,14 +1562,14 @@ paths:
       summary: Get Party
       description: Get Party of logged in Customer
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Party successfully retrieved
           schema:
             type: object
@@ -1578,12 +1578,12 @@ paths:
                 type: object
                 properties:
                   Party:
-                    $ref: '#/definitions/PartyModel'
+                    $ref: "#/definitions/PartyModel"
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1593,28 +1593,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/scheduled-payments':
+  "/scheduled-payments":
     get:
       tags:
         - Scheduled Payments
@@ -1622,14 +1622,14 @@ paths:
       summary: Get Scheduled Payments
       description: Get Scheduled Payments
       parameters:
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Scheduled Payment successfully retrieved
           schema:
             type: object
@@ -1639,13 +1639,13 @@ paths:
                 properties:
                   ScheduledPayment:
                     items:
-                      $ref: '#/definitions/ScheduledPaymentModel'
+                      $ref: "#/definitions/ScheduledPaymentModel"
                     type: array
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1655,28 +1655,28 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
-  '/statements':
+  "/statements":
     get:
       tags:
         - Statements
@@ -1684,16 +1684,16 @@ paths:
       description: Get Statements
       operationId: GetStatements
       parameters:
-        - $ref: '#/parameters/FromStatementDateTimeParam'
-        - $ref: '#/parameters/ToStatementDateTimeParam'
-        - $ref: '#/parameters/x-fapi-auth-date-Param'
-        - $ref: '#/parameters/x-fapi-customer-ip-address-Param'
-        - $ref: '#/parameters/x-fapi-interaction-id-Param'
-        - $ref: '#/parameters/x-merchant-ip-address-Param'
-        - $ref: '#/parameters/x-customer-user-agent-Param'
-        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: "#/parameters/FromStatementDateTimeParam"
+        - $ref: "#/parameters/ToStatementDateTimeParam"
+        - $ref: "#/parameters/x-fapi-auth-date-Param"
+        - $ref: "#/parameters/x-fapi-customer-ip-address-Param"
+        - $ref: "#/parameters/x-fapi-interaction-id-Param"
+        - $ref: "#/parameters/x-merchant-ip-address-Param"
+        - $ref: "#/parameters/x-customer-user-agent-Param"
+        - $ref: "#/parameters/AuthorizationParam"
       responses:
-        '200':
+        "200":
           description: Account Statement successfully retrieved
           schema:
             type: object
@@ -1703,14 +1703,14 @@ paths:
                 properties:
                   Statement:
                     items:
-                      $ref: '#/definitions/StatementModel'
+                      $ref: "#/definitions/StatementModel"
                     type: array
                     description: Provides further details on a statement.
                 additionalProperties: false
               Links:
-                $ref: '#/definitions/Links'
+                $ref: "#/definitions/Links"
               Meta:
-                $ref: '#/definitions/Meta'
+                $ref: "#/definitions/Meta"
             required:
               - Data
               - Links
@@ -1720,24 +1720,24 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400':
-          $ref: '#/responses/400ErrorResponse'
-        '401':
-          $ref: '#/responses/401ErrorResponse'
-        '403':
-          $ref: '#/responses/403ErrorResponse'
-        '405':
-          $ref: '#/responses/405ErrorResponse'
-        '406':
-          $ref: '#/responses/406ErrorResponse'
-        '429':
-          $ref: '#/responses/429ErrorResponse'
-        '500':
-          $ref: '#/responses/500ErrorResponse'
-        '501':
-          $ref: '#/responses/501ErrorResponse'
-        '503':
-          $ref: '#/responses/503ErrorResponse'
+        "400":
+          $ref: "#/responses/400ErrorResponse"
+        "401":
+          $ref: "#/responses/401ErrorResponse"
+        "403":
+          $ref: "#/responses/403ErrorResponse"
+        "405":
+          $ref: "#/responses/405ErrorResponse"
+        "406":
+          $ref: "#/responses/406ErrorResponse"
+        "429":
+          $ref: "#/responses/429ErrorResponse"
+        "500":
+          $ref: "#/responses/500ErrorResponse"
+        "501":
+          $ref: "#/responses/501ErrorResponse"
+        "503":
+          $ref: "#/responses/503ErrorResponse"
       security:
         - CustomerOAuth2Security:
             - accounts
@@ -1853,7 +1853,7 @@ parameters:
     name: Authorization
     type: string
     required: true
-    description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
+    description: "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
 definitions:
   Error:
     type: object
@@ -1940,7 +1940,7 @@ definitions:
         maxLength: 500
       Errors:
         items:
-          $ref: '#/definitions/Error'
+          $ref: "#/definitions/Error"
         type: array
         minItems: 1
     required:
@@ -1973,7 +1973,7 @@ definitions:
               edition of the international standard ISO 4217 'Codes for the
               representation of currencies and funds'
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -1987,7 +1987,7 @@ definitions:
           - Credit
           - Debit
       Type:
-        description: 'Balance type, in a coded form.'
+        description: "Balance type, in a coded form."
         type: string
         enum:
           - ClosingAvailable
@@ -2038,13 +2038,13 @@ definitions:
                     latest edition of the international standard ISO 4217 'Codes
                     for the representation of currencies and funds'
                   type: string
-                  pattern: '^[A-Z]{3,3}$'
+                  pattern: "^[A-Z]{3,3}$"
               required:
                 - Amount
                 - Currency
               additionalProperties: false
             Type:
-              description: 'Limit type, in a coded form.'
+              description: "Limit type, in a coded form."
               type: string
               enum:
                 - Pre-Agreed
@@ -2079,7 +2079,7 @@ definitions:
           covers several currencies and the initiating party needs to identify
           which currency needs to be used for settlement on the account.
         type: string
-        pattern: '^[A-Z]{3,3}$'
+        pattern: "^[A-Z]{3,3}$"
       AccountType:
         description: Specifies the type of account (personal or business).
         type: string
@@ -2115,7 +2115,7 @@ definitions:
         type: object
         properties:
           SchemeName:
-            $ref: '#/definitions/AccountSchemeModel'
+            $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
               Identification assigned by an institution to identify an account.
@@ -2212,8 +2212,8 @@ definitions:
   Risk:
     type: object
     description: >-
-          The Risk section is sent by the initiating party to the API Provider.
-          It is used to specify additional details for risk scoring.
+      The Risk section is sent by the initiating party to the API Provider.
+      It is used to specify additional details for risk scoring.
     properties:
       GeoLocation:
         description: >-
@@ -2318,7 +2318,7 @@ definitions:
               Nation with its own government, occupying a particular
               territory.
             type: string
-            pattern: '^[A-Z]{2,2}$'
+            pattern: "^[A-Z]{2,2}$"
         required:
           - Country
         additionalProperties: false
@@ -2486,7 +2486,7 @@ definitions:
           - CreationDateTime
           - StatusUpdateDateTime
         additionalProperties: false
-      - $ref: '#/definitions/AccountAccessConsentModel'
+      - $ref: "#/definitions/AccountAccessConsentModel"
   TransactionModel:
     type: object
     properties:
@@ -2507,7 +2507,7 @@ definitions:
         minLength: 1
         maxLength: 40
       TransactionReference:
-        $ref: '#/definitions/BECSRemittance'
+        $ref: "#/definitions/BECSRemittance"
       StatementReference:
         type: array
         items:
@@ -2535,7 +2535,7 @@ definitions:
               the international standard ISO 4217 'Codes for
               the representation of currencies and funds'
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -2654,19 +2654,19 @@ definitions:
               Currency from which an amount is to be converted in a currency
               conversion.
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
           TargetCurrency:
             description: >-
               Currency from which an amount is to be converted in a currency
               conversion.
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
           UnitCurrency:
             description: >-
               Currency from which an amount is to be converted in a currency
               conversion.
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
           ExchangeRate:
             description: >-
               Factor used to convert an amount from one currency into another. This
@@ -2715,7 +2715,7 @@ definitions:
                   edition of the international standard ISO 4217 "Codes for the
                   representation of currencies and funds".
                 type: string
-                pattern: '^[A-Z]{3,3}$'
+                pattern: "^[A-Z]{3,3}$"
             required:
               - Amount
               - Currency
@@ -2839,7 +2839,7 @@ definitions:
                   ISO 4217 'Codes for the representation of
                   currencies and funds'
                 type: string
-                pattern: '^[A-Z]{3,3}$'
+                pattern: "^[A-Z]{3,3}$"
             required:
               - Amount
               - Currency
@@ -2854,7 +2854,7 @@ definitions:
               - Credit
               - Debit
           Type:
-            description: 'Balance type, in a coded form.'
+            description: "Balance type, in a coded form."
             type: string
             enum:
               - ClosingAvailable
@@ -2894,7 +2894,7 @@ definitions:
         type: object
         properties:
           SchemeName:
-            $ref: '#/definitions/AccountSchemeModel'
+            $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
               Identification assigned by an institution to
@@ -2939,7 +2939,7 @@ definitions:
         type: object
         properties:
           SchemeName:
-            $ref: '#/definitions/AccountSchemeModel'
+            $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
               Identification assigned by an institution to
@@ -3007,7 +3007,7 @@ definitions:
         minLength: 1
         maxLength: 40
       Reference:
-        $ref: '#/definitions/BECSRemittance'
+        $ref: "#/definitions/BECSRemittance"
       CreditorAgent:
         description: >-
           Party that manages the account on behalf of the account owner, that is
@@ -3105,7 +3105,7 @@ definitions:
               Country:
                 description: Nation with its own government.
                 type: string
-                pattern: '^[A-Z]{2,2}$'
+                pattern: "^[A-Z]{2,2}$"
             required:
               - Country
             additionalProperties: false
@@ -3117,7 +3117,7 @@ definitions:
         type: object
         properties:
           SchemeName:
-            $ref: '#/definitions/AccountSchemeModel'
+            $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
               Identification assigned by an institution to
@@ -3231,7 +3231,7 @@ definitions:
         pattern: >-
           ^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$
       Reference:
-        $ref: '#/definitions/BECSRemittance'
+        $ref: "#/definitions/BECSRemittance"
       FirstPaymentDateTime:
         description: >-
           The date on which the first payment for a Standing
@@ -3261,7 +3261,7 @@ definitions:
               the international standard ISO 4217 'Codes for
               the representation of currencies and funds'
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -3295,7 +3295,7 @@ definitions:
               the international standard ISO 4217 'Codes for
               the representation of currencies and funds'
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -3329,7 +3329,7 @@ definitions:
               the international standard ISO 4217 'Codes for
               the representation of currencies and funds'
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -3375,7 +3375,7 @@ definitions:
         type: object
         properties:
           SchemeName:
-            $ref: '#/definitions/AccountSchemeModel'
+            $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
               Identification assigned by an institution to
@@ -3488,7 +3488,7 @@ definitions:
               the international standard ISO 4217 'Codes for
               the representation of currencies and funds'
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -3517,7 +3517,7 @@ definitions:
         minLength: 1
         maxLength: 40
       OfferType:
-        description: 'Offer type, in a coded form.'
+        description: "Offer type, in a coded form."
         type: string
         enum:
           - BalanceTransfer
@@ -3570,7 +3570,7 @@ definitions:
               edition of the international standard ISO 4217 "Codes for the
               representation of currencies and funds".
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -3589,7 +3589,7 @@ definitions:
               edition of the international standard ISO 4217 "Codes for the
               representation of currencies and funds".
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
@@ -3633,7 +3633,7 @@ definitions:
         minLength: 1
         maxLength: 35
       PartyType:
-        description: 'Party type, in a coded form.'
+        description: "Party type, in a coded form."
         type: string
         enum:
           - Delegate
@@ -3730,7 +3730,7 @@ definitions:
               description: >-
                 Nation with its own government, occupying a particular territory.
               type: string
-              pattern: '^[A-Z]{2,2}$'
+              pattern: "^[A-Z]{2,2}$"
           required:
             - Country
           additionalProperties: false
@@ -3793,13 +3793,13 @@ definitions:
               edition of the international standard ISO 4217 "Codes for the
               representation of currencies and funds".
             type: string
-            pattern: '^[A-Z]{3,3}$'
+            pattern: "^[A-Z]{3,3}$"
         required:
           - Amount
           - Currency
         additionalProperties: false
       Reference:
-        $ref: '#/definitions/BECSRemittance'
+        $ref: "#/definitions/BECSRemittance"
       CreditorAgent:
         type: object
         properties:
@@ -3826,7 +3826,7 @@ definitions:
         type: object
         properties:
           SchemeName:
-            $ref: '#/definitions/AccountSchemeModel'
+            $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
               Identification assigned by an institution to
@@ -3897,7 +3897,7 @@ definitions:
         minLength: 1
         maxLength: 35
       Type:
-        description: 'Statement type, in a coded form.'
+        description: "Statement type, in a coded form."
         type: string
         enum:
           - AccountClosure
@@ -3979,13 +3979,13 @@ definitions:
                     latest edition of the international standard ISO 4217 "Codes
                     for the representation of currencies and funds".
                   type: string
-                  pattern: '^[A-Z]{3,3}$'
+                  pattern: "^[A-Z]{3,3}$"
               required:
                 - Amount
                 - Currency
               additionalProperties: false
             Type:
-              description: 'Benefit type, in a coded form.'
+              description: "Benefit type, in a coded form."
               type: string
               enum:
                 - Cashback
@@ -4021,7 +4021,7 @@ definitions:
                     latest edition of the international standard ISO 4217 "Codes
                     for the representation of currencies and funds".
                   type: string
-                  pattern: '^[A-Z]{3,3}$'
+                  pattern: "^[A-Z]{3,3}$"
               required:
                 - Amount
                 - Currency
@@ -4035,7 +4035,7 @@ definitions:
                 Indicates whether the amount is a credit or a debit.
                 Usage: A zero amount is considered to be a credit amount.
             Type:
-              description: 'Fee type, in a coded form.'
+              description: "Fee type, in a coded form."
               type: string
               enum:
                 - Annual
@@ -4084,7 +4084,7 @@ definitions:
                     latest edition of the international standard ISO 4217 "Codes
                     for the representation of currencies and funds".
                   type: string
-                  pattern: '^[A-Z]{3,3}$'
+                  pattern: "^[A-Z]{3,3}$"
               required:
                 - Amount
                 - Currency
@@ -4098,7 +4098,7 @@ definitions:
                 Indicates whether the amount is a credit or a debit.
                 Usage: A zero amount is considered to be a credit amount.
             Type:
-              description: 'Interest amount type, in a coded form.'
+              description: "Interest amount type, in a coded form."
               type: string
               enum:
                 - BalanceTransfer
@@ -4136,7 +4136,7 @@ definitions:
               type: string
               format: date-time
             Type:
-              description: 'Date time type, in a coded form.'
+              description: "Date time type, in a coded form."
               type: string
               enum:
                 - BalanceTransferPromoEnd
@@ -4169,7 +4169,7 @@ definitions:
               maxLength: 10
               pattern: '^(-?\d{1,3}){1}(\.\d{1,4}){0,1}$'
             Type:
-              description: 'Statement rate type, in a coded form.'
+              description: "Statement rate type, in a coded form."
               type: string
               enum:
                 - AnnualBalanceTransfer
@@ -4202,7 +4202,7 @@ definitions:
               type: integer
               format: int32
             Type:
-              description: 'Statement value type, in a coded form.'
+              description: "Statement value type, in a coded form."
               type: string
               enum:
                 - AirMilesPoints
@@ -4242,7 +4242,7 @@ definitions:
                     latest edition of the international standard ISO 4217 "Codes
                     for the representation of currencies and funds".
                   type: string
-                  pattern: '^[A-Z]{3,3}$'
+                  pattern: "^[A-Z]{3,3}$"
               required:
                 - Amount
                 - Currency
@@ -4256,7 +4256,7 @@ definitions:
                 Indicates whether the amount is a credit or a debit.
                 Usage: A zero amount is considered to be a credit amount.
             Type:
-              description: 'Amount type, in a coded form.'
+              description: "Amount type, in a coded form."
               type: string
               enum:
                 - ArrearsClosingBalance
@@ -4385,8 +4385,8 @@ securityDefinitions:
   CustomerOAuth2Security:
     type: oauth2
     flow: accessCode
-    tokenUrl: 'https://authserver.example/token'
-    authorizationUrl: 'https://authserver.example/authorization'
+    tokenUrl: "https://authserver.example/token"
+    authorizationUrl: "https://authserver.example/authorization"
     scopes:
       accounts: Ability to read accounts information
     description: >-
@@ -4396,7 +4396,7 @@ securityDefinitions:
   ThirdPartyOAuth2Security:
     type: oauth2
     flow: application
-    tokenUrl: 'https://authserver.example/token'
+    tokenUrl: "https://authserver.example/token"
     scopes:
       accounts: Ability to read accounts information
     description: >-
@@ -4409,7 +4409,7 @@ responses:
         type: string
         description: An RFC4122 UID used as a correlation id.
     schema:
-      $ref: '#/definitions/ErrorResponse'
+      $ref: "#/definitions/ErrorResponse"
   401ErrorResponse:
     description: Unauthorized
     headers:
@@ -4423,7 +4423,7 @@ responses:
         type: string
         description: An RFC4122 UID used as a correlation id.
     schema:
-      $ref: '#/definitions/ErrorResponse'
+      $ref: "#/definitions/ErrorResponse"
   405ErrorResponse:
     description: Method Not Allowed
     headers:
@@ -4458,7 +4458,7 @@ responses:
         type: string
         description: An RFC4122 UID used as a correlation id.
     schema:
-      $ref: '#/definitions/ErrorResponse'
+      $ref: "#/definitions/ErrorResponse"
   501ErrorResponse:
     description: Not Implemented
     headers:
@@ -4472,4 +4472,4 @@ responses:
         type: string
         description: An RFC4122 UID used as a correlation id.
     schema:
-      $ref: '#/definitions/ErrorResponse'
+      $ref: "#/definitions/ErrorResponse"
