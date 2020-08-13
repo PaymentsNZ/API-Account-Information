@@ -1847,7 +1847,7 @@ parameters:
     required: false
     description: >-
       The User-Agent of the application on the customer device that is used to
-      request the payment
+      make the account information request
   AuthorizationParam:
     in: header
     name: Authorization
@@ -1869,6 +1869,7 @@ definitions:
           - Field.Unexpected
           - Header.Invalid
           - Header.Missing
+          - QueryParam.Invalid
           - Reauthenticate
           - Reauthorise
           - Resource.Consent.CreditorAccount
@@ -2118,13 +2119,9 @@ definitions:
             $ref: "#/definitions/AccountSchemeModel"
           Identification:
             description: >-
-              Identification assigned by an institution to identify an account.
-              This identification is known by the account owner. For the NZ
-              market, this will use the hyphen-delimited format: 2-4-7-2
-              where this is made up of bank-branch-account-suffix and each
-              of the four components is a number, prepended with leading zeros
-              to match the component length requirement.
-              For example 12-0123-0012345-00
+              Identification assigned by an institution to
+              identify an account. This identification is
+              known by the account owner.
             type: string
             minLength: 1
             maxLength: 34
@@ -2186,7 +2183,7 @@ definitions:
     type: string
     enum:
       - BECSElectronicCredit
-    default: BECSElectronicCredit
+      - MaskedCardNumber
   Links:
     title: Links
     type: object
@@ -2371,7 +2368,6 @@ definitions:
                 - ReadBeneficiariesDetail
                 - ReadDirectDebits
                 - ReadOffers
-                - ReadPAN
                 - ReadParty
                 - ReadPartyAuthUser
                 - ReadScheduledPaymentsBasic
@@ -2899,12 +2895,7 @@ definitions:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner. For the NZ
-              market, this will use the hyphen-delimited format: 2-4-7-2
-              where this is made up of bank-branch-account-suffix and each
-              of the four components is a number, prepended with leading zeros
-              to match the component length requirement.
-              For example 12-0123-0012345-00
+              known by the account owner.
             type: string
             minLength: 1
             maxLength: 34
@@ -2944,12 +2935,7 @@ definitions:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner. For the NZ
-              market, this will use the hyphen-delimited format: 2-4-7-2
-              where this is made up of bank-branch-account-suffix and each
-              of the four components is a number, prepended with leading zeros
-              to match the component length requirement.
-              For example 12-0123-0012345-00
+              known by the account owner.
             type: string
             minLength: 1
             maxLength: 34
@@ -3122,12 +3108,7 @@ definitions:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner. For the NZ
-              market, this will use the hyphen-delimited format: 2-4-7-2
-              where this is made up of bank-branch-account-suffix and each
-              of the four components is a number, prepended with leading zeros
-              to match the component length requirement.
-              For example 12-0123-0012345-00
+              known by the account owner.
             type: string
             minLength: 1
             maxLength: 34
@@ -3380,12 +3361,7 @@ definitions:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner. For the NZ
-              market, this will use the hyphen-delimited format: 2-4-7-2
-              where this is made up of bank-branch-account-suffix and each
-              of the four components is a number, prepended with leading zeros
-              to match the component length requirement.
-              For example 12-0123-0012345-00
+              known by the account owner.
             type: string
             minLength: 1
             maxLength: 34
@@ -3831,12 +3807,7 @@ definitions:
             description: >-
               Identification assigned by an institution to
               identify an account. This identification is
-              known by the account owner. For the NZ
-              market, this will use the hyphen-delimited format: 2-4-7-2
-              where this is made up of bank-branch-account-suffix and each
-              of the four components is a number, prepended with leading zeros
-              to match the component length requirement.
-              For example 12-0123-0012345-00
+              known by the account owner.
             type: string
             minLength: 1
             maxLength: 34
