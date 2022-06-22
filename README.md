@@ -6,9 +6,10 @@ This is a private git repository of the Payments NZ API specifications. It is us
 
 ## APIs
 
-There is currently one API covered under the specifications. This is:
+The APIs covered in the specifications are:
 
-- [Account Information](./dist/v2.1.0/account-info-nz-swagger.yaml) - access information on a payment user's accounts
+- Set up a consent to access account information
+- Access specific API resources tied to an account access consent
 
 ## Files
 
