@@ -2,6 +2,14 @@
 
 ---
 
+## v2.3.0 - 19/06/2022
+
+- No new changes to Swagger for v2.3.0
+
+## v2.2.0 - 19/06/2022
+
+- No new changes to Swagger for v2.2.0 - as changes for the version are on scoping mandatory endpoint functionality
+
 ## v2.1.0 - 01/12/2020
 
 - New error code QueryParam.Invalid
