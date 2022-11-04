@@ -2,6 +2,10 @@
 
 ---
 
+## v2.0.2, v2.1.1, v2.2.1, v2.3.1
+
+- Patch release to add `additionalProperties: false` to BECSRemittance DebtorReference and CreditorReference sub-schemas.  This prevents the possibility of additional JSON member values being supplied
+
 ## v2.3.0 - 19/06/2022
 
 - No new changes to Swagger for v2.3.0
