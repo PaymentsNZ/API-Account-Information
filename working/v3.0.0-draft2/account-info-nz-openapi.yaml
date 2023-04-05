@@ -2091,7 +2091,7 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         Amount:
           description: Amount of money of the cash balance.
           type: object
@@ -2197,7 +2197,7 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         Currency:
           description: "Identification of the currency in which the account is
             held.  Usage: Currency should only be used in case one and the same
@@ -2578,13 +2578,13 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         TransactionId:
           description: Unique identifier for the transaction within an servicing
             institution. This identifier is both unique and immutable.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         TransactionReference:
           $ref: "#/components/schemas/BECSRemittance"
         StatementReference:
@@ -3000,13 +3000,13 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         BeneficiaryId:
           description: A unique and immutable identifier used to identify the beneficiary
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         Reference:
           $ref: "#/components/schemas/BECSRemittance"
         CreditorAgent:
@@ -3144,13 +3144,13 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         StandingOrderId:
           description: A unique and immutable identifier used to identify the standing
             order resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         Frequency:
           description: >
             EvryDay - Every day
@@ -3357,13 +3357,13 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         DirectDebitId:
           description: A unique and immutable identifier used to identify the direct debit
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         MandateIdentification:
           description: Direct Debit reference.
           type: string
@@ -3422,13 +3422,13 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         OfferId:
           description: A unique and immutable identifier used to identify the offer
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         OfferType:
           description: Offer type, in a coded form.
           type: string
@@ -3532,7 +3532,7 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         PartyNumber:
           description: Number assigned by an agent to identify its customer.
           type: string
@@ -3641,14 +3641,14 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         ScheduledPaymentId:
           description: A unique and immutable identifier used to identify the scheduled
             payment resource. This identifier has no meaning to the account
             owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         ScheduledPaymentDateTime:
           description: >-
             The date on which the scheduled payment will be made.
@@ -3758,13 +3758,13 @@ components:
             resource. This identifier has no meaning to the account owner.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         StatementId:
           description: Unique identifier for the statement resource within an servicing
             institution. This identifier is both unique and immutable.
           type: string
           minLength: 1
-          maxLength: 40
+          maxLength: 128
         StatementReference:
           description: Unique reference for the statement. This reference may be
             optionally populated if available.
