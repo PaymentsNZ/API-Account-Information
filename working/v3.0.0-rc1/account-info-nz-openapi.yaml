@@ -3560,12 +3560,12 @@ components:
           description: Collection of information that identifies a phone number, as
             defined by telecom services.
           type: string
-          pattern: \+[0-9]{1,3}-[0-9()+\-]{1,30}
+          pattern: '^\+[0-9]{1,3}\s?[0-9]{1,14}(\s[0-9]{1,13})?$'
         Mobile:
           description: Collection of information that identifies a mobile phone number, as
             defined by telecom services.
           type: string
-          pattern: \+[0-9]{1,3}-[0-9()+\-]{1,30}
+          pattern: '^\+[0-9]{1,3}\s?[0-9]{1,14}(\s[0-9]{1,13})?$'
         Address:
           type: array
           description: Postal address of a party.
