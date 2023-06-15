@@ -2216,13 +2216,9 @@ components:
           description: Specifies the sub type of account (product family group).
           type: string
           enum:
-            - ChargeCard
             - CreditCard
-            - CurrentAccount
-            - EMoney
-            - Loan
-            - Mortgage
-            - PrePaidCard
+            - Lending
+            - Transaction
             - Savings
         Description:
           description: Specifies the description of the account type.
