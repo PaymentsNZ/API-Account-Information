@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: https://www.apicentre.paymentsnz.co.nz/join/
-  version: v3.0.0-rc2
+  version: v3.0.0-rc1
 tags:
   - name: Account Access Consents
     description: A consent to access account information resources
