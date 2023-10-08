@@ -2425,6 +2425,16 @@ components:
           type: string
           minLength: 1
           maxLength: 14
+        EndUserCompanyName:
+          description: Name of the end user facing organisation
+          type: string
+          minLength: 1
+          maxLength: 70
+        EndUserCompanyNZBN:
+          description: NZ business number for the end user facing organisation
+          type: string
+          minLength: 1
+          maxLength: 70
         MerchantName:
           description: Name of the merchant
           type: string
