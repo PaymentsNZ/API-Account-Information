@@ -1,0 +1,37 @@
+extends:
+  - recommended
+
+rules:
+  info-license: error
+  paths-kebab-case: error
+  spec-strict-refs: warn
+  operation-4xx-problem-details-rfc7807: off
+  info-contact: error
+  operation-description: warn
+  boolean-parameter-prefixes: warn
+  no-invalid-parameter-examples: warn
+  parameter-description: warn
+  no-http-verbs-in-paths: warn
+  path-segment-plural:
+    severity: warn
+    ignoreLastPathSegment: true
+    exceptions:
+      - party
+  path-excludes-patterns: off
+  no-invalid-schema-examples: warn
+  request-mime-type: 
+    severity: warn
+    allowedValues:
+      - application/json
+  response-mime-type:
+    severity: warn
+    allowedValues:
+      - application/json
+      - '*/*'
+  response-contains-header: off
+  response-contains-property: off
+  scalar-property-missing-example: off
+  required-string-property-missing-min-length: off
+  operation-singular-tag: off
+  operation-tag-defined: warn
+  tags-alphabetical: warn
