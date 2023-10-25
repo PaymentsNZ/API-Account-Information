@@ -1,7 +1,7 @@
 # Account Information API
 
-## V2.1.1
+## V2.1.2
 
-This is v2.1.1 NZ Open Banking Account Information API technical specification.
+This is v2.1.2 NZ Open Banking Account Information API technical specification.
 
 The Swagger 2.0 document is [here](account-info-nz-swagger.yaml).
