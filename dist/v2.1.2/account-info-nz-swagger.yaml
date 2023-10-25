@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: "https://www.apicentre.paymentsnz.co.nz/join/"
-  version: v2.1.1
+  version: v2.1.2
 basePath: /open-banking-nz/v2.1
 schemes:
   - https
@@ -42,7 +42,7 @@ tags:
       on a specific account
   - name: Offers
     description: >-
-      A set of elements that descirbe the list of offers avaialble to a specific
+      A set of elements that describe the list of offers available to a specific
       account
   - name: Party
     description: >-
@@ -2219,12 +2219,12 @@ definitions:
         type: object
         properties:
           Latitude:
-            description: Latitude measured in decimal degress
+            description: Latitude measured in decimal degrees
             type: string
             maxLength: 14
             pattern: '^-?\d{1,3}\.\d{1,8}$'
           Longitude:
-            description: Longitude measured in decimal degress
+            description: Longitude measured in decimal degrees
             type: string
             maxLength: 14
             pattern: '^-?\d{1,3}\.\d{1,8}$'
@@ -2965,7 +2965,7 @@ definitions:
         additionalProperties: false
         description: >-
           Unambiguous identification of the account of the debtor, in the case
-          of a crebit transaction.
+          of a credit transaction.
     required:
       - AccountId
       - Amount
@@ -4389,6 +4389,8 @@ responses:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: "#/definitions/ErrorResponse"
   403ErrorResponse:
     description: Forbidden
     headers:
@@ -4403,18 +4405,24 @@ responses:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: "#/definitions/ErrorResponse"
   406ErrorResponse:
     description: Not Acceptable
     headers:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: "#/definitions/ErrorResponse"
   415ErrorResponse:
     description: Unsupported Media Type
     headers:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: "#/definitions/ErrorResponse"
   429ErrorResponse:
     description: Too Many Requests
     headers:
@@ -4424,6 +4432,8 @@ responses:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: "#/definitions/ErrorResponse"
   500ErrorResponse:
     description: Internal Server Error
     headers:
@@ -4438,6 +4448,8 @@ responses:
       x-fapi-interaction-id:
         type: string
         description: An RFC4122 UID used as a correlation id.
+    schema:
+      $ref: "#/definitions/ErrorResponse"
   503ErrorResponse:
     description: Service Unavailable
     headers:
