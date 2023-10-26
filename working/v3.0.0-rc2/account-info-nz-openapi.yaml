@@ -1901,6 +1901,10 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
     403ErrorResponse:
       description: Forbidden
       headers:
@@ -1919,6 +1923,10 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
     406ErrorResponse:
       description: Not Acceptable
       headers:
@@ -1926,6 +1934,10 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
     415ErrorResponse:
       description: Unsupported Media Type
       headers:
@@ -1933,6 +1945,10 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
     429ErrorResponse:
       description: Too Many Requests
       headers:
@@ -1944,6 +1960,10 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
     500ErrorResponse:
       description: Internal Server Error
       headers:
@@ -1962,6 +1982,10 @@ components:
           description: An RFC4122 UID used as a correlation id.
           schema:
             type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
     503ErrorResponse:
       description: Service Unavailable
       headers:
