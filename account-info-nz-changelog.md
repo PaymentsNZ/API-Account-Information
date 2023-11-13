@@ -2,7 +2,7 @@
 
 ---
 
-## V3.0.0
+## V3.0.0 - 13/11/2023
 
 - Major new release
 - Now using OpenAPI 3.0 (upgraded from Swagger 2.0)
