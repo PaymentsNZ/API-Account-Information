@@ -2,6 +2,15 @@
 
 ---
 
+## V3.0.0
+
+- Major new release
+- Now using OpenAPI 3.0 (upgraded from Swagger 2.0)
+- Updated `AccountSubType` codes
+- Updated length of resource Id fields from 40 to 128 characters
+- Updated phone number (used in `Phone` and `Mobile` data fields) regular expression
+- Statements filtering updated and corrected
+
 ## v2.1.2, v2.2.2, v2.3.2 - 25/10/2023
 
 - Patch release to update all HTTP error responses to include standard error body.  This aligns with the documented requirement and Technical Working Group decision 029.
