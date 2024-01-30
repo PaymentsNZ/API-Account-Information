@@ -15,10 +15,10 @@ The APIs covered in the specifications are:
 
 The files contained in this project cover:
 
-- Swagger 2.0 YAML formatted API specifications of
+- Swagger 2.0 / OpenAPI 3.0 YAML formatted API specifications of
   - NZ Account Information APIs
 - [Changelogs](account-info-nz-changelog.md) of NZ APIs recording human-friendly notes of API changes
-- [Response code defintions and descriptions](account-info-nz-response-codes.md)
+- [Response code definitions and descriptions](account-info-nz-response-codes.md)
 - Other files as required
 
 ## Upstream API Reference
