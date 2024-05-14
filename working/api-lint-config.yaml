@@ -4,6 +4,7 @@ extends:
 rules:
   info-license: error
   paths-kebab-case: error
+  spec: warn
   spec-strict-refs: warn
   operation-4xx-problem-details-rfc7807: off
   info-contact: error
