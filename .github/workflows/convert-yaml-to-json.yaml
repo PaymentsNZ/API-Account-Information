@@ -1,0 +1,59 @@
+name: convert-yaml-to-json
+
+# author: @NigelSomerfieldPNZ
+# issue: https://paymentsnz.atlassian.net/browse/ACSD-717
+
+#
+# This workflow updates the *.json files in the working/ directories,
+# when the corresponding *.yaml files change.
+# JSON files are automatically generated from the YAML files.
+# Only the YAML files should be adjusted manually.
+#
+
+# run this on push to master
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  yaml2json:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4 # checkout repo content
+
+    - uses: actions/setup-node@v4 # setup Node.js
+      with:
+        node-version: '20'
+
+    - name: Install dependencies # install script dependencies
+      working-directory: scripts/yaml2json
+      run: npm ci
+
+    - name: convert YAML to JSON # run the conversion script
+      run: find working/* dist/* -type f -regex ".*openapi.yaml\|.*swagger.yaml" | xargs node scripts/yaml2json/yaml2json.js
+
+    - name: openapi-lint # run linter over JSON files
+      uses: mhiew/redoc-lint-github-action@v4
+      with:
+        args: --config working/api-lint-config.yaml working/**/*openapi.json dist/**/*.json
+
+    - name: git diff # check for any changed files and commit
+      run: |
+        git add working/**/*openapi.json dist/**/*.json
+        git --no-pager -c color.diff=always diff --staged
+
+    - name: Create Pull Request  # create pull request for changed JSON files
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: update-json-openapi
+        title: Update JSON OpenAPI files
+        commit-message: Update JSON OpenAPI files
+        body: |
+          This pull request is automatically triggered by GitHub action `convert-yaml-to-json`.
+
+          OpenAPI YAML files have changed, so the JSON files are automatically being recreated.
+
