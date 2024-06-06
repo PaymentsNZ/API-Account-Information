@@ -12,7 +12,7 @@ info:
   license:
     name: Licence
     url: "https://www.apicentre.paymentsnz.co.nz/join/"
-  version: v2.3.2
+  version: v2.3.3
 basePath: /open-banking-nz/v2.3
 schemes:
   - https
