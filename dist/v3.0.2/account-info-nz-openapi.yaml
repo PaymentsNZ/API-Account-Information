@@ -1843,7 +1843,7 @@ components:
       schema:
         oneOf:
           - type: string
-            format: ipv5
+            format: ipv4
           - type: string
             format: ipv6
     x-fapi-interaction-id-Param:
@@ -1877,7 +1877,7 @@ components:
       schema:
         oneOf:
           - type: string
-            format: ipv5
+            format: ipv4
           - type: string
             format: ipv6
     x-customer-user-agent-Param:
