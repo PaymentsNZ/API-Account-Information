@@ -2110,6 +2110,30 @@ components:
         - Message
         - Errors
       additionalProperties: false
+    ActiveCurrencyAndAmount_SimpleType:
+      description: A number of monetary units specified in an active currency
+        where the unit of currency is explicit and compliant with ISO 4217.
+      type: string
+      pattern: ^\d{1,13}(\.\d{1,5})?$
+    ActiveOrHistoricCurrency:
+      description: A code allocated to a currency by a Maintenance Agency under an
+        international identification scheme, as described in the latest
+        edition of the international standard ISO 4217 'Codes for the
+        representation of currencies and funds'
+      type: string
+      pattern: ^[A-Z]{3,3}$
+    ActiveOrHistoricCurrencyAndAmount:
+      description: Active Or Historic Currency Code and Amount
+      type: object
+      properties:
+        Amount:
+          $ref: '#/components/schemas/ActiveCurrencyAndAmount_SimpleType'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrency'
+      required:
+        - Amount
+        - Currency
+      additionalProperties: false
     BalanceModel:
       type: object
       description: Balance object schema
@@ -2122,22 +2146,8 @@ components:
           maxLength: 128
         Amount:
           description: Amount of money of the cash balance.
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 'Codes for the
-                representation of currencies and funds'
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         CreditDebitIndicator:
           description: "Indicates whether the balance is a credit or a debit balance.
             Usage: A zero balance is considered to be a credit balance."
@@ -2182,22 +2192,8 @@ components:
                 type: boolean
               Amount:
                 description: Active Or Historic Currency Code and Amount
-                type: object
-                properties:
-                  Amount:
-                    type: string
-                    pattern: ^\d{1,13}\.\d{1,5}$
-                  Currency:
-                    description: A code allocated to a currency by a Maintenance Agency under an
-                      international identification scheme, as described in the
-                      latest edition of the international standard ISO 4217
-                      'Codes for the representation of currencies and funds'
-                    type: string
-                    pattern: ^[A-Z]{3,3}$
-                required:
-                  - Amount
-                  - Currency
-                additionalProperties: false
+                allOf:
+                  - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
               Type:
                 description: Limit type, in a coded form.
                 type: string
@@ -2232,8 +2228,8 @@ components:
             account number covers several currencies and the initiating party
             needs to identify which currency needs to be used for settlement on
             the account."
-          type: string
-          pattern: ^[A-Z]{3,3}$
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrency'
         AccountType:
           description: Specifies the type of account (personal or business).
           type: string
@@ -2633,22 +2629,8 @@ components:
             optionally populated if available.
         Amount:
           description: Amount of money in the cash entry.
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 'Codes for the
-                representation of currencies and funds'
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         CreditDebitIndicator:
           description: Indicates whether the transaction is a credit or a debit entry.
           type: string
@@ -2741,18 +2723,18 @@ components:
             SourceCurrency:
               description: Currency from which an amount is to be converted in a currency
                 conversion.
-              type: string
-              pattern: ^[A-Z]{3,3}$
+              allOf:
+                - $ref: '#/components/schemas/ActiveOrHistoricCurrency'
             TargetCurrency:
               description: Currency from which an amount is to be converted in a currency
                 conversion.
-              type: string
-              pattern: ^[A-Z]{3,3}$
+              allOf:
+                - $ref: '#/components/schemas/ActiveOrHistoricCurrency'
             UnitCurrency:
               description: Currency from which an amount is to be converted in a currency
                 conversion.
-              type: string
-              pattern: ^[A-Z]{3,3}$
+              allOf:
+                - $ref: '#/components/schemas/ActiveOrHistoricCurrency'
             ExchangeRate:
               description: >-
                 Factor used to convert an amount from one currency into another.
@@ -2781,25 +2763,8 @@ components:
             InstructedAmount:
               description: Amount of money of the cash balance after a transaction entry is
                 applied to the account..
-              type: object
-              properties:
-                Amount:
-                  description: A number of monetary units specified in an active currency where
-                    the unit of currency is explicit and compliant with ISO
-                    4217.
-                  type: string
-                  pattern: ^\d{1,13}\.\d{1,5}$
-                Currency:
-                  description: A code allocated to a currency by a Maintenance Agency under an
-                    international identification scheme, as described in the
-                    latest edition of the international standard ISO 4217 "Codes
-                    for the representation of currencies and funds".
-                  type: string
-                  pattern: ^[A-Z]{3,3}$
-              required:
-                - Amount
-                - Currency
-              additionalProperties: false
+              allOf:
+                - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
           required:
             - SourceCurrency
             - ExchangeRate
@@ -2895,22 +2860,8 @@ components:
             Amount:
               description: Amount of money of the cash balance after a transaction entry is
                 applied to the account..
-              type: object
-              properties:
-                Amount:
-                  type: string
-                  pattern: ^\d{1,13}\.\d{1,5}$
-                Currency:
-                  description: A code allocated to a currency by a Maintenance Agency under an
-                    international identification scheme, as described in the
-                    latest edition of the international standard ISO 4217 'Codes
-                    for the representation of currencies and funds'
-                  type: string
-                  pattern: ^[A-Z]{3,3}$
-              required:
-                - Amount
-                - Currency
-              additionalProperties: false
+              allOf:
+                - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             CreditDebitIndicator:
               description: "Indicates whether the balance is a credit or a debit balance.
                 Usage: A zero balance is considered to be a credit balance."
@@ -3240,22 +3191,8 @@ components:
           format: date-time
         FirstPaymentAmount:
           description: The amount of the first Standing Order
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 'Codes for the
-                representation of currencies and funds'
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         NextPaymentDateTime:
           description: >-
             The date on which the next payment for a Standing Order schedule
@@ -3270,22 +3207,8 @@ components:
           format: date-time
         NextPaymentAmount:
           description: The amount of the next Standing Order
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 'Codes for the
-                representation of currencies and funds'
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         FinalPaymentDateTime:
           description: >-
             The date on which the final payment for a Standing Order schedule
@@ -3300,22 +3223,8 @@ components:
           format: date-time
         FinalPaymentAmount:
           description: The amount of the final Standing Order
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 'Codes for the
-                representation of currencies and funds'
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         StandingOrderStatusCode:
           description: Specifies the status of the standing order in code form.
           type: string
@@ -3427,22 +3336,8 @@ components:
           format: date-time
         PreviousPaymentAmount:
           description: The amount of the most recent direct debit collection.
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 'Codes for the
-                representation of currencies and funds'
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
       required:
         - AccountId
         - MandateIdentification
@@ -3501,40 +3396,12 @@ components:
           format: date-time
         Amount:
           description: Amount of money associated with the offer type.
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 "Codes for the
-                representation of currencies and funds".
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         Fee:
           description: Fee associated with the offer type.
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 "Codes for the
-                representation of currencies and funds".
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         Rate:
           description: Rate associated with the offer type.
           type: string
@@ -3707,22 +3574,8 @@ components:
             initiating party.
 
             Usage: This amount has to be transported unchanged through the transaction chain.
-          type: object
-          properties:
-            Amount:
-              type: string
-              pattern: ^\d{1,13}\.\d{1,5}$
-            Currency:
-              description: A code allocated to a currency by a Maintenance Agency under an
-                international identification scheme, as described in the latest
-                edition of the international standard ISO 4217 "Codes for the
-                representation of currencies and funds".
-              type: string
-              pattern: ^[A-Z]{3,3}$
-          required:
-            - Amount
-            - Currency
-          additionalProperties: false
+          allOf:
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
         Reference:
           $ref: "#/components/schemas/BECSRemittance"
         CreditorAgent:
@@ -3867,22 +3720,8 @@ components:
             properties:
               Amount:
                 description: Amount of money associated with the statement benefit type.
-                type: object
-                properties:
-                  Amount:
-                    type: string
-                    pattern: ^\d{1,13}\.\d{1,5}$
-                  Currency:
-                    description: A code allocated to a currency by a Maintenance Agency under an
-                      international identification scheme, as described in the
-                      latest edition of the international standard ISO 4217
-                      "Codes for the representation of currencies and funds".
-                    type: string
-                    pattern: ^[A-Z]{3,3}$
-                required:
-                  - Amount
-                  - Currency
-                additionalProperties: false
+                allOf:
+                  - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
               Type:
                 description: Benefit type, in a coded form.
                 type: string
@@ -3906,22 +3745,8 @@ components:
             properties:
               Amount:
                 description: Amount of money associated with the statement fee type.
-                type: object
-                properties:
-                  Amount:
-                    type: string
-                    pattern: ^\d{1,13}\.\d{1,5}$
-                  Currency:
-                    description: A code allocated to a currency by a Maintenance Agency under an
-                      international identification scheme, as described in the
-                      latest edition of the international standard ISO 4217
-                      "Codes for the representation of currencies and funds".
-                    type: string
-                    pattern: ^[A-Z]{3,3}$
-                required:
-                  - Amount
-                  - Currency
-                additionalProperties: false
+                allOf:
+                  - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
               CreditDebitIndicator:
                 type: string
                 enum:
@@ -3963,22 +3788,8 @@ components:
             properties:
               Amount:
                 description: Amount of money associated with the statement interest amount type.
-                type: object
-                properties:
-                  Amount:
-                    type: string
-                    pattern: ^\d{1,13}\.\d{1,5}$
-                  Currency:
-                    description: A code allocated to a currency by a Maintenance Agency under an
-                      international identification scheme, as described in the
-                      latest edition of the international standard ISO 4217
-                      "Codes for the representation of currencies and funds".
-                    type: string
-                    pattern: ^[A-Z]{3,3}$
-                required:
-                  - Amount
-                  - Currency
-                additionalProperties: false
+                allOf:
+                  - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
               CreditDebitIndicator:
                 type: string
                 enum:
@@ -4109,22 +3920,8 @@ components:
             properties:
               Amount:
                 description: Amount of money associated with the amount type.
-                type: object
-                properties:
-                  Amount:
-                    type: string
-                    pattern: ^\d{1,13}\.\d{1,5}$
-                  Currency:
-                    description: A code allocated to a currency by a Maintenance Agency under an
-                      international identification scheme, as described in the
-                      latest edition of the international standard ISO 4217
-                      "Codes for the representation of currencies and funds".
-                    type: string
-                    pattern: ^[A-Z]{3,3}$
-                required:
-                  - Amount
-                  - Currency
-                additionalProperties: false
+                allOf:
+                  - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
               CreditDebitIndicator:
                 type: string
                 enum:
